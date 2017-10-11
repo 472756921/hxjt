@@ -21,6 +21,8 @@
     <br/>
     <br/>
     <a href="#/admin/docIndex">后台</a>
+    <br/>
+    <br/>
     <a href="#/user/userInfo">个人中心</a>
     <br/>
     <br/>
@@ -32,7 +34,7 @@
     </ul>
     会员服务
     <ul>
-      <li><a href="#/user/docInfo">购买服务包</a></li>
+      <li><a href="#/user/buyService">购买服务包</a></li>
       <li><a>联系我们</a></li>
       <li><a>更多服务</a></li>
     </ul>
