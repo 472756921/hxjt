@@ -1,6 +1,6 @@
 <template>
   <div class="doccontent" ref="logonBG">
-    <div class="center titleA">和润康管理系统</div>
+    <div class="center titleA">华西医生集团</div>
     <div class="infoContent">
       <input type="text" class="inputtype" placeholder="账号" v-model="u"/>
       <input type="password" class="inputtype" v-model="p" placeholder="密码"/>

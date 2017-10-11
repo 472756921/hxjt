@@ -42,12 +42,6 @@
       <span class="itemText">{{userInfo.address}}</span>
     </div>
     <div class="line2"></div>
-    <div class="text"  @click="yh">
-      <span>优惠券</span>
-      <span class="itemText">
-        <i class="iconfont icon-htbarrowright02"></i>
-      </span>
-    </div>
 
 
     <el-dialog title="提示" :visible.sync="dialogVisible" size="large">
@@ -60,15 +54,19 @@
       </span>
     </el-dialog>
 
-    <el-dialog title="绑定账号" :visible.sync="bangding" size="large">
-      <div>您还未绑定账号，请输入您的身份证号码进行绑定</div>
+    <el-dialog title="绑定账号" :visible.sync="bangding" size="large" :show-close="false">
+      <div>您还未绑定账号，请输入您的身份证和电话号码进行绑定</div>
       <br/>
-      <el-input  v-model="val" size="small">
+      <el-input  v-model="phoneB" size="small">
+        <template slot="prepend">电话号码</template>
+      </el-input>
+      <br/>
+      <br/>
+      <el-input  v-model="idnumberB" size="small">
         <template slot="prepend">身份证号</template>
       </el-input>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="bangding = false">取 消</el-button>
-        <el-button type="primary" @click="bangding">绑 定</el-button>
+        <el-button type="primary" @click="bangdings">绑 定</el-button>
       </span>
     </el-dialog>
 
@@ -82,6 +80,8 @@
     name: 'userInfo',
     data() {
       return {
+        phoneB: '',
+        idnumberB: '',
         userInfo: '',
         dialogVisible: false,
         bangding: true,
@@ -95,9 +95,6 @@
       this.getUserInfo();
     },
     methods: {
-      yh() {
-        this.$message.info('暂未开放，敬请期待');
-      },
       head() {
         this.$router.push({ name: 'userHeadUplode', params: { src: 'benson' }})
       },
@@ -155,6 +152,12 @@
       },
       updataLive() {
         this.$router.push({ name: 'updataLive' });
+      },
+      bangdings() {
+        if (this.idnumberB == '' || this.phoneB == '') {
+          this.$message.error('请输入绑定号码');
+        }
+        this.bangding = false;
       },
     },
   };

@@ -35,12 +35,12 @@
       </el-radio-group>
     </div>
     <br/>
-    <div>
-      <div class="demonstration">选择病情关联人</div>
-      <el-radio-group v-model="patient" size="small">
-        <el-radio-button :label="child.id" key="i" v-for="(child, i) in childs">{{child.real_name}}</el-radio-button>
-      </el-radio-group>
-    </div>
+    <!--<div>-->
+      <!--<div class="demonstration">选择病情关联人</div>-->
+      <!--<el-radio-group v-model="patient" size="small">-->
+        <!--<el-radio-button :label="child.id" key="i" v-for="(child, i) in childs">{{child.real_name}}</el-radio-button>-->
+      <!--</el-radio-group>-->
+    <!--</div>-->
     <br/>
     <br/>
     <br/>
