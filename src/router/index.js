@@ -21,6 +21,7 @@ import PneumoniaStatus from '@/components/user/pneumoniaStatus'
 import UserHeadUplode from '@/components/user/userHeadUplode'
 import FamousDoctorStudio from '@/components/user/famousDoctorStudio'
 import buyService from '@/components/user/buyService'
+import question_u from '@/components/user/question'
 
 import AdminIndex from '@/components/admin/adminIndex'
 import AdminLogin from '@/components/admin/adminLogin'
@@ -254,6 +255,11 @@ export default new Router({
           path: 'buyService',
           name: 'buyService',
           component: buyService,
+        },
+        {
+          path: 'question_u',
+          name: 'question_u',
+          component: question_u,
         },
       ],
     }

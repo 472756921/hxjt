@@ -28,7 +28,7 @@
     <br/>
     健康管理
     <ul>
-      <li><a href="#/user/docInfo">网上问答</a></li>
+      <li><a href="#/user/question_u">网上问答</a></li>
       <li><a>查看健康状况</a></li>
       <li><a href="#/user/reservation">预约服务</a></li>
     </ul>
