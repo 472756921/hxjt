@@ -2,13 +2,14 @@
     <div >
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="appointment_date" label="预约日期" ></el-table-column>
-        <el-table-column prop="customer_name" label="用户姓名" ></el-table-column>
+        <el-table-column prop="customer_name" label="用户姓名" >
+          <template scope="scope">
+            <div class="cursor" @click="goUser(scope.row)"> {{ scope.row.customer_name }}</div>
+          </template>
+        </el-table-column>
         <el-table-column prop="address" label="预约地点" ></el-table-column>
         <el-table-column label="状态">
           <template scope="scope"><span class="Success">预约成功</span></template>
-        </el-table-column>
-        <el-table-column label="操作">
-          <template scope="scope"><span class="Success">录入检测报告</span></template>
         </el-table-column>
       </el-table>
       <Page :page="page" v-if="over"  v-on:pageChange="getList"/>
@@ -33,6 +34,9 @@
       this.getList(1);
     },
     methods: {
+      goUser(row) {
+        this.$router.push({ name: 'userDatile', params: { userID:row.userID } })
+      },
       getList(page) {
         this.$ajax({
           method: 'GET',
