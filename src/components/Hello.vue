@@ -20,7 +20,7 @@
     </ul>
     <br/>
     <br/>
-    <a href="#/admin/docIndex">后台</a>
+    <a href="#/login">后台</a>
     <br/>
     <br/>
     <a href="#/user/userInfo">个人中心</a>
@@ -29,7 +29,7 @@
     健康管理
     <ul>
       <li><a href="#/user/question_u">网上问答</a></li>
-      <li><a>查看健康状况</a></li>
+      <li><a href="#/user/Physiological">查看健康状况</a></li>
       <li><a href="#/user/reservation">预约服务</a></li>
     </ul>
     会员服务

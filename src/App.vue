@@ -62,4 +62,7 @@ export default {
   .content{
     padding: .4rem;
   }
+  .cursor{
+    cursor: pointer;
+  }
 </style>

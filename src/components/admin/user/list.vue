@@ -1,41 +1,18 @@
 <template>
   <div>
     <template>
-      <el-table
-        :data="tableData"
-        style="width: 100%">
-        <el-table-column
-          prop="account"
-          label="姓名"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="rout"
-          label="电话"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="rout"
-          label="性别"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="rout"
-          label="年龄"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="rout"
-          label="账户余额"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="lastLoginDate"
-          label="最后登录时间">
-        </el-table-column>
+      <el-table :data="tableData" style="width: 100%">
+        <el-table-column prop="account" label="姓名" width="180"></el-table-column>
+        <el-table-column prop="rout" label="电话" width="180"></el-table-column>
+        <el-table-column prop="rout" label="性别" width="180"></el-table-column>
+        <el-table-column prop="rout" label="年龄"  width="180"></el-table-column>
+        <el-table-column prop="rout" label="账户余额" width="180"></el-table-column>
+        <el-table-column prop="lastLoginDate" label="最后登录时间"></el-table-column>
         <el-table-column label="状态">
           <template scope="scope">
-            <span class="Success" @click="chang(scope.$index)">详情</span>
+            <span class="Blue cursor" @click="chang(scope.$index)">检测报告</span>
+            <span class="Blue cursor" @click="chang(scope.$index)">生理指标</span>
+            <span class="Warning cursor" @click="chang(scope.$index)">详情</span>
           </template>
         </el-table-column>
       </el-table>

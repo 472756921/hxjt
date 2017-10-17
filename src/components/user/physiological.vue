@@ -1,52 +1,44 @@
 <template>
   <div class="content">
-    <h3>生理指标<i class="iconfont icon-add" style="float:right;color: #1D8CE0;" @click="dialogVisible = true"></i></h3>
-    <div style="line-height: 1.4rem;padding: 0.4rem">
-      名字：{{user.real_name}} &nbsp;&nbsp;
-      生日：{{user.birthday}} &nbsp;&nbsp;
-      性别：{{user.gender==0?'女':'男'}}
-    </div>
-    <el-row class="card" v-for="(o, index) in data" key="index">
-      <el-col :span="12"><div>日期：{{o.creation_date}}</div></el-col>
-      <el-col :span="12"><div>月龄：{{o.month}}</div></el-col>
-      <el-col :span="12"> <div>体重：{{o.weight}} KG</div></el-col>
-      <el-col :span="12"><div>体温：{{o.body_temperature}} ℃</div></el-col>
-      <el-col :span="12"><div>心率：{{o.xl}} 次/min</div></el-col>
-      <el-col :span="12"><div>坐高：{{o.zg}} CM</div></el-col>
-      <el-col :span="24"><div>奶量：{{o.milk}} ML</div></el-col>
-    </el-row>
-    <el-dialog
-      title="录入今日指标"
-      :visible.sync="dialogVisible"
-      size="large"
-      :before-close="handleClose">
-      <el-input  v-model="weight" maxlength=2 placeholder="KG">
-        <template slot="prepend">体重</template>
-      </el-input>
-      <br/>
-      <br/>
-      <el-input  v-model="temperature" maxlength=4  placeholder="℃">
-        <template slot="prepend">体温</template>
-      </el-input>
-      <br/>
-      <br/>
-      <el-input  v-model="volume" maxlength=4 placeholder="ML">
-        <template slot="prepend">奶量</template>
-      </el-input>
-      <br/>
-      <br/>
-      <el-input  v-model="xl" maxlength=4 placeholder="次/min">
-        <template slot="prepend">心率</template>
-      </el-input>
-      <br/>
-      <br/>
-      <el-input  v-model="zg" maxlength=4 placeholder="CM">
-        <template slot="prepend">坐高</template>
-      </el-input>
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="基础指标" name="first">
+        <h3>生理指标<i class="iconfont icon-add" style="float:right;color: #1D8CE0;" @click="dialogVisible = true"></i></h3>
+        <el-row class="card" v-for="(o, index) in data" key="index">
+          <el-col :span="12"><div>日期：{{o.creation_date}}</div></el-col>
+          <el-col :span="12"><div>血压：{{o.xy}}</div></el-col>
+          <el-col :span="12"> <div>血糖：{{o.xt}}</div></el-col>
+          <el-col :span="12"><div>心率：{{o.xl}}</div></el-col>
+        </el-row>
+        <el-dialog
+          title="录入指标"
+          :visible.sync="dialogVisible"
+          size="large"
+          :before-close="handleClose">
+          <el-input  v-model="weight" :maxlength=2>
+            <template slot="prepend">血压</template>
+          </el-input>
+          <br/>
+          <br/>
+          <el-input  v-model="temperature" :maxlength=4>
+            <template slot="prepend">血糖</template>
+          </el-input>
+          <br/>
+          <br/>
+          <el-input  v-model="xl" :maxlength=4>
+            <template slot="prepend">心率</template>
+          </el-input>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="sure">确定</el-button>
       </span>
-    </el-dialog>
+        </el-dialog>
+      </el-tab-pane>
+      <el-tab-pane label="检查指标" name="second">
+        <el-row class="card" v-for="(o, index) in data" key="index">
+          <el-col :span="12"><div>日期：{{o.creation_date}}</div></el-col>
+          <el-col :span="12" style="text-align: right"><el-button type="text" size="small">查看详情</el-button></el-col>
+        </el-row>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -57,6 +49,7 @@
     name: 'physiological',
     data() {
       return {
+        activeName: 'first',
         dialogVisible: false,
         weight: '',
         temperature: '',
@@ -64,7 +57,7 @@
         user: '',
         xl: '',
         zg: '',
-        data: [],
+        data: [{creation_date: '2012-12-12', xy: 123, xt: 22, xl: 78}, {creation_date: '2012-12-12', xy: 123, xt: 22, xl: 78}],
       };
     },
     created() {
@@ -75,6 +68,8 @@
       }
     },
     methods: {
+      handleClick(tab, event) {
+      },
       getData(page) {
         this.$ajax({
           method: 'GET',
