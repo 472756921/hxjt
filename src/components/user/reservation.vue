@@ -1,6 +1,7 @@
 <template>
   <div class="content">
-    <h3 class="center">预约就诊</h3>
+    <h3 class="center">预约服务</h3>
+    <div style="color: #ff8746;font-size: 10px; text-align: center">（当前服务剩余 5 次）</div>
     <br/>
     <div class="block">
       <div class="demonstration">预约时间：</div>

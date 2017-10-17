@@ -17,7 +17,15 @@ import AdminLogin from '@/components/admin/adminLogin'
 import AdminUserList from '@/components/admin/adminUser/adminUserList'
 import AddAdmin from '@/components/admin/adminUser/addAdmin'
 import List from '@/components/admin/user/list'
+import userDatile from '@/components/admin/user/userDatile'
+import askList from '@/components/admin/user/askList'
+import askDatile from '@/components/admin/user/askDatile'
+import treatment from '@/components/admin/user/treatment'
+import treatmentS from '@/components/admin/user/treatmentS'
 import ItemClass from '@/components/admin/reservation/itemClass'
+
+import goodList from '@/components/admin/goods/goodList'
+import orderList from '@/components/admin/goods/orderList'
 
 Vue.use(Router)
 
@@ -60,9 +68,44 @@ export default new Router({
           component: List,
         },
         {
+          path: 'userDatile',
+          name: 'userDatile',
+          component: userDatile,
+        },
+        {
+          path: 'askList',
+          name: 'askList',
+          component: askList,
+        },
+        {
+          path: 'askDatile',
+          name: 'askDatile',
+          component: askDatile,
+        },
+        {
+          path: 'treatment',
+          name: 'treatment',
+          component: treatment,
+        },
+        {
+          path: 'treatmentS',
+          name: 'treatmentS',
+          component: treatmentS,
+        },
+        {
           path: 'itemClass',
           name: 'itemClass',
           component: ItemClass,
+        },
+        {
+          path: 'goodList',
+          name: 'goodList',
+          component: goodList,
+        },
+        {
+          path: 'orderList',
+          name: 'orderList',
+          component: orderList,
         },
       ],
     },

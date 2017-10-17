@@ -2,7 +2,7 @@
   <el-row>
     <el-col :span="4">
       <div class="side">
-        <div class="sideHead">和润康管理系统</div>
+        <div class="sideHead">心内科管理系统</div>
         <el-row class="tac">
           <el-col :span="24">
             <el-menu default-active="2" class="el-menu-vertical-demo">
@@ -14,12 +14,14 @@
               <el-submenu index="2">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 用户管理</template>
                 <el-menu-item index="2-1"><router-link :to="{ name: 'list' }">用户列表</router-link></el-menu-item>
-                <el-menu-item index="2-2"><router-link :to="{ name: 'addAdmin' }">用户问答</router-link></el-menu-item>
-                <el-menu-item index="2-2"><router-link :to="{ name: 'addAdmin' }">预约管理</router-link></el-menu-item>
+                <el-menu-item index="2-2"><router-link :to="{ name: 'askList' }">用户问答</router-link></el-menu-item>
+                <el-menu-item index="2-2"><router-link :to="{ name: 'treatment' }">预约管理</router-link></el-menu-item>
+                <el-menu-item index="2-2"><router-link :to="{ name: 'treatmentS' }">已预约门诊用户</router-link></el-menu-item>
               </el-submenu>
               <el-submenu index="3">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 商城管理</template>
-                <el-menu-item index="3-1"><router-link :to="{ name: 'adminUserList' }">商品管理</router-link></el-menu-item>
+                <el-menu-item index="3-1"><router-link :to="{ name: 'goodList' }">商品管理</router-link></el-menu-item>
+                <el-menu-item index="3-1"><router-link :to="{ name: 'orderList' }">订单记录</router-link></el-menu-item>
               </el-submenu>
               <el-submenu index="7" v-if="type==1&&adminType==1">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 管理员管理</template>

@@ -2,17 +2,16 @@
   <div>
     <template>
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="account" label="姓名" width="180"></el-table-column>
-        <el-table-column prop="rout" label="电话" width="180"></el-table-column>
-        <el-table-column prop="rout" label="性别" width="180"></el-table-column>
-        <el-table-column prop="rout" label="年龄"  width="180"></el-table-column>
-        <el-table-column prop="rout" label="账户余额" width="180"></el-table-column>
+        <el-table-column prop="account" label="姓名" ></el-table-column>
+        <el-table-column prop="phone" label="电话" ></el-table-column>
+        <el-table-column prop="sex" label="性别" :formatter = 'formatter' ></el-table-column>
+        <el-table-column prop="age" label="年龄"  ></el-table-column>
+        <el-table-column prop="idNumber" label="身份证号码" width="200"></el-table-column>
+        <el-table-column prop="ye" label="账户余额" ></el-table-column>
         <el-table-column prop="lastLoginDate" label="最后登录时间"></el-table-column>
         <el-table-column label="状态">
           <template scope="scope">
-            <span class="Blue cursor" @click="chang(scope.$index)">检测报告</span>
-            <span class="Blue cursor" @click="chang(scope.$index)">生理指标</span>
-            <span class="Warning cursor" @click="chang(scope.$index)">详情</span>
+            <span class="Blue cursor" @click="chang(scope.$index)">生理监控</span>
           </template>
         </el-table-column>
       </el-table>
@@ -31,7 +30,16 @@
         }
       },
       chang(index) {
-        this.$router.push({ name: 'addAdmin', params: { account: this.tableData[index].account, rout: this.tableData[index].rout, id: this.tableData[index].id } })
+        this.$router.push({ name: 'userDatile', params: { user: this.tableData[index] } })
+      },
+      formatter(row, column) {
+        if (row.sex === 1) {
+          return '男';
+        } else if (row.sex === 0){
+          return '女';
+        } else {
+          return '未知';
+        }
       },
     },
     data() {
@@ -39,24 +47,31 @@
         tableData: [{
           lastLoginDate: '2016-05-02',
           account: '王小虎',
+          phone: '123123123',
+          ye: 320,
           id: 1,
-          rout: '1'
-        }, {
-          lastLoginDate: '2016-05-04',
+          idNumber: 49382839993829383922,
+          age:33,
+          sex: 1
+        },{
+          lastLoginDate: '2016-05-02',
           account: '王小虎',
-          rout: '2',
-          id: 21,
-        }, {
-          lastLoginDate: '2016-05-01',
-          account: '王小虎',
+          phone: 18830293,
+          ye: 320,
           id: 1,
-          rout: '3',
+          age:33,
+          idNumber: 49382839993829383922,
+          sex: 0
         }, {
-          lastLoginDate: '2016-05-03',
+          lastLoginDate: '2016-05-02',
           account: '王小虎',
-          rout: '4',
-          id: 11,
-        }]
+          phone: 18830293,
+          ye: 320,
+          idNumber: 49382839993829383922,
+          id: 1,
+          age:33,
+          sex: 2
+        },  ]
       }
     }
   };
