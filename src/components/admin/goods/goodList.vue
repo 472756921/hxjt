@@ -1,19 +1,36 @@
 <template>
   <div>
-    <template>
-      <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="naema" label="商品名"></el-table-column>
-        <el-table-column prop="xjg" label="现价格"></el-table-column>
-        <el-table-column prop="yjg" label="原价格"></el-table-column>
-        <el-table-column prop="status" label="状态"></el-table-column>
-        <el-table-column label="操作">
-          <template scope="scope">
-            <span class="Success" @click="chang(scope.$index)">修改</span>
-            <span class="danger" @click="del(scope.$index)">删除</span>
-          </template>
-        </el-table-column>
-      </el-table>
-    </template>
+    <el-button type="primary" style="margin: 10px" @click="newp">添加商品</el-button>
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="name" label="商品名"></el-table-column>
+      <el-table-column prop="xjg" label="现价格"></el-table-column>
+      <el-table-column prop="yjg" label="原价格"></el-table-column>
+      <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
+      <el-table-column prop="sort" label="排序"></el-table-column>
+      <el-table-column label="操作">
+        <template scope="scope">
+          <span class="Success" @click="chang(scope.$index)">修改</span>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <el-dialog  title="商品信息" :visible.sync="dialogVisible" size="tiny">
+      <div class="item">商品名称：<input v-model="name"/></div>
+      <div class="item">商品现价：<input v-model="xjg"/></div>
+      <div class="item">商品原价：<input v-model="yjg"/>(若无则可不填)</div>
+      <div class="item">商品排序：<input v-model="sort"/></div>
+
+      <el-radio-group v-model="pstatus">
+        <el-radio-button label=1>上架</el-radio-button>
+        <el-radio-button label=0>下架</el-radio-button>
+      </el-radio-group>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -23,26 +40,55 @@
   export default {
     name: 'goodList',
     methods: {
-      del(index) {
-        const r = confirm("确认删除？")
-        if (r === true) {
-          this.tableData.splice(index, 1);
-        }
-      },
       chang(index) {
-        this.$router.push({ name: 'addAdmin', params: { account: this.tableData[index].account, rout: this.tableData[index].admin_type, id: this.tableData[index].id } })
+        this.dialogVisible = true;
+        this.name = this.tableData[index].name;
+        this.xjg = this.tableData[index].xjg;
+        this.yjg = this.tableData[index].yjg;
+        this.sort = this.tableData[index].sort;
+        this.pstatus = this.tableData[index].status;
+      },
+      newp() {
+        this.dialogVisible = true;
+        this.name = '';
+        this.xjg = '';
+        this.yjg = '';
+        this.sort = '';
+        this.pstatus = 1;
+      },
+      formatter(r,i) {
+        if(r.status == '1') {
+          return '上架';
+        }
+        if(r.status == '0') {
+          return '下架';
+        }
       },
     },
     created() {
     },
     data() {
       return {
+        pstatus: 1,
+        dialogVisible: false,
+        name: '',
+        xjg: '',
+        yjg: '',
+        sort: '',
         tableData: [
           {
-            naema: '洗衣液',
+            name: '洗衣液',
             xjg: 229,
             yjg: 320,
+            sort: 1,
             status: 1,
+          },
+          {
+            name: '洗衣液',
+            xjg: 229,
+            yjg: 320,
+            sort: 1,
+            status: 0,
           },
         ],
       }
@@ -54,7 +100,10 @@
   .Success{
     cursor: pointer;
   }
-  .danger{
-    cursor: pointer;
+  .item{
+    line-height: 40px;
+  }
+  .item input {
+    height: 20px;
   }
 </style>

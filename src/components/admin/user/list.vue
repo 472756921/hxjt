@@ -1,21 +1,24 @@
 <template>
   <div>
-    <template>
-      <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="account" label="姓名" ></el-table-column>
-        <el-table-column prop="phone" label="电话" ></el-table-column>
-        <el-table-column prop="sex" label="性别" :formatter = 'formatter' ></el-table-column>
-        <el-table-column prop="age" label="年龄"  ></el-table-column>
-        <el-table-column prop="idNumber" label="身份证号码" width="200"></el-table-column>
-        <el-table-column prop="ye" label="账户余额" ></el-table-column>
-        <el-table-column prop="lastLoginDate" label="最后登录时间"></el-table-column>
-        <el-table-column label="状态">
-          <template scope="scope">
-            <span class="Blue cursor" @click="chang(scope.$index)">生理监控</span>
-          </template>
-        </el-table-column>
-      </el-table>
-    </template>
+    <div>
+      <el-input placeholder="请输入用户姓名/电话/身份证" v-model="search">
+        <el-button slot="append" icon="search"></el-button>
+      </el-input>
+    </div>
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="account" label="姓名" ></el-table-column>
+      <el-table-column prop="phone" label="电话" ></el-table-column>
+      <el-table-column prop="sex" label="性别" :formatter = 'formatter' ></el-table-column>
+      <el-table-column prop="age" label="年龄"  ></el-table-column>
+      <el-table-column prop="idNumber" label="身份证号码" width="200"></el-table-column>
+      <el-table-column prop="ye" label="账户余额" ></el-table-column>
+      <el-table-column prop="lastLoginDate" label="最后登录时间"></el-table-column>
+      <el-table-column label="状态">
+        <template scope="scope">
+          <span class="Blue cursor" @click="chang(scope.$index)">生理监控</span>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -30,7 +33,7 @@
         }
       },
       chang(index) {
-        this.$router.push({ name: 'userDatile', params: { user: this.tableData[index] } })
+        this.$router.push({ name: 'userDatile', params: { userID: this.tableData[index].userID } })
       },
       formatter(row, column) {
         if (row.sex === 1) {
@@ -44,11 +47,13 @@
     },
     data() {
       return {
+        search: '',
         tableData: [{
           lastLoginDate: '2016-05-02',
           account: '王小虎',
           phone: '123123123',
           ye: 320,
+          userID: 12,
           id: 1,
           idNumber: 49382839993829383922,
           age:33,
@@ -57,6 +62,7 @@
           lastLoginDate: '2016-05-02',
           account: '王小虎',
           phone: 18830293,
+          userID: 12,
           ye: 320,
           id: 1,
           age:33,
@@ -70,7 +76,8 @@
           idNumber: 49382839993829383922,
           id: 1,
           age:33,
-          sex: 2
+          sex: 2,
+          userID: 12,
         },  ]
       }
     }

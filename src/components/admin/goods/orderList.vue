@@ -5,9 +5,13 @@
         <el-table-column prop="omunber" label="订单号"></el-table-column>
         <el-table-column prop="name" label="商品名"></el-table-column>
         <el-table-column prop="price" label="价格"></el-table-column>
-        <el-table-column prop="user" label="购买用户"></el-table-column>
+        <el-table-column prop="user" label="购买用户">
+          <template scope="scope">
+            <div class="cursor" @click="goUser(scope.row)"> {{ scope.row.user }}</div>
+          </template>
+        </el-table-column>
         <el-table-column prop="createDate" label="创建时间"></el-table-column>
-        <el-table-column prop="status" label="状态"></el-table-column>
+        <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
       </el-table>
     </template>
   </div>
@@ -25,8 +29,16 @@
           this.tableData.splice(index, 1);
         }
       },
-      chang(index) {
-        this.$router.push({ name: 'addAdmin', params: { account: this.tableData[index].account, rout: this.tableData[index].admin_type, id: this.tableData[index].id } })
+      formatter(r,i) {
+        if(r.status == '1') {
+          return '已支付';
+        }
+        if(r.status == '0') {
+          return '未支付';
+        }
+      },
+      goUser(row) {
+        this.$router.push({ name: 'userDatile', params: { userID:row.userID } })
       },
     },
     created() {
@@ -39,6 +51,7 @@
             name: '洗衣液',
             price: 229,
             user: '刘德华',
+            userID: 12,
             createDate: '2012-12-12',
             status: 1,
           },
@@ -52,7 +65,7 @@
   .Success{
     cursor: pointer;
   }
-  .danger{
+  .cursor{
     cursor: pointer;
   }
 </style>
