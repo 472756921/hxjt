@@ -7,6 +7,9 @@
         <el-table-column label="状态">
           <template scope="scope"><span class="Success">预约成功</span></template>
         </el-table-column>
+        <el-table-column label="操作">
+          <template scope="scope"><span class="Success">录入检测报告</span></template>
+        </el-table-column>
       </el-table>
       <Page :page="page" v-if="over"  v-on:pageChange="getList"/>
     </div>

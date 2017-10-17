@@ -8,6 +8,7 @@
           <template scope="scope">
             <el-button @click.native.prevent="sure(scope.$index, tableData)" type="text" size="small">确认预约</el-button>
             <el-button @click.native.prevent="changeDate(scope.$index, tableData)" type="text" size="small">修改日期</el-button>
+            <el-button @click.native.prevent="cancel(scope.$index)" type="text" size="small">取消预约</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -43,6 +44,14 @@
     methods: {
       dateChange(date) {
         this.changeDateValue = date;
+      },
+      cancel(index){
+        let a = confirm('是否取消该预约');
+        if(a) {
+          this.tableData.splice(index, index+1);
+        } else {
+          return false;
+        }
       },
       change() {
         this.tableData[this.index].appointment_date = this.changeDateValue;
