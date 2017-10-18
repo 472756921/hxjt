@@ -28,7 +28,7 @@
           <el-table-column prop="number" label="登记号"></el-table-column>
           <el-table-column label="操作">
             <template scope="scope">
-              <el-button @click.native.prevent="sure(scope.$index, tableData)" type="text" size="small">详情</el-button>
+              <el-button @click.native.prevent="sure(scope.$index)" type="text" size="small">详情</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -41,7 +41,7 @@
         </el-col>
         <el-col :span="24">
           <span class="titleA">首次病程记录/诊断意见：</span>
-          <div> <textarea cols="100" style="resize: none" :maxlength="300" rows="3"></textarea></div>
+          <div> <textarea cols="100" style="resize: none" :maxlength="300" rows="3" v-model="ryj"></textarea></div>
         </el-col>
         <el-col :span="24">
           <span class="titleC">心脏彩超</span>
@@ -70,106 +70,106 @@
         <el-col :span="12">
           <span class="titleA">门冬氨酸氨基转移酶（参考值：<40）：</span><input v-model="v2"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">总蛋白（参考值：65-85）：</span>12 g/L<span class="ckz"></span>
+        <el-col :span="12">
+          <span class="titleA">总蛋白（参考值：65-85）：</span><input v-model="v3"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">白蛋白：</span>12 g/L<span class="ckz">（参考值：40-55）</span>
+        <el-col :span="12">
+          <span class="titleA">白蛋白（参考值：40-55）：</span><input v-model="v4"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">葡萄糖：</span>12 mmol/L<span class="ckz">（参考值：3.9-5.9）</span>
+        <el-col :span="12">
+          <span class="titleA">葡萄糖（参考值：3.9-5.9）：</span><input v-model="v5"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">尿素：</span>12 mmol/L<span class="ckz">（参考值：3.82-8.86）</span>
+        <el-col :span="12">
+          <span class="titleA">尿素（参考值：3.82-8.86）：</span><input v-model="v6"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">肌酐：</span>12 umol/L<span class="ckz">（参考值：53-140）</span>
+        <el-col :span="12">
+          <span class="titleA">肌酐（参考值：53-140）：</span><input v-model="v7"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">估算肾小球滤过率：</span>12 ml/min/1.73m2<span class="ckz">（参考值：56-122）</span>
+        <el-col :span="12">
+          <span class="titleA">估算肾小球滤过率（参考值：56-122）：</span><input v-model="v8"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">尿酸：</span>12 umol/L<span class="ckz">（参考值：240-490）</span>
+        <el-col :span="12">
+          <span class="titleA">尿酸（参考值：240-490）：</span><input v-model="v9"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">甘油三脂：</span>12 mmol/L<span class="ckz">（参考值：0.29-1.83）</span>
+        <el-col :span="12">
+          <span class="titleA">甘油三脂（参考值：0.29-1.83）：</span><input v-model="v10"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">胆固醇：</span>12 mmol/L<span class="ckz">（参考值：2.8-5.7）</span>
+        <el-col :span="12">
+          <span class="titleA">胆固醇（参考值：2.8-5.7）：</span><input v-model="v11"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">高密度脂蛋白：</span>12 mmol/L<span class="ckz">（参考值：>0.9）</span>
+        <el-col :span="12">
+          <span class="titleA">高密度脂蛋白（参考值：>0.9）：</span><input v-model="v12"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">低密度脂蛋白：</span>12 mmol/L<span class="ckz">（参考值：<4）</span>
+        <el-col :span="12">
+          <span class="titleA">低密度脂蛋白（参考值：<4）：</span><input v-model="v13"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">谷氨酰转肽酶：</span>12 IU/L<span class="ckz">（参考值：<60）</span>
+        <el-col :span="12">
+          <span class="titleA">谷氨酰转肽酶（参考值：<60）：</span><input v-model="v14"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">肌酸激酶：</span>12 IU/L<span class="ckz">（参考值：19-226）</span>
+        <el-col :span="12">
+          <span class="titleA">肌酸激酶（参考值：19-226）：</span><input v-model="v15"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">乳酸脱氢酶：</span>12 IU/L<span class="ckz">（参考值：110-220）</span>
+        <el-col :span="12">
+          <span class="titleA">乳酸脱氢酶（参考值：110-220）：</span><input v-model="v16"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">羟丁酸脱氢酶：</span>12 IU/L<span class="ckz">（参考值：72-182）</span>
+        <el-col :span="12">
+          <span class="titleA">羟丁酸脱氢酶（参考值：72-182）：</span><input v-model="v17"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">钠：</span>12 mmol/L<span class="ckz">（参考值：137-147）</span>
+        <el-col :span="12">
+          <span class="titleA">钠（参考值：137-147）：</span><input v-model="v18"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">钾：</span>12 mmol/L<span class="ckz">（参考值：3.5-5.3）</span>
+        <el-col :span="12">
+          <span class="titleA">钾（参考值：3.5-5.3）：</span><input v-model="v19"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">氯：</span>12 mmol/L<span class="ckz">（参考值：99-110）</span>
+        <el-col :span="12">
+          <span class="titleA">氯（参考值：99-110）：</span><input v-model="v20"/>
         </el-col>
         <el-col :span="24" >
           <span class="titleC">血常规</span>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">红细胞计数：</span>12 10^12/L<span class="ckz">（参考值：4.3-5.8）</span>
+        <el-col :span="12">
+          <span class="titleA">红细胞计数（参考值：4.3-5.8）：</span><input v-model="v21"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">血红蛋白：</span>12 g/L<span class="ckz">（参考值：130-175）</span>
+        <el-col :span="12">
+          <span class="titleA">血红蛋白（参考值：130-175）：</span><input v-model="v22"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">血小板计数：</span>12 10^9/L<span class="ckz">（参考值：100-300）</span>
+        <el-col :span="12">
+          <span class="titleA">血小板计数（参考值：100-300）：</span><input v-model="v23"/>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">白细胞计数：</span>12 10^10/L<span class="ckz">（参考值：3.9-9.5）</span>
+        <el-col :span="12">
+          <span class="titleA">白细胞计数（参考值：3.9-9.5）：</span><input v-model="v24"/>
         </el-col>
         <el-col :span="24" >
           <span class="titleC">心肌标志物</span>
         </el-col>
-        <el-col :span="24">
-          <span class="titleA">肌红蛋白：</span>12 ng/ml<span class="ckz">（参考值：<72）</span>
+        <el-col :span="12">
+          <span class="titleA">肌红蛋白（参考值：<72）：</span><input v-model="v25"/>
+        </el-col>
+        <el-col :span="12">
+          <span class="titleA">肌酸激酶同功酶MB质量（参考值：<4.94）：</span><input v-model="v26"/>
+        </el-col>
+        <el-col :span="12">
+          <span class="titleA">尿钠素（参考值：0-227）：</span><input v-model="v27"/>
+        </el-col>
+        <el-col :span="12">
+          <span class="titleA">肌钙蛋白-T（参考值：0-14）：</span><input v-model="v28"/>
+        </el-col>
+        <el-col :span="12">
+          <span class="titleA">大便隐血：<input v-model="v28"/></span>
+        </el-col>
+        <el-col :span="12">
+          <span class="titleA">血压：</span><input v-model="v29"/>
+        </el-col>
+        <el-col :span="12">
+          <span class="titleA">心率：</span><input v-model="v30"/>
         </el-col>
         <el-col :span="24">
-          <span class="titleA">肌酸激酶同功酶MB质量：</span>12 ng/ml<span class="ckz">（参考值：<4.94）</span>
-        </el-col>
-        <el-col :span="24">
-          <span class="titleA">尿钠素：</span>12 pg/ml<span class="ckz">（参考值：0-227）</span>
-        </el-col>
-        <el-col :span="24">
-          <span class="titleA">肌钙蛋白-T：</span>12 ng/ml<span class="ckz">（参考值：0-14）</span>
-        </el-col>
-        <el-col :span="24">
-          <span class="titleA">大便隐血：</span>阳性</span>
-        </el-col>
-        <el-col :span="24">
-          <span class="titleA">血压：</span>29</span>
-        </el-col>
-        <el-col :span="24">
-          <span class="titleA">心率：</span>23</span>
-        </el-col>
-        <el-col :span="24" style="background: #EFF2F7;padding: .2rem">
           <span class="titleA">冠脉造影结果：</span>
-          <div> 他挥了挥手让出去，看着仍然昏迷的儿子，轻抚着他的额头喃喃道“臭小子，我知道你很聪明。</div>
+          <textarea cols="100" style="resize: none" :maxlength="300" rows="3"></textarea>
         </el-col>
-        <el-col :span="24" style="background: #EFF2F7;padding: .2rem; margin-top: .3rem">
+        <el-col :span="24">
           <span class="titleA">支架置入个数、部位：</span>
-          <div> 他挥了挥手让出去，看着仍然昏迷的儿子，轻抚着他的额头喃喃道“臭小子，我知道你很聪明。</div>
+          <textarea cols="100" style="resize: none" :maxlength="300" rows="3" v-model="v32"></textarea>
         </el-col>
       </el-row>
 
@@ -185,6 +185,9 @@
 <script type="text/ecmascript-6">
   export default {
     name: 'userDatile',
+    props: {
+      userIDt: String,
+    },
     created() {
       this.userID = this.$route.params.userID;
     },
@@ -202,9 +205,51 @@
           {date: '2012-12-12', number: '85/120', xt: '223', xl: 86 },
           {date: '2012-12-12', number: '85/120', xt: '223', xl: 86 },
         ],
+        ryj: '',
+        rNumber: '',
+        rlv: '',
+        rla: '',
+        rrv: '',
+        rra: '',
+        ref: '',
+        v1: '',
+        v2: '',
+        v3: '',
+        v4: '',
+        v5: '',
+        v6: '',
+        v7: '',
+        v8: '',
+        v9: '',
+        v10: '',
+        v11: '',
+        v12: '',
+        v13: '',
+        v14: '',
+        v15: '',
+        v16: '',
+        v17: '',
+        v18: '',
+        v19: '',
+        v20: '',
+        v21: '',
+        v22: '',
+        v23: '',
+        v24: '',
+        v25: '',
+        v26: '',
+        v27: '',
+        v28: '',
+        v29: '',
+        v30: '',
+        v31: '',
+        v32: '',
       };
     },
     methods: {
+      sure(index) {
+        this.dialogVisible = true;
+      },
       inpure() {
         this.dialogVisible = true;
       }
@@ -223,5 +268,8 @@
     line-height: 2rem;
     font-size: .95rem;
     border-bottom: 1px solid #1D8CE0;
+  }
+  input{
+    width: 100px;
   }
 </style>

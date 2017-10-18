@@ -2,7 +2,11 @@
     <div >
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="appointment_date" label="预约日期" ></el-table-column>
-        <el-table-column prop="customer_name" label="用户姓名" ></el-table-column>
+        <el-table-column prop="customer_name" label="用户姓名" >
+          <template scope="scope">
+            <div class="cursor" @click="goUser(scope.row)"> {{ scope.row.customer_name }}</div>
+          </template>
+        </el-table-column>
         <el-table-column prop="address" label="预约地点" ></el-table-column>
         <el-table-column label="操作">
           <template scope="scope">
@@ -42,6 +46,9 @@
     name: 'treatment',
     components: { Page },
     methods: {
+      goUser(row) {
+        this.$router.push({ name: 'userDatile', params: { userID:row.userID } })
+      },
       dateChange(date) {
         this.changeDateValue = date;
       },
