@@ -15,10 +15,21 @@
     </el-table>
 
     <el-dialog  title="商品信息" :visible.sync="dialogVisible" size="tiny">
-      <div class="item">商品名称：<input v-model="name"/></div>
-      <div class="item">商品现价：<input v-model="xjg"/></div>
-      <div class="item">商品原价：<input v-model="yjg"/>(若无则可不填)</div>
+
+      <el-radio-group v-model="p_class">
+        <el-radio-button label=1>商品</el-radio-button>
+        <el-radio-button label=2>服务包</el-radio-button>
+      </el-radio-group>
+
+      <div class="item">商品名称：<input v-model="sname" v-if="p_class==1"/>
+        <select v-if="p_class==2" v-model="sClass">
+          <option>就诊服务包</option>
+          <option>提问服务包</option>
+        </select>
+      </div>
+      <div class="item">商品价格：<input v-model="xjg"/></div>
       <div class="item">商品排序：<input v-model="sort"/></div>
+      <div class="item" v-if="p_class==2">服务次数：<input v-model="stime"/></div>
 
       <el-radio-group v-model="pstatus">
         <el-radio-button label=1>上架</el-radio-button>
@@ -69,6 +80,10 @@
     },
     data() {
       return {
+        sClass: '',
+        sname: '',
+        stime: '',
+        p_class: 1,
         pstatus: 1,
         dialogVisible: false,
         name: '',
