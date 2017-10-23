@@ -1,28 +1,16 @@
 <template>
   <div>
-    <h3 style="margin: .4rem 0;">网上问答<small style="float: right;">剩余次数：3</small></h3>
-    <div class="pointer" @click="hisqu">历史记录</div>
     <div style="margin: .6rem 0">输入问题描述</div>
-    <el-input
-      type="textarea"
-      :rows="3"
-      :maxlength="300"
-      placeholder="请输入内容"
-      v-model="textarea">
-    </el-input>
-    <div style="margin: .6rem 0">
-      <div style="margin: .4rem 0;font-size: .6rem;color: #FF4949">上传相关描述图片（支持jpg，png类型的文件上传，大小在2M以内）</div>
-      <input type=file value="添加图片" class="fileInput" @change="clickUp" ref="fileNow"/>
-      <button class="chooes">选择图片</button>
-    </div>
-    <div style="height:260px">
-      <el-row>
+    <div class="plan">{{questiones}}</div>
+    <div style="height:160px;margin-top: .6rem">
+      <el-row :gutter="10">
         <el-col :span="12" v-for="(it, i) in img" key="i">
           <img :src=it width="100%"/>
         </el-col>
       </el-row>
     </div>
-    <el-button type="danger" style="margin: 10px auto;display: block;">提交问题</el-button>
+    <div style="margin: .6rem 0">医生回复</div>
+    <div class="plan">{{questiones}}</div>
   </div>
 </template>
 
@@ -33,8 +21,9 @@
       return {
         textarea: '',
         dialogVisible: true,
-        img: [],
+        img: ['http://iph.href.lu/148x148','http://iph.href.lu/148x148'],
         fileNow: '',
+        questiones: "我头疼大半年了，怎么治疗都不管用啊，我改怎么办啊？",
       }
     },
     methods: {
@@ -80,5 +69,9 @@
   .pointer{
     color: #1D8CE0;
     font-size: .8rem;
+  }
+  .plan{
+    background: #eee;
+    padding: .8rem;
   }
 </style>

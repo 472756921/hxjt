@@ -15,13 +15,14 @@
       <input type=file value="添加图片" class="fileInput" @change="clickUp" ref="fileNow"/>
       <button class="chooes">选择图片</button>
     </div>
-    <div style="height:260px">
+    <div style="height:200px">
       <el-row>
         <el-col :span="12" v-for="(it, i) in img" key="i">
           <img :src=it width="100%"/>
         </el-col>
       </el-row>
     </div>
+    <br/>
     <el-button type="danger" style="margin: 10px auto;display: block;">提交问题</el-button>
   </div>
 </template>
