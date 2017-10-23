@@ -28,7 +28,7 @@
 
 <script type="text/ecmascript-6">
   export default {
-    name: 'question',
+    name: 'questionDatile',
     data() {
       return {
         textarea: '',
