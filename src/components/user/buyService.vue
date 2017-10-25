@@ -17,6 +17,7 @@
           <div style="padding: 6px;">
             <div class="center">{{doc.real_name}}</div>
             <div>{{doc.detail_the_front}}</div>
+            <div class="price">128 健康豆</div>
             <div class="bottom clearfix">
               <el-button type="primary" class="center_block" @click="yy(doc)" size="small">购买</el-button>
             </div>
@@ -103,7 +104,11 @@
     display: table;
     content: "";
   }
-
+  .price{
+    color: darkred;
+    font-size:  .6rem;
+    margin-top: .4rem;
+  }
   .clearfix:after {
     clear: both
   }

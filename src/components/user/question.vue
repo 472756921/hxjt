@@ -18,7 +18,7 @@
     <div style="height:200px">
       <el-row>
         <el-col :span="12" v-for="(it, i) in img" key="i">
-          <img :src=it width="100%"/>
+          <img :src=it width="100%" style="max-height: 200px"/>
         </el-col>
       </el-row>
     </div>

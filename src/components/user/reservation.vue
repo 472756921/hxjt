@@ -22,28 +22,6 @@
       </el-radio-group>
     </div>
     <br/>
-    <div>
-      <div class="demonstration">选择医院</div>
-      <el-radio-group v-model="hospital" size="small">
-        <el-radio-button :label="hospital.id"  v-for="(hospital, i) in hospitalList" key="i">{{hospital.hospital_name}}</el-radio-button>
-      </el-radio-group>
-    </div>
-    <br/>
-    <div>
-      <div class="demonstration">选择科室</div>
-      <el-radio-group v-model="department" size="small">
-        <el-radio-button :label="department.department.id" v-for="(department, i) in departmentList" key="i">{{department.department.department_name}}</el-radio-button>
-      </el-radio-group>
-    </div>
-    <br/>
-    <!--<div>-->
-      <!--<div class="demonstration">选择病情关联人</div>-->
-      <!--<el-radio-group v-model="patient" size="small">-->
-        <!--<el-radio-button :label="child.id" key="i" v-for="(child, i) in childs">{{child.real_name}}</el-radio-button>-->
-      <!--</el-radio-group>-->
-    <!--</div>-->
-    <br/>
-    <br/>
     <br/>
     <br/>
     <el-button type="success" class="center_block" @click="yy" >预约</el-button>
