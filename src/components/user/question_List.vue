@@ -1,13 +1,16 @@
 <template>
   <div>
     <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName" @row-click="push">
-      <el-table-column prop="date" label="日期"></el-table-column>
-      <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
+      <el-table-column prop="create_date" label="日期"></el-table-column>
+      <el-table-column prop="doctor_send" label="状态"></el-table-column>
     </el-table>
+    <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle"></el-pagination>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import {getConsultationList} from  '../interface';
+
   export default {
     name: 'question_List',
     data() {
@@ -16,35 +19,32 @@
         dialogVisible: true,
         img: [],
         fileNow: '',
-        tableData: [{
-          id:1,
-          date: '2016-05-02',
-          status: 1,
-        }, {
-          id:2,
-          date: '2016-05-04',
-          status: 1,
-        }, {
-          id:3,
-          date: '2016-05-01',
-          status: 0,
-        }, {
-          id:4,
-          date: '2016-05-03',
-          status: 1,
-        }],
+        tableData: [],
+        pageNow: '',
+        pageTotle: '',
       }
     },
+    created(){
+      this.getInfo(1);
+    },
     methods: {
-      formatter(r, i){
-        if(r.status == 1) {
-          return '已回复';
-        } else {
-          return '未回复';
-        }
+      getInfo(page) {
+        this.$ajax({
+          method: 'get',
+//          data: data,
+          url: getConsultationList()+"?doctor_id=&customer_id=3&pageSize="+page,
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          this.tableData = res.data.consultingList
+          this.pageNow = res.data.page;
+          this.pageTotle = res.data.totalPage;
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
       },
       tableRowClassName(row, index) {
-        if (row.status == 1) {
+        if (row.doctor_send == '已回答') {
           return 'gos';
         }
         return '';

@@ -3,13 +3,7 @@
     <h3 style="margin: .4rem 0;">网上问答<small style="float: right;">剩余次数：3</small></h3>
     <div class="pointer" @click="hisqu">历史记录</div>
     <div style="margin: .6rem 0">输入问题描述</div>
-    <el-input
-      type="textarea"
-      :rows="3"
-      :maxlength="300"
-      placeholder="请输入内容"
-      v-model="textarea">
-    </el-input>
+    <el-input type="textarea" :rows="3" :maxlength="300" placeholder="请输入内容" v-model="textarea"></el-input>
     <div style="margin: .6rem 0">
       <div style="margin: .4rem 0;font-size: .6rem;color: #FF4949">上传相关描述图片（支持jpg，png类型的文件上传，大小在2M以内）</div>
       <input type=file value="添加图片" class="fileInput" @change="clickUp" ref="fileNow"/>
@@ -23,11 +17,13 @@
       </el-row>
     </div>
     <br/>
-    <el-button type="danger" style="margin: 10px auto;display: block;">提交问题</el-button>
+    <el-button type="danger" style="margin: 10px auto;display: block;" @click="go">提交问题</el-button>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import { createConsultation } from '../interface';
+
   export default {
     name: 'question',
     data() {
@@ -35,15 +31,34 @@
         textarea: '',
         dialogVisible: true,
         img: [],
-        fileNow: '',
       }
     },
     methods: {
+      go() {
+        const data = {title:'健康问题', describe: this.textarea, img: this.img};
+        this.$ajax({
+          method: 'POST',
+          data: data,
+          url: createConsultation(),
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if(res.data == 1) {
+            this.$message.success('提交成功');
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
       hisqu() {
         this.$router.push({name: 'question_List'});
       },
       clickUp() {
         let file = this.$refs.fileNow.files[0];
+        if (file.size>2000000) {
+          this.$message.error('图片大小不成超过2M');
+          return false;
+        }
         if (!/image\/\w+/.test(file.type)) {
           this.$message.error('只能上传图片');
           return false;

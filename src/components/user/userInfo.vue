@@ -5,13 +5,13 @@
         <el-col :span="6">
           <div class="grid-content">
             <div>健康豆</div>
-            <div>300个</div>
+            <div>{{userInfo.money}}个</div>
           </div>
         </el-col>
         <el-col :span="12">
           <div class="">
             <div class="round" @click="head">
-              <img src="http://iph.href.lu/98x98">
+              <img :src="userInfo.customer_icon.image_url">
             </div>
           </div>
         </el-col>
@@ -29,12 +29,12 @@
     <br/>
     <div class="text">
       <span>身份证号码</span>
-      <span class="itemText">{{userInfo.id_number}}</span>
+      <span class="itemText">{{userInfo.id_number.substr(0,6)}}********{{userInfo.id_number.substr(14,4)}}</span>
     </div>
     <div class="line2"></div>
     <div class="text" @click="show('phone')">
       <span>联系电话</span>
-      <span class="itemText">{{userInfo.phone}}</span>
+      <span class="itemText">{{userInfo.phone.substr(0,3)}}****{{userInfo.phone.substr(7)}}</span>
     </div>
     <div class="line2"></div>
     <div class="text"  @click="show('address')">
@@ -42,7 +42,11 @@
       <span class="itemText">{{userInfo.address}}</span>
     </div>
     <div class="line2"></div>
-
+    <div class="text" >
+      <span>团队</span>
+      <span class="itemText">{{group.group_name}}</span>
+    </div>
+    <div class="line2"></div>
 
     <el-dialog title="提示" :visible.sync="dialogVisible" size="large">
       <el-input  v-model="val" size="small">
@@ -55,12 +59,7 @@
     </el-dialog>
 
     <el-dialog title="绑定账号" :visible.sync="bangding" size="large" :show-close="false">
-      <div>您还未绑定账号，请输入您的身份证和电话号码进行绑定</div>
-      <br/>
-      <el-input  v-model="phoneB" size="small">
-        <template slot="prepend">电话号码</template>
-      </el-input>
-      <br/>
+      <div>您还未绑定账号，请输入您的身份证进行绑定</div>
       <br/>
       <el-input  v-model="idnumberB" size="small">
         <template slot="prepend">身份证号</template>
@@ -74,13 +73,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getUserinfo, updateCustomerMessage } from '../interface';
+  import { getCustomerMessage, updateUserMessage, getCustomerByIdNumber } from '../interface';
 
   export default {
     name: 'userInfo',
     data() {
       return {
-        phoneB: '',
+        group: '',
         idnumberB: '',
         userInfo: '',
         dialogVisible: false,
@@ -112,7 +111,7 @@
         this.$ajax({
           method: 'POST',
           data: data,
-          url: updateCustomerMessage(),
+          url: updateUserMessage(),
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
@@ -128,24 +127,25 @@
         }).catch((error) => {
           this.$message.error(error.message);
         });
-        this.dialogVisible = false
+        this.dialogVisible = false;
       },
       show(val) {
         if (val === 'phone') {
           this.text = '电话号码';
-          this.val = this.userInfo.phone;
+          this.val = '';
         } else {
           this.text = '联系地址';
-          this.val = this.userInfo.address;
+          this.val = '';
         }
         this.dialogVisible = true;
       },
       getUserInfo() {
         this.$ajax({
           method: 'GET',
-          url: getUserinfo(),
+          url: getCustomerMessage(),
         }).then((res) => {
-          this.userInfo = res.data;
+          this.userInfo = res.data.customer;
+          this.group = res.data.group;
         }).catch((error) => {
           this.$message.error(error.message);
         });
@@ -154,9 +154,17 @@
         this.$router.push({ name: 'updataLive' });
       },
       bangdings() {
-        if (this.idnumberB == '' || this.phoneB == '') {
+        if (this.idnumberB == '') {
           this.$message.error('请输入绑定号码');
         }
+        this.$ajax({
+          method: 'GET',
+          url: getCustomerByIdNumber() + "?id_number="+this.idnumberB,
+        }).then((res) => {
+          this.$message.success('绑定成功');
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
         this.bangding = false;
       },
     },
