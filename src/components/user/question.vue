@@ -2,6 +2,7 @@
   <div>
     <h3 style="margin: .4rem 0;">网上问答<small style="float: right;">剩余次数：3</small></h3>
     <div class="pointer" @click="hisqu">历史记录</div>
+    <br/>
     <div style="margin: .6rem 0">输入问题描述</div>
     <el-input type="textarea" :rows="3" :maxlength="300" placeholder="请输入内容" v-model="textarea"></el-input>
     <div style="margin: .6rem 0">

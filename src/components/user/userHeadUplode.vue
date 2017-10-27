@@ -26,11 +26,13 @@
       <i class="el-icon-loading iconL"></i>
       <div class="loText">正在上传</div>
     </div>
-    <el-button type="primary">确认</el-button>
+    <el-button type="primary" @click="save">确认</el-button>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import {updateCustomerIcon} from '../interface';
+
     export default {
       name: 'userHeadUplode',
       data() {
@@ -43,21 +45,35 @@
         const par = this.$route.params.params;
       },
       methods: {
+        save(){
+          this.$ajax({
+            method: 'POST',
+            data: {"icon_url": this.imageUrl},
+            url: updateCustomerIcon(),
+          }).then((res) => {
+            if(res.data == 1) {
+              this.$message.success('上传成功');
+            }
+          }).catch((error) => {
+            this.$message.error(error.message);
+          });
+        },
         handleAvatarSuccess(res, file) {
           this.imageUrl = URL.createObjectURL(file.raw);
           this.loading = false;
         },
         beforeAvatarUpload(file) {
-          this.loading = true;
           const isJPG = file.type === 'image/jpeg';
           const isLt2M = file.size / 1024 / 1024 < 2;
-
           if (!isJPG) {
             this.$message.error('上传头像图片只能是 JPG 格式!');
+            return false;
           }
           if (!isLt2M) {
             this.$message.error('上传头像图片大小不能超过 2MB!');
+            return false;
           }
+          this.loading = true;
           return isJPG && isLt2M;
         }
       }

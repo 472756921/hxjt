@@ -1,12 +1,13 @@
 <template>
     <div >
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="appointment_date" label="预约日期" ></el-table-column>
+        <el-table-column prop="appointment_time" label="预约日期" ></el-table-column>
         <el-table-column prop="customer_name" label="用户姓名" >
           <template scope="scope">
             <div class="cursor" @click="goUser(scope.row)"> {{ scope.row.customer_name }}</div>
           </template>
         </el-table-column>
+        <el-table-column prop="customer_phone" label="手机号码" ></el-table-column>
         <el-table-column prop="address" label="预约地点" ></el-table-column>
         <el-table-column label="操作">
           <template scope="scope">
@@ -21,14 +22,7 @@
         <div style="font-weight: bold">修改时间</div>
         <br/>
         <div class="block">
-          <el-date-picker
-            v-model="changeDateValue"
-            type="date"
-            placeholder="选择日期"
-            size="small"
-            @change="dateChange"
-            :picker-options="pickerOptions0">
-          </el-date-picker>
+          <el-date-picker v-model="changeDateValue" type="date" placeholder="选择日期" size="small" @change="dateChange" :picker-options="pickerOptions0"></el-date-picker>
         </div>
         <br/>
         <el-button type="danger" size="small" @click="cancle">取消</el-button>
@@ -39,7 +33,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getExamineManager, updateExamineDate, updateExamineStatus, updateExamineRefundDate } from '../../interface';
+  import { getReservationList, updateReservationStatus } from '../../interface';
   import Page from '../page';
 
   export default {
@@ -55,20 +49,36 @@
       cancel(index){
         let a = confirm('是否取消该预约');
         if(a) {
-          this.tableData.splice(index, index+1);
+          const data = {
+            appointment_time: this.tableData[this.index].appointment_time,
+            id: this.tableData[this.index].id,
+            status: 3,
+          };
+          this.$ajax({
+            method: 'post',
+            url: updateReservationStatus(),
+            data: data,
+            dataType: 'JSON',
+            contentType: 'application/json;charset=UTF-8',
+          }).then((res) => {
+            this.tableData.splice(index, index+1);
+          }).catch((error) => {
+            this.$message.error('网络有问题，请稍后再试');
+          });
         } else {
           return false;
         }
       },
       change() {
-        this.tableData[this.index].appointment_date = this.changeDateValue;
+        this.tableData[this.index].appointment_time = this.changeDateValue;
         const data = {
-          appointment_date: this.changeDateValue,
-          id: this.tableData[this.index].id,
+          status: 2,
+          id: rows[index].id,
+          appointment_time: rows[index].appointment_time,
         };
         this.$ajax({
           method: 'post',
-          url: updateExamineDate(),
+          url: updateReservationStatus(),
           data: data,
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
@@ -77,7 +87,6 @@
         }).catch((error) => {
           this.$message.error('网络有问题，请稍后再试');
         });
-
       },
       cancle() {
         this.cover = false;
@@ -93,10 +102,11 @@
           const data = {
             status: 2,
             id: rows[index].id,
+            appointment_time: rows[index].appointment_time,
           };
           this.$ajax({
             method: 'post',
-            url: updateExamineStatus(),
+            url: updateReservationStatus(),
             data: data,
             dataType: 'JSON',
             contentType: 'application/json;charset=UTF-8',
@@ -110,12 +120,13 @@
       getList(page) {
         this.$ajax({
           method: 'GET',
-          url: getExamineManager() + "?status=1&page="+page,
+          url: getReservationList() + "?doctor_id=1&page="+page,
         }).then((res) => {
-          this.tableData = res.data.ExamineManager;
+          this.tableData = res.data.reservations;
           this.page = { totalPage: res.data.totalPage, page:  res.data.page,  };
           this.over = true;
         }).catch((error) => {
+          this.$message.error('网络有问题，请稍后再试');
         });
       }
     },

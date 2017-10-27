@@ -1,12 +1,13 @@
 <template>
     <div >
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="appointment_date" label="预约日期" ></el-table-column>
+        <el-table-column prop="appointment_time" label="预约日期" ></el-table-column>
         <el-table-column prop="customer_name" label="用户姓名" >
           <template scope="scope">
             <div class="cursor" @click="goUser(scope.row)"> {{ scope.row.customer_name }}</div>
           </template>
         </el-table-column>
+        <el-table-column prop="customer_phone" label="手机号码" ></el-table-column>
         <el-table-column prop="address" label="预约地点" ></el-table-column>
         <el-table-column label="状态">
           <template scope="scope"><span class="Success">预约成功</span></template>
@@ -17,7 +18,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getExamineManager } from '../../interface';
+  import { getReservationList } from '../../interface';
   import Page from '../page';
 
   export default {
@@ -40,12 +41,13 @@
       getList(page) {
         this.$ajax({
           method: 'GET',
-          url: getExamineManager() + "?status=2&page=" + page,
+          url: getReservationList() + "?doctor_id=1&page="+page,
         }).then((res) => {
-          this.tableData = res.data.ExamineManager;
+          this.tableData = res.data.reservations;
           this.page = { totalPage: res.data.totalPage, page:  res.data.page,  };
           this.over = true;
         }).catch((error) => {
+          this.$message.error('网络有问题，请稍后再试');
         });
       }
     },

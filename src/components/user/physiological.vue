@@ -9,7 +9,7 @@
           <el-col :span="12"> <div>血糖：{{o.blood_sugar}}</div></el-col>
           <el-col :span="12"><div>心率：{{o.heart_rate}}</div></el-col>
         </el-row>
-        <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle"></el-pagination>
+        <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle"  @current-change="changPage1"></el-pagination>
         <el-dialog title="录入指标" :visible.sync="dialogVisible" size="large" :before-close="handleClose">
           <el-input  v-model="blood_pressure" :maxlength=2><template slot="prepend">血压</template></el-input>
           <br/>
@@ -28,7 +28,7 @@
           <el-col :span="12"><div>日期：{{o.upload_time.substr(0,10)}}</div></el-col>
           <el-col :span="12" style="text-align: right"><el-button type="text" size="small" @click="datile(o.id)">查看详情</el-button></el-col>
         </el-row>
-        <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow2" :page-count="pageTotle2"></el-pagination>
+        <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow2" :page-count="pageTotle2"  @current-change="changPage2"></el-pagination>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -62,6 +62,12 @@
       this.getData2(1);
     },
     methods: {
+      changPage1(pageNew){
+        this.getData(pageNew);
+      },
+      changPage2(pageNew){
+        this.getData2(pageNew);
+      },
       handleClick(tab, event) {
       },
       getData(page) {

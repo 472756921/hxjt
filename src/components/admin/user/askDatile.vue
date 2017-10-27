@@ -1,29 +1,27 @@
 <template>
   <div style="padding: 10px;overflow:auto;">
-    <UD :userIDt="user.id"/>
+    <UD :userIDt="3"/>
     <br/>
     <el-row>
       <el-col :span="24"  class="userAsk">
         <h4 style="margin:0;">用户提问</h4>
         <br/>
-        <div>那时我的家住在高士的老街上，老街是散发清新泥土气息的土路面，路的两旁林立着参差不齐却古朴典雅的青砖瓦房。与青砖瓦房形成鲜明对比的是，我家斜对面矗立着高大而气派的高士合作社，合作社虽也是青砖瓦房结构，但它是那种带有木质阁楼的楼房，比民宅要高许多，兀立在那里有种鹤立鸡群的感觉。而在那</div>
+        <div>{{data.describe}}</div>
         <br/>
         <div>
-          <img src="http://iph.href.lu/100x100" width="100px" @click="showImg" title="点击查看大图"/>
-          <img src="http://iph.href.lu/100x100" width="100px" @click="showImg" title="点击查看大图"/>
-          <img src="http://iph.href.lu/100x100" width="100px" @click="showImg" title="点击查看大图"/>
+          <img :src="it" width="100px" @click="showImg(it)" title="点击查看大图" v-for="(it, i) in data.imgs"/>
         </div>
         <div class="docWri">
           <h4 style="margin:12px 0;">医生回复</h4>
           <el-input type="textarea" autosize placeholder="请输入内容" v-model="textarea" :autosize="{ minRows: 4, maxRows: 4}"></el-input>
         </div>
         <br/>
-        <el-button type="primary">提交</el-button>
+        <el-button type="primary" @click="back">提交</el-button>
       </el-col>
     </el-row>
 
-    <el-dialog title="查看详细" :visible.sync="dialogVisible" size="tiny">
-      <img src="http://iph.href.lu/500x500"/>
+    <el-dialog title="查看详细" :visible.sync="dialogVisible" size="lage">
+      <img width="100%" :src="daImg"/>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">关闭</el-button>
       </span>
@@ -33,23 +31,55 @@
 
 <script type="text/ecmascript-6">
   import UD from './userDatile';
+  import {getHealthConsultationDetail, replyConsultation} from '../../interface';
 
   export default {
     name: 'askDatile',
     components: { UD },
     created() {
       this.user = this.$route.params.user;
+      this.getInfo();
     },
     data() {
       return {
         user: '',
         dialogVisible: false,
         textarea: '',
+        data: '',
+        daImg: '',
       };
     },
     methods: {
-      showImg(){
+      back(){
+        this.$ajax({
+          method: 'POST',
+          data: {id: this.user.id, reply: this.textarea, doctor_id: 1},
+          url: replyConsultation()+"?id="+this.user.id,
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if(res.data == 1) {
+            this.$message.success('提交成功');
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
+      getInfo(){
+        this.$ajax({
+          method: 'get',
+          url: getHealthConsultationDetail()+"?id="+this.user.id,
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          this.data = res.data.detail
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
+      showImg(src){
         this.dialogVisible = true;
+        this.daImg = src;
       },
     },
   };

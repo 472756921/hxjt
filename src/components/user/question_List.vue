@@ -4,7 +4,7 @@
       <el-table-column prop="create_date" label="日期"></el-table-column>
       <el-table-column prop="doctor_send" label="状态"></el-table-column>
     </el-table>
-    <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle"></el-pagination>
+    <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle" @current-change="changPage"></el-pagination>
   </div>
 </template>
 

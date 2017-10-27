@@ -46,7 +46,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getAdmins } from '../../interface';
+  import { getGroupGoodsList } from '../../interface';
 
   export default {
     name: 'goodList',
@@ -75,8 +75,21 @@
           return '下架';
         }
       },
+      getList(){
+        this.$ajax({
+          method: 'GET',
+          url: getGroupGoodsList() + "?doctor_id=1&page="+page,
+        }).then((res) => {
+          this.tableData = res.data.reservations;
+          this.page = { totalPage: res.data.totalPage, page:  res.data.page,  };
+          this.over = true;
+        }).catch((error) => {
+          this.$message.error('网络有问题，请稍后再试');
+        });
+      },
     },
     created() {
+      this.getList(1);
     },
     data() {
       return {

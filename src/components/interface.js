@@ -66,3 +66,28 @@ export const getReportDetailByReportId = function () {
   const API = host + URL;
   return API;
 };
+export const updateCustomerIcon = function () {
+  const URL = '/userManager/updateCustomerIcon';
+  const API = host + URL;
+  return API;
+};
+export const getReservationList = function () {
+  const URL = '/reservationService/getReservationList';
+  const API = host + URL;
+  return API;
+};
+export const updateReservationStatus = function () {
+  const URL = '/reservationService/updateReservationStatus';
+  const API = host + URL;
+  return API;
+};
+export const getGroupGoodsList = function () {
+  const URL = '/customerPayGoods/getGroupGoodsList';
+  const API = host + URL;
+  return API;
+};
+export const replyConsultation = function () {
+  const URL = '/consultation/replyConsultation';
+  const API = host + URL;
+  return API;
+};
