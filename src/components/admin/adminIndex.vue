@@ -48,7 +48,7 @@
     created() {
       const userdata = sessionStorage.getItem('user');
       if (userdata == null || userdata == '' || userdata == undefined){
-        this.$router.push({ name: 'adminLogin' });
+//        this.$router.push({ name: 'adminLogin' });
       } else {
         this.type = sessionStorage.getItem('type');
         this.adminType = JSON.parse(userdata).admin.admin_type;

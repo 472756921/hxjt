@@ -46,3 +46,23 @@ export const getConsultationList = function () {
   const API = host + URL;
   return API;
 };
+export const getHealthConsultationDetail = function () {
+  const URL = '/consultation/getHealthConsultationDetail';
+  const API = host + URL;
+  return API;
+};
+export const getGoodsList = function () {
+  const URL = '/teamUser/getGoodsList';
+  const API = host + URL;
+  return API;
+};
+export const getCheckReportsByCustomer = function () {
+  const URL = '/checkReport/getCheckReportsByCustomer';
+  const API = host + URL;
+  return API;
+};
+export const getReportDetailByReportId = function () {
+  const URL = '/checkReport/getReportDetailByReportId';
+  const API = host + URL;
+  return API;
+};

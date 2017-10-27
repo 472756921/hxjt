@@ -137,7 +137,7 @@ export default new Router({
           component: Physiological,
         },
         {
-          path: 'report',
+          path: 'report/:id',
           name: 'report',
           component: report,
         },

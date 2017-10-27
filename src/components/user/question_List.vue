@@ -31,7 +31,6 @@
       getInfo(page) {
         this.$ajax({
           method: 'get',
-//          data: data,
           url: getConsultationList()+"?doctor_id=&customer_id=3&pageSize="+page,
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',

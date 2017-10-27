@@ -15,9 +15,9 @@
         <el-card :body-style="{ padding: '0px' }">
           <img :src='doc.doctor_icon' class="image">
           <div style="padding: 6px;">
-            <div class="center">{{doc.real_name}}</div>
-            <div>{{doc.detail_the_front}}</div>
-            <div class="price">128 健康豆</div>
+            <div class="center">{{doc.goods_name}}</div>
+            <div>{{doc.goods_describe}}</div>
+            <div class="price">111 健康豆</div>
             <div class="bottom clearfix">
               <el-button type="primary" class="center_block" @click="yy(doc)" size="small">购买</el-button>
             </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getDocList } from '../interface';
+  import { getGoodsList } from '../interface';
 
   export default {
     name: 'buyService',
@@ -42,7 +42,7 @@
       };
     },
     created() {
-      this.getDocList();
+      this.getDocList(1);
     },
     methods: {
       handleIconClick() {
@@ -57,13 +57,13 @@
           })
         }
       },
-      getDocList() {
+      getDocList(page) {
         this.$ajax({
           method: 'GET',
-          url: getDocList(),
+          url: getGoodsList()+"?page="+page,
         }).then((res) => {
-          this.docList = res.data.doctors;
-          this.docListCop = res.data.doctors;
+          this.docList = res.data.consultingList;
+          this.docListCop = res.data.consultingList;
         }).catch((error) => {
           this.$message.error(error.message);
         });

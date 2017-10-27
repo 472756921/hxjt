@@ -64,7 +64,9 @@
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
-
+          if(res.data==1) {
+            this.$message.success('预约成功，客服将会尽快联系您');
+          }
         }).catch((error) => {
           this.$message.error(error.message);
         });

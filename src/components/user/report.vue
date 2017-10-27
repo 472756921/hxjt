@@ -151,27 +151,49 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {getReportDetailByReportId} from '../interface';
+
   export default {
     name: 'report',
+    created(){
+      this.getInfo(this.$route.params.id);
+    },
+    data(){
+      return{
+        data : '',
+      };
+    },
+    methods:{
+      getInfo(datID){
+        this.$ajax({
+          method: 'GET',
+          url: getReportDetailByReportId() + '?report_id='+datID,
+        }).then((res) => {
+          this.data2 = res.data.reports;
+          this.pageNow2 = res.data.page;
+          this.pageTotle2 = res.data.totalPage;
+        }).catch((error) => {
+          this.$message.error('网络异常请稍候');
+        });
+      },
+    },
   };
 </script>
 
 <style scoped>
 .titleA{
   font-weight: bold;
-  color: #8492A6;
+  color: #486B8A;
 }
 .titleC{
   font-weight: bold;
-  color: #1D8CE0;
+  color: #666;
   line-height: 2rem;
   font-size: .95rem;
-  border-bottom: 1px solid #1D8CE0;
 }
 .ckz{
   color: #13CE66;
 }
 .content{
-  border-top: 2px solid #c63c3c;
 }
 </style>

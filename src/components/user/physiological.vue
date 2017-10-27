@@ -9,8 +9,7 @@
           <el-col :span="12"> <div>血糖：{{o.blood_sugar}}</div></el-col>
           <el-col :span="12"><div>心率：{{o.heart_rate}}</div></el-col>
         </el-row>
-        <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle">
-        </el-pagination>
+        <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle"></el-pagination>
         <el-dialog title="录入指标" :visible.sync="dialogVisible" size="large" :before-close="handleClose">
           <el-input  v-model="blood_pressure" :maxlength=2><template slot="prepend">血压</template></el-input>
           <br/>
@@ -25,17 +24,18 @@
         </el-dialog>
       </el-tab-pane>
       <el-tab-pane label="检查指标" name="second">
-        <el-row class="card" v-for="(o, index) in data" key="index">
-          <el-col :span="12"><div>日期：{{o.creation_date}}</div></el-col>
-          <el-col :span="12" style="text-align: right"><el-button type="text" size="small">查看详情</el-button></el-col>
+        <el-row class="card" v-for="(o, index) in data2" key="index">
+          <el-col :span="12"><div>日期：{{o.upload_time.substr(0,10)}}</div></el-col>
+          <el-col :span="12" style="text-align: right"><el-button type="text" size="small" @click="datile(o.id)">查看详情</el-button></el-col>
         </el-row>
+        <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow2" :page-count="pageTotle2"></el-pagination>
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import { getslzb, uploadHealthData } from '../interface';
+  import { getslzb, uploadHealthData, getCheckReportsByCustomer } from '../interface';
 
   export default {
     name: 'physiological',
@@ -43,18 +43,23 @@
       return {
         activeName: 'first',
         dialogVisible: false,
+        blood_pressure: '',
         blood_sugar: '',
         heart_rate: '',
         user: '',
         xl: '',
         zg: '',
         data: [],
-        pageNow: '',
-        pageTotle: '',
+        data2: [],
+        pageNow: 0,
+        pageTotle: 0,
+        pageNow2: 0,
+        pageTotle2: 0,
       };
     },
     created() {
       this.getData(1);
+      this.getData2(1);
     },
     methods: {
       handleClick(tab, event) {
@@ -70,6 +75,22 @@
         }).catch((error) => {
           this.$message.error('网络异常请稍候');
         });
+      },
+      getData2(page) {
+        this.$ajax({
+          method: 'GET',
+          url: getCheckReportsByCustomer() + '?customer_id=3&page=' + page,
+        }).then((res) => {
+          this.data2 = res.data.reports;
+          this.pageNow2 = res.data.page;
+          this.pageTotle2 = res.data.totalPage;
+        }).catch((error) => {
+          this.$message.error('网络异常请稍候');
+        });
+      },
+      datile(id){
+        console.log(id)
+        this.$router.push({path:'report/'+id})
       },
       handleClose(done) {
         done();
