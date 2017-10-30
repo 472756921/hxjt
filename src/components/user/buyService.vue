@@ -29,7 +29,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getGroupGoodsList } from '../interface';
+  import { getGoodsList } from '../interface';
 
   export default {
     name: 'buyService',
@@ -60,7 +60,7 @@
       getDocList(page) {
         this.$ajax({
           method: 'GET',
-          url: getGroupGoodsList()+"?page="+page,
+          url: getGoodsList()+"?page="+page,
         }).then((res) => {
           this.docList = res.data.consultingList;
           this.docListCop = res.data.consultingList;
