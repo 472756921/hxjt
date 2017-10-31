@@ -4,7 +4,7 @@
     <div class="pointer" @click="hisqu">历史记录</div>
     <br/>
     <div style="margin: .6rem 0">输入问题描述</div>
-    <el-input type="textarea" :rows="3" :maxlength="300" placeholder="请输入内容" v-model="textarea"></el-input>
+    <el-input type="textarea" :rows="3" :maxlength="300" placeholder="请输入内容（最多输入300字）" v-model="textarea"></el-input>
     <div style="margin: .6rem 0">
       <div style="margin: .4rem 0;font-size: .6rem;color: #FF4949">上传相关描述图片（支持jpg，png类型的文件上传，大小在2M以内）</div>
       <input type=file value="添加图片" class="fileInput" @change="clickUp" ref="fileNow"/>
