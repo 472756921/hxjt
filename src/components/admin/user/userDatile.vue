@@ -9,7 +9,8 @@
       <el-col :span="6"><div>账户余额：12312</div></el-col>
     </el-row>
     <br/>
-    <report ref="report"></report>
+    <report ref="report" style="float: left;margin-right: 10px"></report>
+    <addpr style="float: left"></addpr>
     <br/>
     <el-row>
       <el-col :span="24">
@@ -42,10 +43,11 @@
 <script type="text/ecmascript-6">
   import {getslzb, getCheckReportsByCustomer} from '../../interface';
   import report from './report.vue';
+  import addpr from './addpr.vue';
 
   export default {
     name: 'userDatile',
-    components: {report},
+    components: {report, addpr},
     props: {
       userIDt: String,
     },

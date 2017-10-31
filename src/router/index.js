@@ -4,8 +4,8 @@ import Hello from '@/components/Hello'
 import UserIndex from '@/components/user/userIndex'
 import Reservation from '@/components/user/reservation'
 import UserInfo from '@/components/user/userInfo'
-import userBuyHistor from '@/components/user/userBuyHistor'
-import ReservationStatus from '@/components/user/reservationStatus'
+import buyHistor from '@/components/user/buyHistor'
+import reservationList from '@/components/user/reservationList'
 import Physiological from '@/components/user/physiological'
 import report from '@/components/user/report'
 import UserHeadUplode from '@/components/user/userHeadUplode'
@@ -128,14 +128,14 @@ export default new Router({
           component: UserInfo,
         },
         {
-          path: 'userBuyHistor',
-          name: 'userBuyHistor',
-          component: userBuyHistor,
+          path: 'buyHistor',
+          name: 'buyHistor',
+          component: buyHistor,
         },
         {
-          path: 'reservationStatus',
-          name: 'reservationStatus',
-          component: ReservationStatus,
+          path: 'reservationList',
+          name: 'reservationList',
+          component: reservationList,
         },
         {
           path: 'physiological',

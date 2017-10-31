@@ -40,7 +40,7 @@
         this.date = date;
       },
       hist() {
-
+        this.$router.push({name: 'reservationList'});
       },
       yy() {
         if(this.date == '') {

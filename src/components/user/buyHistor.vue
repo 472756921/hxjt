@@ -24,7 +24,7 @@
   import { getGoodsList } from '../interface';
 
   export default {
-    name: 'userBuyHistor',
+    name: 'buyHistor',
     data() {
       return {
       };

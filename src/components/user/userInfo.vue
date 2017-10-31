@@ -100,7 +100,7 @@
     },
     methods: {
       buyHist(){
-        this.$router.push({ name: 'userBuyHistor', params: { src: 'benson' }})
+        this.$router.push({ name: 'buyHistor', params: { src: 'benson' }})
       },
       head() {
         this.$router.push({ name: 'userHeadUplode', params: { src: 'benson' }})

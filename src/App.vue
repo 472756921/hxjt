@@ -12,20 +12,23 @@ export default {
 
 <style>
   #app {
-    font-family: Microsoft YaHei;
+    font-family: "Microsoft YaHei UI";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #F9FAFC;
     height: 100%;
     font-size: 14px;
     color: #666;
+    overflow: auto;
   }
   html{
     height: 100%;
+    overflow: auto;
   }
   body{
     margin: 0;
     height: 100%;
+    overflow: auto;
   }
   .titleB{
     font-size: 1.1rem;

@@ -20,14 +20,15 @@
         img: [],
         fileNow: '',
         tableData: [],
-        pageNow: '',
-        pageTotle: '',
+        pageNow: 1,
+        pageTotle: 1,
       }
     },
     created(){
       this.getInfo(1);
     },
     methods: {
+      changPage() {},
       getInfo(page) {
         this.$ajax({
           method: 'get',
