@@ -2,7 +2,7 @@
   <div>
     <div style="padding: .5rem">
       <el-input
-        placeholder="输入名字点击搜索"
+        placeholder="输入名字搜索商品"
         icon="search"
         v-model="search"
         @change="handleIconClick"
@@ -13,9 +13,9 @@
     <el-row :gutter="10">
       <el-col :xs="24" :sm="6" v-for="(doc, i) in docList" :key="i" style="padding: 12px">
         <el-card :body-style="{ padding: '0px' }">
-          <img :src='doc.doctor_icon' class="image">
+          <img src='http://iph.href.lu/300x130?text=%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87' class="image">
           <div style="padding: 6px;">
-            <div class="center">{{doc.goods_name}}</div>
+            <div class="center" style="font-size: 1.2rem">{{doc.goods_name}}</div>
             <div>{{doc.goods_describe}}</div>
             <div class="price">111 健康豆</div>
             <div class="bottom clearfix">
@@ -51,7 +51,7 @@
         } else {
           this.docList = [];
           this.docListCop.map((k,i) => {
-            if (k.real_name.indexOf(this.search) != -1) {
+            if (k.goods_name.indexOf(this.search) != -1) {
               this.docList.push(k);
             }
           })
@@ -69,7 +69,7 @@
         });
       },
       yy(doc) {
-        const r = confirm("确认购买该服务包？")
+        const r = confirm("该商品需要花费"+ 110 +"点健康豆，确认购买？")
         if (r) {
         } else {
         }

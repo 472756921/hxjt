@@ -1,26 +1,14 @@
 <template>
   <div class="content">
-    <h3 class="center">预约服务</h3>
-    <div style="color: #ff8746;font-size: 10px; text-align: center">（当前服务剩余 5 次）</div>
-    <br/>
-    <div class="block">
-      <div class="demonstration">预约时间：</div>
-      <el-date-picker
-        v-model="date"
-        type="date"
-        size="small"
-        @change="dateChange"
-        placeholder="选择日期"
-        :picker-options="pickerOptions0">
-      </el-date-picker>
+    <img src="../../assets/yy.jpg" width="100%"/>
+    <h3>预约服务<span style="color: #ff8746;font-size: 12px;">（当前服务剩余 5 次）</span></h3>
+    <div class="text">
+      这里是一些预约服务的介绍，这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍
     </div>
     <br/>
+    <el-button type="primary" class="center_block" @click="yy" >我要预约</el-button>
     <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <el-button type="success" class="center_block" @click="yy" >预约</el-button>
+    <div class="textCenter"><span @click="hist">预约历史</span></div>
   </div>
 </template>
 
@@ -51,6 +39,9 @@
       dateChange(date) {
         this.date = date;
       },
+      hist() {
+
+      },
       yy() {
         if(this.date == '') {
           this.$message.error('请选择预约时间');
@@ -79,5 +70,15 @@
     color: #333;
     margin-bottom: .3rem;
     font-size: 15px;
+  }
+  .textCenter{
+    text-align: center;
+    color: #409EFF;
+  }
+  .text{
+    line-height: 1.6rem;
+  }
+  .content{
+    background-color: #F9FAFC;
   }
 </style>

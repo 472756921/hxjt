@@ -47,6 +47,11 @@
       <span class="itemText">{{group.group_name}}</span>
     </div>
     <div class="line2"></div>
+    <div class="text" @click="buyHist">
+      <span>购买记录</span>
+      <span class="itemText">》</span>
+    </div>
+    <div class="line2"></div>
 
     <el-dialog title="提示" :visible.sync="dialogVisible" size="large">
       <el-input  v-model="val" size="small">
@@ -94,6 +99,9 @@
       this.getUserInfo();
     },
     methods: {
+      buyHist(){
+        this.$router.push({ name: 'userBuyHistor', params: { src: 'benson' }})
+      },
       head() {
         this.$router.push({ name: 'userHeadUplode', params: { src: 'benson' }})
       },

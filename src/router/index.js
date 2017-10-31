@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import UserIndex from '@/components/user/userIndex'
 import Reservation from '@/components/user/reservation'
 import UserInfo from '@/components/user/userInfo'
+import userBuyHistor from '@/components/user/userBuyHistor'
 import ReservationStatus from '@/components/user/reservationStatus'
 import Physiological from '@/components/user/physiological'
 import report from '@/components/user/report'
@@ -125,6 +126,11 @@ export default new Router({
           path: 'userInfo',
           name: 'userInfo',
           component: UserInfo,
+        },
+        {
+          path: 'userBuyHistor',
+          name: 'userBuyHistor',
+          component: userBuyHistor,
         },
         {
           path: 'reservationStatus',

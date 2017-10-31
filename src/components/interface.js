@@ -4,7 +4,7 @@
 
 
 //const host = 'http://www.9jck.com:8099/';
-const host = 'http://192.168.1.122:8080';
+const host = 'http://192.168.0.9:8080';
 
 export const getslzb = function () {
   const URL = '/userManager/getHealthDateJsonByUctomerId';

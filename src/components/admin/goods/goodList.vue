@@ -1,6 +1,5 @@
 <template>
   <div>
-    <el-button type="primary" style="margin: 10px" @click="newp">添加商品</el-button>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="name" label="商品名"></el-table-column>
       <el-table-column prop="xjg" label="现价格"></el-table-column>
@@ -58,14 +57,6 @@
         this.yjg = this.tableData[index].yjg;
         this.sort = this.tableData[index].sort;
         this.pstatus = this.tableData[index].status;
-      },
-      newp() {
-        this.dialogVisible = true;
-        this.name = '';
-        this.xjg = '';
-        this.yjg = '';
-        this.sort = '';
-        this.pstatus = 1;
       },
       formatter(r,i) {
         if(r.status == '1') {

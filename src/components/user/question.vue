@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h3 style="margin: .4rem 0;">网上问答<small style="float: right;">剩余次数：3</small></h3>
+  <div style="background-color: #F9FAFC;">
+    <img src="../../assets/wz.jpg" width="100%"/>
+    <h3 style="margin: .4rem 0;">网上问答<span style="color: #ff8746;font-size: 12px;">（剩余次数：3）</span></h3>
     <div class="pointer" @click="hisqu">历史记录</div>
-    <br/>
     <div style="margin: .6rem 0">输入问题描述</div>
     <el-input type="textarea" :rows="3" :maxlength="300" placeholder="请输入内容（最多输入300字）" v-model="textarea"></el-input>
     <div style="margin: .6rem 0">
@@ -10,15 +10,16 @@
       <input type=file value="添加图片" class="fileInput" @change="clickUp" ref="fileNow"/>
       <button class="chooes">选择图片</button>
     </div>
-    <div style="height:200px">
+    <div style="height:170px">
       <el-row>
         <el-col :span="12" v-for="(it, i) in img" key="i">
-          <img :src=it width="100%" style="max-height: 200px"/>
+          <img :src=it width="100%" style="max-height: 160px"/>
         </el-col>
       </el-row>
     </div>
     <br/>
     <el-button type="danger" style="margin: 10px auto;display: block;" @click="go">提交问题</el-button>
+    <br/>
   </div>
 </template>
 

@@ -11,13 +11,19 @@
         </el-row>
         <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle"  @current-change="changPage1"></el-pagination>
         <el-dialog title="录入指标" :visible.sync="dialogVisible" size="large" :before-close="handleClose">
-          <el-input  v-model="blood_pressure" :maxlength=2><template slot="prepend">血压</template></el-input>
+          <el-date-picker v-model="datetime" size="small" style="width: 100%" type="datetime" placeholder="选择测量时间"></el-date-picker>
           <br/>
           <br/>
-          <el-input  v-model="blood_sugar" :maxlength=4><template slot="prepend">血糖</template></el-input>
+          <el-input  v-model="blood_sugar" size="small" :maxlength=4><template slot="prepend">血糖</template></el-input>
           <br/>
           <br/>
-          <el-input  v-model="heart_rate" :maxlength=4><template slot="prepend">心率</template></el-input>
+          <el-input  v-model="heart_rate" size="small" :maxlength=4><template slot="prepend">心率</template></el-input>
+          <br/>
+          <br/>
+          <el-input  v-model="blood_pressure" size="small" :maxlength=2><template slot="prepend">血压(低)</template></el-input>
+          <br/>
+          <br/>
+          <el-input  v-model="blood_pressure2" size="small" :maxlength=2><template slot="prepend">血压(高)</template></el-input>
           <span slot="footer" class="dialog-footer">
             <el-button type="primary" @click="sure">确定</el-button>
           </span>
@@ -44,7 +50,9 @@
         activeName: 'first',
         dialogVisible: false,
         blood_pressure: '',
+        blood_pressure2: '',
         blood_sugar: '',
+        datetime: '',
         heart_rate: '',
         user: '',
         xl: '',
@@ -101,13 +109,15 @@
       handleClose(done) {
         done();
         this.blood_pressure = '' ;
+        this.blood_pressure2 = '' ;
         this.blood_sugar = '' ;
         this.heart_rate = '';
+        this.datetime = '';
       },
       sure() {
         const date = new Date();
-        if (this.blood_pressure !== '' && this.blood_sugar !== '' && this.heart_rate !== '') {
-          const data = {blood_pressure: this.blood_pressure, blood_sugar: this.blood_sugar, heart_rate: this.heart_rate};
+        if (this.blood_pressure != '' && this.blood_sugar != '' && this.heart_rate != '' && this.blood_pressure2 != '' && this.datetime != '') {
+          const data = {blood_pressure: this.blood_pressure, blood_sugar: this.blood_sugar, heart_rate: this.heart_rate, blood_pressure2: this.blood_pressure2, datetime: this.datetime};
           this.$ajax({
             method: 'POST',
             data: data,
