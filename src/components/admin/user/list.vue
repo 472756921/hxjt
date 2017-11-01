@@ -13,7 +13,7 @@
       <el-table-column prop="idNumber" label="身份证号码" width="200"></el-table-column>
       <el-table-column prop="ye" label="账户余额" ></el-table-column>
       <el-table-column prop="lastLoginDate" label="最后登录时间"></el-table-column>
-      <el-table-column label="状态">
+      <el-table-column label="操作">
         <template scope="scope">
           <span class="Blue cursor" @click="chang(scope.$index)">生理监控</span>
         </template>

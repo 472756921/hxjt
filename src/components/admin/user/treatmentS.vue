@@ -8,7 +8,6 @@
           </template>
         </el-table-column>
         <el-table-column prop="customer_phone" label="手机号码" ></el-table-column>
-        <el-table-column prop="address" label="预约地点" ></el-table-column>
         <el-table-column label="状态">
           <template scope="scope"><span class="Success">预约成功</span></template>
         </el-table-column>

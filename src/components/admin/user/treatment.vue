@@ -8,7 +8,6 @@
           </template>
         </el-table-column>
         <el-table-column prop="customer_phone" label="手机号码" ></el-table-column>
-        <el-table-column prop="address" label="预约地点" ></el-table-column>
         <el-table-column label="操作">
           <template scope="scope">
             <el-button @click.native.prevent="sure(scope.$index, tableData)" type="text" size="small">确认预约</el-button>
