@@ -7,24 +7,49 @@
       <el-col :xs="12">时间</el-col>
       <el-col :xs="12" style="text-align: right">状态</el-col>
     </el-row>
-    <el-row :gutter="10" class="item">
-      <el-col :xs="12">2012-12-12 08:00</el-col>
-      <el-col :xs="12" class="Blue" style="text-align: right">预约中</el-col>
+    <el-row :gutter="10" class="item" v-for="(it, i) in data">
+      <el-col :xs="12">{{it.appointment_time==null?'暂未安排':it.appointment_time}}</el-col>
+      <el-col :xs="12" class="Blue" style="text-align: right" v-if="it.status==1">预约中</el-col>
+      <el-col :xs="12" class="Success" style="text-align: right" v-if="it.status==2">预约成功</el-col>
+      <el-col :xs="12" class="danger" style="text-align: right" v-if="it.status==3">预约失败</el-col>
     </el-row>
-    <el-row :gutter="10" class="item">
-      <el-col :xs="12">2012-12-12 09:00</el-col>
-      <el-col :xs="12" class="Success" style="text-align: right">预约成功</el-col>
-    </el-row>
-    <el-row :gutter="10" class="item">
-      <el-col :xs="12">2012-12-12 11:00</el-col>
-      <el-col :xs="12" class="danger" style="text-align: right">预约失败</el-col>
-    </el-row>
+    <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle" @current-change="changPage" ></el-pagination>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import {customerGetReservationList} from '../interface';
+
   export default {
     name: 'reservationList',
+    data(){
+      return {
+        data: [],
+        pageTotle: 1,
+        pageNow: 1,
+      };
+    },
+    created(){
+      this.getData(1);
+    },
+    methods: {
+      changPage(newPage){
+        this.getData(newPage);
+      },
+      getData(page){
+        this.$ajax({
+          method: 'get',
+          url: customerGetReservationList() + '?customer_id='+sessionStorage.getItem('customer_id')+'&page='+page,
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          this.data = res.data.reservations;
+          this.pageNow = res.data.page;
+          this.pageTotle = res.data.totalPage;
+        }).catch((error) => {
+        });
+      },
+    }
   };
 </script>
 

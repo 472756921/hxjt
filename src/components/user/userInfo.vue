@@ -5,20 +5,20 @@
         <el-col :span="6">
           <div class="grid-content">
             <div>健康豆</div>
-            <div>{{userInfo.money}}个</div>
+            <div>{{userInfo.customer.money}}个</div>
           </div>
         </el-col>
         <el-col :span="12">
           <div class="">
             <div class="round" @click="head">
-              <img :src="userInfo.customer_icon.image_url" width="100%">
+              <img :src="userInfo.customer.customer_icon.image_url" width="100%">
             </div>
           </div>
         </el-col>
         <el-col :span="6">
           <div class="grid-content">
-            <div>{{userInfo.real_name}}</div>
-            <div>22岁 <i class="iconfont icon-nan sex" v-if="userInfo.gender == 1"></i><i class="iconfont icon-nv sex" v-if="userInfo.gender == 0"></i></div>
+            <div>{{userInfo.customer.real_name}}</div>
+            <div>22岁 <i class="iconfont icon-nan sex" v-if="userInfo.customer.gender == 1"></i><i class="iconfont icon-nv sex" v-if="userInfo.customer.gender == 0"></i></div>
           </div>
         </el-col>
       </el-row>
@@ -29,22 +29,22 @@
     <br/>
     <div class="text">
       <span>身份证号码</span>
-      <span class="itemText">{{userInfo.id_number.substr(0,6)}}********{{userInfo.id_number.substr(14,4)}}</span>
+      <span class="itemText">{{userInfo.customer.id_number.substr(0,6)}}********{{userInfo.customer.id_number.substr(14,4)}}</span>
     </div>
     <div class="line2"></div>
     <div class="text" @click="show('phone')">
       <span>联系电话</span>
-      <span class="itemText">{{userInfo.phone.substr(0,3)}}****{{userInfo.phone.substr(7)}}</span>
+      <span class="itemText">{{userInfo.customer.phone.substr(0,3)}}****{{userInfo.customer.phone.substr(7)}}</span>
     </div>
     <div class="line2"></div>
     <div class="text"  @click="show('address')">
       <span>联系地址</span>
-      <span class="itemText">{{userInfo.address}}</span>
+      <span class="itemText">{{userInfo.customer.address}}</span>
     </div>
     <div class="line2"></div>
     <div class="text" >
       <span>团队</span>
-      <span class="itemText">{{group.group_name}}</span>
+      <span class="itemText">{{userInfo.group.group_name}}</span>
     </div>
     <div class="line2"></div>
     <div class="text" @click="buyHist">
@@ -78,7 +78,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getCustomerMessage, updateUserMessage, getCustomerByIdNumber } from '../interface';
+  import { getGroupCustomerMessage, updateUserMessage, customerBindGroup } from '../interface';
 
   export default {
     name: 'userInfo',
@@ -96,6 +96,10 @@
       };
     },
     created() {
+      let user = sessionStorage.getItem('customer_id');
+      if (user == '') {
+        this.bangding = true;
+      }
       this.getUserInfo();
     },
     methods: {
@@ -150,9 +154,9 @@
       getUserInfo() {
         this.$ajax({
           method: 'GET',
-          url: getCustomerMessage(),
+          url: getGroupCustomerMessage()+"?customer_id="+sessionStorage.getItem('customer_id'),
         }).then((res) => {
-          this.userInfo = res.data.customer;
+          this.userInfo = res.data.customerGroup;
           this.group = res.data.group;
         }).catch((error) => {
           this.$message.error(error.message);
@@ -165,9 +169,12 @@
         if (this.idnumberB == '') {
           this.$message.error('请输入绑定号码');
         }
+        const data = {customer_id: sessionStorage.getItem('customer_id'), id_number: this.idnumberB};
         this.$ajax({
-          method: 'GET',
-          url: getCustomerByIdNumber() + "?id_number="+this.idnumberB,
+          method: 'post',
+          dataType: 'JSON',
+          data: data,
+          url: customerBindGroup(),
         }).then((res) => {
           this.$message.success('绑定成功');
         }).catch((error) => {
