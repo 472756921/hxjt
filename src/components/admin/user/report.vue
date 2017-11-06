@@ -3,6 +3,7 @@
     <el-button type="primary" size="small" @click="inpure">录入检测报告</el-button>
 
     <el-dialog title="生理指标" class="mod" :visible.sync="dialogVisible">
+      检测时间：<el-date-picker v-model="changeDateValue" type="datetime" placeholder="选择日期" size="small" @change="dateChange"></el-date-picker>
       <el-row style="line-height: 1.8rem;color:#8492A6">
         <el-col :span="12">
           <span>登记号：</span><input v-model="rNumber" :disabled="isShow"/>
@@ -123,21 +124,25 @@
           <span class="titleA">肌钙蛋白-T（参考值：<input :disabled="isShow" class="ckz" v-model="v28_2"/>）：</span><input :disabled="isShow" v-model="v28"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">大便隐血：</span><input :disabled="isShow" v-model="v28"/>
+          <span class="titleA">大便隐血：</span><input :disabled="isShow" v-model="v29"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">血压：</span><input :disabled="isShow" v-model="v29"/>
+          <span class="titleA">血压：</span><input :disabled="isShow" v-model="v30"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">心率：</span><input :disabled="isShow" v-model="v30"/>
+          <span class="titleA">心率：</span><input :disabled="isShow" v-model="v31"/>
         </el-col>
         <el-col :span="24">
           <div class="titleA">冠脉造影结果：</div>
-          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3"></textarea>
+          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="v32"></textarea>
         </el-col>
         <el-col :span="24">
           <div class="titleA">支架置入个数、部位：</div>
-          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="v32"></textarea>
+          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="v33"></textarea>
+        </el-col>
+        <el-col :span="24">
+          <div class="titleA">其他</div>
+          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="v34"></textarea>
         </el-col>
       </el-row>
       <span slot="footer" class="dialog-footer">
@@ -149,10 +154,17 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {saveCheckReport} from '../../interface';
+
   export default {
     name: 'report',
+    props: {
+      userID: Number,
+      userID2: Number,
+    },
     data() {
       return {
+        date: '',
         ryj: '',
         rNumber: '',
         rlv: '',
@@ -192,6 +204,8 @@
         v30: '',
         v31: '',
         v32: '',
+        v33: '',
+        v34: '',
         v1_2: 50,
         v2_2: 40,
         v3_2: '65-85',
@@ -220,15 +234,14 @@
         v26_2: 4.94,
         v27_2: '0-227',
         v28_2: '0-14',
-        v29_2: '',
-        v30_2: '',
-        v31_2: '',
-        v32_2: '',
         dialogVisible: false,
         isShow: false,
       };
     },
     methods: {
+      dateChange(date) {
+        this.date = date;
+      },
       inpure(data) {
         if(typeof data.preventDefault == 'function') { //新建
           this.isShow = false;
@@ -237,6 +250,72 @@
           this.isShow = true;
         }
         this.dialogVisible = true;
+      },
+      push(){
+        let id;
+        if(this.userID == undefined){
+          id = this.userID2;
+        }
+        if(this.userID2 == undefined){
+          id = this.userID;
+        }
+        const data = {
+          id: this.rNumber,
+          customer_id:  id,
+          lv: this.rlv,
+          la: this.rla,
+          rv: this.rrv,
+          ra: this.rra,
+          ef: this.ref,
+          alt: this.v1,
+          ast: this.v2,
+          tp: this.v3,
+          alb: this.v4,
+          glucose: this.v5,
+          urea: this.v6,
+          cre: this.v7,
+          gfr: this.v8,
+          uric_acid: this.v9,
+          tg: this.v10,
+          cholesterol: this.v11,
+          hdl: this.v12,
+          ldl: this.v13,
+          ygt: this.v14,
+          ck: this.v15,
+          ldh: this.v16,
+          hbdh: this.v17,
+          na: this.v18,
+          k: this.v19,
+          cl: this.v20,
+          rbc: this.v21,
+          hgb: this.v22,
+          platelet: this.v23,
+          wbc: this.v24,
+          myo: this.v25,
+          creatine_kinase_isoenzymes_mb: this.v26,
+          pro_bnp: this.v27,
+          tn_t: this.v28,
+          stool_ob: this.v29,
+          heart_rate: this.v31,
+          blood_pressure: this.v30,
+          coronary_angiography_results:this.v32,
+          support_count_position: this.v33,
+          others: this.v34,
+          check_time: this.date,
+        };
+        this.$ajax({
+          method: 'POST',
+          data: {id: this.user.id, reply: this.textarea, doctor_id: 1},
+          url: saveCheckReport(),
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if(res.data == 1) {
+            this.$message.success('提交成功');
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
       },
     },
   };

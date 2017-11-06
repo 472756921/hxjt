@@ -4,11 +4,16 @@
     <el-radio v-model="radio" label="2">商品</el-radio>
 
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="name" label="商品名"></el-table-column>
-      <el-table-column prop="xjg" label="现价格"></el-table-column>
-      <el-table-column prop="yjg" label="原价格"></el-table-column>
+      <el-table-column prop="package_name" v-if="radio==1" label="商品名"></el-table-column>
+      <el-table-column prop="goods_name" v-if="radio==2" label="商品名"></el-table-column>
+      <el-table-column v-if="radio==2" label="图片">
+        <template scope="scope">
+          <img :src="123"/>
+        </template>
+      </el-table-column>
+      <el-table-column prop="price" label="现价格"></el-table-column>
       <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
-      <el-table-column prop="sort" label="排序"></el-table-column>
+      <el-table-column prop="grade" v-if="radio==1" label="等级"></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
           <span class="Success" @click="chang(scope.$index)">修改</span>
@@ -86,7 +91,10 @@
           method: 'GET',
           url: url + "?page="+page,
         }).then((res) => {
-          this.tableData = res.data.packages;
+          if(this.radio == 1)
+          this.tableData = res.data.goods;
+          if(this.radio == 2)
+          this.tableData = res.data.medicalGoods;
           this.page = { totalPage: res.data.totalPage, page:  res.data.page,  };
           this.over = true;
         }).catch((error) => {

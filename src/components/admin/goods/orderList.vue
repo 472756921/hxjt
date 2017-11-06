@@ -1,33 +1,54 @@
 <template>
   <div>
-    <template>
-      <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="omunber" label="订单号"></el-table-column>
-        <el-table-column prop="name" label="商品名"></el-table-column>
-        <el-table-column prop="price" label="价格"></el-table-column>
-        <el-table-column prop="user" label="购买用户">
-          <template scope="scope">
-            <div class="cursor" @click="goUser(scope.row)"> {{ scope.row.user }}</div>
-          </template>
-        </el-table-column>
-        <el-table-column prop="createDate" label="创建时间"></el-table-column>
-        <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
-      </el-table>
-    </template>
+    <el-radio v-model="radio" label="1">服务包</el-radio>
+    <el-radio v-model="radio" label="2">商品</el-radio>
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="omunber" label="订单号"></el-table-column>
+      <el-table-column prop="name" label="商品名"></el-table-column>
+      <el-table-column prop="price" label="价格"></el-table-column>
+      <el-table-column prop="user" label="购买用户">
+        <template scope="scope">
+          <div class="cursor" @click="goUser(scope.row)"> {{ scope.row.user }}</div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="createDate" label="创建时间"></el-table-column>
+      <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import { getAdmins } from '../../interface';
+  import { getCustomerHealthServiceOrder, customerGetMedicalOrder } from '../../interface';
 
   export default {
     name: 'orderList',
+    created(){
+      this.getList(1,1);
+    },
+    watch: {
+      radio (newData, oldData) {
+        this.getList(1,newData);
+      },
+    },
     methods: {
-      del(index) {
-        const r = confirm("确认删除？")
-        if (r === true) {
-          this.tableData.splice(index, 1);
+      getList(page, type) {
+        let url;
+        if(type == 1) {
+          url = getCustomerHealthServiceOrder();
         }
+        if(type == 2) {
+          url = customerGetMedicalOrder();
+        }
+        this.$ajax({
+          method: 'GET',
+          url: url + "?page="+page,
+        }).then((res) => {
+          this.tableData = res.data.packages;
+          this.page = { totalPage: res.data.totalPage, page:  res.data.page,  };
+          this.over = true;
+        }).catch((error) => {
+          this.$message.error('网络有问题，请稍后再试');
+        });
       },
       formatter(r,i) {
         if(r.status == '1') {
@@ -45,17 +66,8 @@
     },
     data() {
       return {
-        tableData: [
-          {
-            omunber: 123123,
-            name: '洗衣液',
-            price: 229,
-            user: '刘德华',
-            userID: 12,
-            createDate: '2012-12-12',
-            status: 1,
-          },
-        ],
+        radio: '1',
+        tableData: [],
       }
     }
   };

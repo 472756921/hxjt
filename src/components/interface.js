@@ -126,6 +126,11 @@ export const replyConsultation = function () {
   const API = host + URL;
   return API;
 };
+export const saveCheckReport = function () {
+  const URL = '/checkReport/saveCheckReport';
+  const API = host + URL;
+  return API;
+};
 export const getGroupCustomers = function () {
   const URL = '/teamUser/getGroupCustomers';
   const API = host + URL;
@@ -148,6 +153,11 @@ export const getMedicalGoodsByPage = function () {
 };
 export const getCustomerHealthServiceOrder = function () {
   const URL = '/healthServiceManager/getCustomerHealthServiceOrder';
+  const API = host + URL;
+  return API;
+};
+export const customerGetMedicalOrder = function () {
+  const URL = '/medicalGoods/customerGetMedicalOrder';
   const API = host + URL;
   return API;
 };
