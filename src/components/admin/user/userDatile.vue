@@ -17,7 +17,7 @@
         <h4>生理监控</h4>
         <el-table :data="tableData1" style="width: 100%">
           <el-table-column prop="create_date" label="测量时间"></el-table-column>
-          <el-table-column prop="blood_pressure" label="血压" ></el-table-column>
+          <el-table-column prop="blood_pressure" label="血压(低/高)" ></el-table-column>
           <el-table-column prop="blood_sugar" label="血糖" ></el-table-column>
           <el-table-column prop="heart_rate" label="心率" ></el-table-column>
         </el-table>

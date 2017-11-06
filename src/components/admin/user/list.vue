@@ -6,26 +6,53 @@
       </el-input>
     </div>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="account" label="姓名" ></el-table-column>
+      <el-table-column prop="real_name" label="姓名" ></el-table-column>
       <el-table-column prop="phone" label="电话" ></el-table-column>
       <el-table-column prop="sex" label="性别" :formatter = 'formatter' ></el-table-column>
       <el-table-column prop="age" label="年龄"  ></el-table-column>
-      <el-table-column prop="idNumber" label="身份证号码" width="200"></el-table-column>
+      <el-table-column prop="id_number" label="身份证号码" width="200"></el-table-column>
       <el-table-column prop="ye" label="账户余额" ></el-table-column>
-      <el-table-column prop="lastLoginDate" label="最后登录时间"></el-table-column>
+      <el-table-column prop="join_group_time" label="加入团队时间"></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
           <span class="Blue cursor" @click="chang(scope.$index)">生理监控</span>
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle" @current-change="changPage" ></el-pagination>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import {getGroupCustomers} from '../../interface'
+
   export default {
     name: 'list',
+    data() {
+      return {
+        pageNow: 1,
+        pageTotle: 1,
+        search: '',
+        tableData: [],
+      }
+    },
+    created(){
+      this.getInfo(1);
+    },
     methods: {
+      getInfo(page) {
+        this.$ajax({
+          method: 'GET',
+          url: getGroupCustomers()+"?page="+page,
+        }).then((res) => {
+          this.tableData = res.data.customers;
+          this.pageNow = res.data.page;
+          this.pageTotle = res.data.totalPage;
+          console.log(res.data);
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
       del(index) {
         const r = confirm("确认删除？")
         if (r === true) {
@@ -33,7 +60,7 @@
         }
       },
       chang(index) {
-        this.$router.push({ name: 'userDatile', params: { userID: this.tableData[index].userID } })
+        this.$router.push({ name: 'userDatile', params: { userID: this.tableData[index].id } })
       },
       formatter(row, column) {
         if (row.sex === 1) {
@@ -45,42 +72,7 @@
         }
       },
     },
-    data() {
-      return {
-        search: '',
-        tableData: [{
-          lastLoginDate: '2016-05-02',
-          account: '王小虎',
-          phone: '123123123',
-          ye: 320,
-          userID: 12,
-          id: 1,
-          idNumber: 49382839993829383922,
-          age:33,
-          sex: 1
-        },{
-          lastLoginDate: '2016-05-02',
-          account: '王小虎',
-          phone: 18830293,
-          userID: 12,
-          ye: 320,
-          id: 1,
-          age:33,
-          idNumber: 49382839993829383922,
-          sex: 0
-        }, {
-          lastLoginDate: '2016-05-02',
-          account: '王小虎',
-          phone: 18830293,
-          ye: 320,
-          idNumber: 49382839993829383922,
-          id: 1,
-          age:33,
-          sex: 2,
-          userID: 12,
-        },  ]
-      }
-    }
+
   };
 </script>
 

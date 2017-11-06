@@ -50,14 +50,10 @@ export default {
     }
   },
   created(){
-    sessionStorage.setItem('user',JSON.stringify({customer_id: 3}));
-    sessionStorage.setItem('customer_id',3);
-
     this.$ajax({
       method: 'GET',
-      url: 'http://192.168.0.5:8080/admin/saveSession?group_id=1',
+      url: 'http://www.schrtinfo.com/hrt/admin/saveSession?group_id=1',
     }).then((res) => {
-      console.log(res);
     })
   },
 }

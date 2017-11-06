@@ -3,7 +3,7 @@
  */
 
 
-const host = 'http://www.schrtinfo.com/hrt/';
+const host = 'http://www.schrtinfo.com/hrt';
 //const host = 'http://192.168.0.5:8080';
 
 export const getslzb = function () {
@@ -118,6 +118,11 @@ export const getGroupGoodsList = function () {
 };
 export const replyConsultation = function () {
   const URL = '/consultation/replyConsultation';
+  const API = host + URL;
+  return API;
+};
+export const getGroupCustomers = function () {
+  const URL = '/teamUser/getGroupCustomers';
   const API = host + URL;
   return API;
 };
