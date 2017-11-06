@@ -1,11 +1,10 @@
 <template>
   <div class="doccontent" ref="logonBG">
     <div class="center titleA">华西医生集团</div>
+    <div class="center" style="font-size: 18px">团队公众号</div>
     <div class="infoContent">
       <input type="text" class="inputtype" placeholder="账号" v-model="u"/>
       <input type="password" class="inputtype" v-model="p" placeholder="密码"/>
-      <el-radio class="radio" v-model="radio" label="1">管理员</el-radio>
-      <el-radio class="radio" v-model="radio" label="2">专家</el-radio>
       <br/>
       <button class="loginBtn" @click="login">登录</button>
     </div>
@@ -19,7 +18,6 @@
     name: 'adminLogin',
     data() {
       return {
-        radio: '1',
         u: '',
         p: '',
       };
@@ -32,8 +30,7 @@
         }
         const data = {
           account: this.u,
-          pass_word: this.p,
-          type: this.radio,
+          password: this.p,
         };
         this.$ajax({
           method: 'post',
@@ -42,8 +39,8 @@
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
-          sessionStorage.setItem('user', JSON.stringify(res.data));
-          sessionStorage.setItem('type', this.radio);
+          sessionStorage.setItem('doc', JSON.stringify(res.data.doctor));
+          sessionStorage.setItem('docID', res.data.doctor.id);
           this.$router.push({ name: 'admin' });
         }).catch((error) => {
           this.$message.error('账号或密码错误');
@@ -63,7 +60,7 @@
     font-size: 2rem;
   }
   .titleA{
-    padding: 40px;
+    padding: 40px 0 10px 0;
   }
   .infoContent{
     width: 500px;

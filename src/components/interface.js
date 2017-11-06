@@ -3,11 +3,16 @@
  */
 
 
-const host = 'http://www.schrtinfo.com/hrt';
+const host = 'http://118.31.38.185/hrt';
 //const host = 'http://192.168.0.5:8080';
 
 export const getslzb = function () {
   const URL = '/teamUser/getHealthDateJsonByUctomerId';
+  const API = host + URL;
+  return API;
+};
+export const userLogin = function () {
+  const URL = '/teamUser/doctorLogin ';
   const API = host + URL;
   return API;
 };
@@ -123,6 +128,26 @@ export const replyConsultation = function () {
 };
 export const getGroupCustomers = function () {
   const URL = '/teamUser/getGroupCustomers';
+  const API = host + URL;
+  return API;
+};
+export const reservationBack = function () {
+  const URL = '/reservationService/reservationBack';
+  const API = host + URL;
+  return API;
+};
+export const getHealthPackageByPage = function () {
+  const URL = '/healthServiceManager/getHealthPackageByPage';
+  const API = host + URL;
+  return API;
+};
+export const getMedicalGoodsByPage = function () {
+  const URL = '/medicalGoods/getMedicalGoodsByPage';
+  const API = host + URL;
+  return API;
+};
+export const getCustomerHealthServiceOrder = function () {
+  const URL = '/healthServiceManager/getCustomerHealthServiceOrder';
   const API = host + URL;
   return API;
 };

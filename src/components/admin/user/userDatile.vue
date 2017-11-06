@@ -9,8 +9,8 @@
       <el-col :span="6"><div>账户余额：12312</div></el-col>
     </el-row>
     <br/>
-    <report ref="report" style="float: left;margin-right: 10px"></report>
-    <addpr style="float: left"></addpr>
+    <report ref="report" style="float: left;margin-right: 10px" :userID=this.userID :userID2=this.userIDt></report>
+    <addpr style="float: left" :userID=this.userID :userID2=this.userIDt></addpr>
     <br/>
     <el-row>
       <el-col :span="24">

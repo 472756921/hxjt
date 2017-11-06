@@ -1,5 +1,8 @@
 <template>
   <div>
+    <el-radio v-model="radio" label="1">服务包</el-radio>
+    <el-radio v-model="radio" label="2">商品</el-radio>
+
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="name" label="商品名"></el-table-column>
       <el-table-column prop="xjg" label="现价格"></el-table-column>
@@ -45,10 +48,15 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getGroupGoodsList } from '../../interface';
+  import { getHealthPackageByPage, getMedicalGoodsByPage } from '../../interface';
 
   export default {
     name: 'goodList',
+    watch: {
+      radio (newData, oldData) {
+        this.getList(1,newData);
+      },
+    },
     methods: {
       chang(index) {
         this.dialogVisible = true;
@@ -66,12 +74,19 @@
           return '下架';
         }
       },
-      getList(){
+      getList(page, type){
+        let url;
+        if(type == 1) {
+          url = getHealthPackageByPage();
+        }
+        if(type == 2) {
+          url = getMedicalGoodsByPage();
+        }
         this.$ajax({
           method: 'GET',
-          url: getGroupGoodsList() + "?doctor_id=1&page="+page,
+          url: url + "?page="+page,
         }).then((res) => {
-          this.tableData = res.data.reservations;
+          this.tableData = res.data.packages;
           this.page = { totalPage: res.data.totalPage, page:  res.data.page,  };
           this.over = true;
         }).catch((error) => {
@@ -80,10 +95,11 @@
       },
     },
     created() {
-      this.getList(1);
+      this.getList(1,1);
     },
     data() {
       return {
+        radio: '1',
         sClass: '',
         sname: '',
         stime: '',
@@ -94,22 +110,7 @@
         xjg: '',
         yjg: '',
         sort: '',
-        tableData: [
-          {
-            name: '洗衣液',
-            xjg: 229,
-            yjg: 320,
-            sort: 1,
-            status: 1,
-          },
-          {
-            name: '洗衣液',
-            xjg: 229,
-            yjg: 320,
-            sort: 1,
-            status: 0,
-          },
-        ],
+        tableData: [],
       }
     }
   };

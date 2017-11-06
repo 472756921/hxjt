@@ -40,7 +40,7 @@
       getList(page) {
         this.$ajax({
           method: 'GET',
-          url: getReservationList() + "?doctor_id=1&page="+page,
+          url: getReservationList() + "?doctor_id=1&page="+page+"&status=2",
         }).then((res) => {
           this.tableData = res.data.reservations;
           this.page = { totalPage: res.data.totalPage, page:  res.data.page,  };

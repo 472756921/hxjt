@@ -40,7 +40,7 @@
       getInfo(page) {
         this.$ajax({
           method: 'get',
-          url: getConsultationList()+"?doctor_id=2&customer_id=3&pageSize="+page,
+          url: getConsultationList()+"?doctor_id="+sessionStorage.getItem('docID')+"&customer_id=&pageSize="+page,
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
