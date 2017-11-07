@@ -161,3 +161,28 @@ export const customerGetMedicalOrder = function () {
   const API = host + URL;
   return API;
 };
+export const GroupBindPackage = function () {
+  const URL = '/healthServiceManager/GroupBindPackage';
+  const API = host + URL;
+  return API;
+};
+export const updateGroupBindPackageStatus = function () {
+  const URL = '/healthServiceManager/updateGroupBindPackageStatus';
+  const API = host + URL;
+  return API;
+};
+export const groupBindMedicalGoods = function () {
+  const URL = '/medicalGoods/groupBindMedicalGoods';
+  const API = host + URL;
+  return API;
+};
+export const updateGroupMedicalGoodsStatus = function () {
+  const URL = '/medicalGoods/updateGroupMedicalGoodsStatus';
+  const API = host + URL;
+  return API;
+};
+export const getCustomerCheckReportDetail = function () {
+  const URL = '/checkReport/getCustomerCheckReportDetail';
+  const API = host + URL;
+  return API;
+};

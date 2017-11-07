@@ -26,8 +26,8 @@
       <el-col :span="24">
         <h4>检测报告</h4>
         <el-table :data="tableData2" style="width: 100%">
-          <el-table-column prop="date" label="生成时间"></el-table-column>
-          <el-table-column prop="number" label="登记号"></el-table-column>
+          <el-table-column prop="upload_time" label="生成时间"></el-table-column>
+          <el-table-column prop="id" label="登记号"></el-table-column>
           <el-table-column label="操作">
             <template scope="scope">
               <el-button @click.native.prevent="sure(scope.$index)" type="text" size="small">详情</el-button>
@@ -41,7 +41,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {getslzb, getCheckReportsByCustomer} from '../../interface';
+  import {getslzb, getCheckReportListByPage} from '../../interface';
   import report from './report.vue';
   import addpr from './addpr.vue';
 
@@ -109,9 +109,9 @@
         )
         this.$ajax({
           method: 'GET',
-          url: getCheckReportsByCustomer() + '?customer_id='+uid+'&page=' + page,
+          url: getCheckReportListByPage() + '?customer_id='+uid+'&page=' + page,
         }).then((res) => {
-          this.tableData2 = res.data.reports;
+          this.tableData2 = res.data.checkReport;
           this.pageNow2 = res.data.page;
           this.pageTotle2 = res.data.totalPage;
         }).catch((error) => {

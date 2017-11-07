@@ -1,51 +1,32 @@
 <template>
-  <div>
+  <div style="padding: 10px 2px; overflow:auto;">
     <el-radio v-model="radio" label="1">服务包</el-radio>
     <el-radio v-model="radio" label="2">商品</el-radio>
 
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="package_name" v-if="radio==1" label="商品名"></el-table-column>
-      <el-table-column prop="goods_name" v-if="radio==2" label="商品名"></el-table-column>
+      <el-table-column prop="service_name" label="商品名"></el-table-column>
       <el-table-column v-if="radio==2" label="图片">
         <template scope="scope">
           <img :src="123"/>
         </template>
       </el-table-column>
-      <el-table-column prop="price" label="现价格"></el-table-column>
-      <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
-      <el-table-column prop="grade" v-if="radio==1" label="等级"></el-table-column>
+      <el-table-column prop="shelf_price" label="现价格"></el-table-column>
+      <el-table-column prop="price" label="指导价格" ></el-table-column>
+      <el-table-column prop="is_shelf" label="状态" :formatter = 'formatter'></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
-          <span class="Success" @click="chang(scope.$index)">修改</span>
+          <span class="Success" @click="chang(scope.$index, 1)" v-if="tableData[scope.$index].is_shelf==0">上架</span>
+          <span class="danger pointer" @click="chang(scope.$index, 0)" v-if="tableData[scope.$index].is_shelf==1">下架</span>
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle" @current-change="changPage" ></el-pagination>
 
-    <el-dialog  title="商品信息" :visible.sync="dialogVisible" size="tiny">
-
-      <el-radio-group v-model="p_class">
-        <el-radio-button label=1>商品</el-radio-button>
-        <el-radio-button label=2>服务包</el-radio-button>
-      </el-radio-group>
-
-      <div class="item">商品名称：<input v-model="sname" v-if="p_class==1"/>
-        <select v-if="p_class==2" v-model="sClass">
-          <option>就诊服务包</option>
-          <option>提问服务包</option>
-        </select>
-      </div>
-      <div class="item">商品价格：<input v-model="xjg"/></div>
-      <div class="item">商品排序：<input v-model="sort"/></div>
-      <div class="item" v-if="p_class==2">服务次数：<input v-model="stime"/></div>
-
-      <el-radio-group v-model="pstatus">
-        <el-radio-button label=1>上架</el-radio-button>
-        <el-radio-button label=0>下架</el-radio-button>
-      </el-radio-group>
-
+    <el-dialog title="输入服务包价格" :visible.sync="dialogVisible" size="samll">
+      <input type="text" placeholder="服务包价格" v-model="price" />
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="priceSho">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -53,7 +34,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getHealthPackageByPage, getMedicalGoodsByPage } from '../../interface';
+  import { getHealthPackageByPage, getMedicalGoodsByPage, GroupBindPackage, updateGroupBindPackageStatus, groupBindMedicalGoods, updateGroupMedicalGoodsStatus } from '../../interface';
 
   export default {
     name: 'goodList',
@@ -63,21 +44,99 @@
       },
     },
     methods: {
-      chang(index) {
-        this.dialogVisible = true;
-        this.name = this.tableData[index].name;
-        this.xjg = this.tableData[index].xjg;
-        this.yjg = this.tableData[index].yjg;
-        this.sort = this.tableData[index].sort;
-        this.pstatus = this.tableData[index].status;
+      priceSho(){
+        if(this.price == '') {
+          this.$message.warning('请输入售价');
+          return ;
+        }
+        this.JsonData.data.price = this.price;
+        this.pushChange( this.JsonData.url, this.JsonData.data);
       },
+      //类型 radio，位置 index，操作 type, 是否首次上架 isFrist
+      chang(index, type) {
+        let url, data, isFrist = false;
+        if(this.tableData[index].group_package_id == null){
+          isFrist = true;
+        }
+        if(this.radio == '1'){    //服务包
+          if(type == 1){  //上架
+            this.dialogVisible = true;
+            if(isFrist){  //（首次）
+              url = GroupBindPackage();
+              data = {
+                price: 0,
+                package_id: this.tableData[index].id,
+              };
+            } else {   //非首次
+              url = updateGroupBindPackageStatus();
+              data = {
+                status: 1,
+                price: 0,
+                id: this.tableData[index].group_package_id,
+              };
+            }
+            this.JsonData.data = data;
+            this.JsonData.url = url;
+          } else if(type == 0) { //下架
+            url = updateGroupBindPackageStatus();
+            data = {
+              status: 0,
+              price: 0,
+              id: this.tableData[index].group_package_id,
+            };
+            this.pushChange(url, data);
+          }
+        } else if(this.radio == '2'){ //商品
+          if(type == 1){  //上架
+            if(isFrist){  //（首次）
+              url = groupBindMedicalGoods();
+              data = {
+                medical_goods_id: this.tableData[index].id,
+              };
+            } else {   //非首次
+              url = updateGroupMedicalGoodsStatus();
+              data = {
+                status: 1,
+                id: this.tableData[index].group_package_id,
+              };
+            }
+          } else if(type == 0){ //下架
+            url = updateGroupMedicalGoodsStatus();
+            data = {
+              status: 0,
+              id: this.tableData[index].group_package_id,
+            };
+          }
+          this.pushChange(url, data);
+        }
+      },
+      pushChange(url, data){
+        this.$ajax({
+          method: 'POST',
+          data: data,
+          url:url,
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if(res.data == 1) {
+            this.$message.success('操作成功');
+            this.dialogVisible = false;
+            setTimeout(()=>{window.location.reload();},1000)
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      }      ,
       formatter(r,i) {
-        if(r.status == '1') {
+        if(r.is_shelf == '1') {
           return '上架';
         }
-        if(r.status == '0') {
+        if(r.is_shelf == '0') {
           return '下架';
         }
+      },
+      changPage(newPage){
+        this.getList(newPage, this.radio);
       },
       getList(page, type){
         let url;
@@ -91,13 +150,16 @@
           method: 'GET',
           url: url + "?page="+page,
         }).then((res) => {
-          if(this.radio == 1)
           this.tableData = res.data.goods;
-          if(this.radio == 2)
-          this.tableData = res.data.medicalGoods;
-          this.page = { totalPage: res.data.totalPage, page:  res.data.page,  };
-          this.over = true;
+          this.pageNow = res.data.page;
+          this.pageTotle = res.data.totalPage;
+          if(this.radio == 2){
+            this.tableData.map((it, i)=>{
+              it.shelf_price = '仅指导价';
+            })
+          }
         }).catch((error) => {
+          console.log(error)
           this.$message.error('网络有问题，请稍后再试');
         });
       },
@@ -107,18 +169,13 @@
     },
     data() {
       return {
-        radio: '1',
-        sClass: '',
-        sname: '',
-        stime: '',
-        p_class: 1,
-        pstatus: 1,
         dialogVisible: false,
-        name: '',
-        xjg: '',
-        yjg: '',
-        sort: '',
+        radio: '1',
         tableData: [],
+        pageNow: 1,
+        pageTotle: 1,
+        price: '',
+        JsonData: {},
       }
     }
   };
@@ -128,10 +185,7 @@
   .Success{
     cursor: pointer;
   }
-  .item{
-    line-height: 40px;
-  }
-  .item input {
-    height: 20px;
+  .pointer{
+    cursor: pointer;
   }
 </style>
