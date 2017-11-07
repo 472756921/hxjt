@@ -52,7 +52,7 @@ export default {
   created(){
     this.$ajax({
       method: 'GET',
-      url: 'http://www.schrtinfo.com/hrt/admin/saveSession?group_id=1',
+      url: 'http://118.31.38.185/hrt/admin/saveSession?group_id=1',
     }).then((res) => {
     })
   },

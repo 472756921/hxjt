@@ -25,7 +25,6 @@ import askList from '@/components/admin/user/askList'
 import askDatile from '@/components/admin/user/askDatile'
 import treatment from '@/components/admin/user/treatment'
 import treatmentS from '@/components/admin/user/treatmentS'
-import ItemClass from '@/components/admin/reservation/itemClass'
 
 import goodList from '@/components/admin/goods/goodList'
 import orderList from '@/components/admin/goods/orderList'
@@ -94,11 +93,6 @@ export default new Router({
           path: 'treatmentS',
           name: 'treatmentS',
           component: treatmentS,
-        },
-        {
-          path: 'itemClass',
-          name: 'itemClass',
-          component: ItemClass,
         },
         {
           path: 'goodList',

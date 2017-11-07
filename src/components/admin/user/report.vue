@@ -31,115 +31,115 @@
           <span class="titleC">生化指标</span>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">丙氨酸氨基转移酶（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.v1_2"/> ）：</span><input :disabled="isShow" v-model="repData.alt"/>
+          <span class="titleA">丙氨酸氨基转移酶（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.alt_values"/> ）：</span><input :disabled="isShow" v-model="repData.alt"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">门冬氨酸氨基转移酶（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.v2_2"/>）：</span><input :disabled="isShow" v-model="repData.ast"/>
+          <span class="titleA">门冬氨酸氨基转移酶（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.ast_values"/>）：</span><input :disabled="isShow" v-model="repData.ast"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">总蛋白（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v3_2"/>）：</span><input :disabled="isShow" v-model="repData.v3"/>
+          <span class="titleA">总蛋白（参考值：<input :disabled="isShow" class="ckz" v-model="repData.tp_values"/>）：</span><input :disabled="isShow" v-model="repData.tp"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">白蛋白（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v4_2"/>）：</span><input :disabled="isShow" v-model="repData.v4"/>
+          <span class="titleA">白蛋白（参考值：<input :disabled="isShow" class="ckz" v-model="repData.alb_values"/>）：</span><input :disabled="isShow" v-model="repData.alb"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">葡萄糖（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v5_2"/>）：</span><input :disabled="isShow" v-model="repData.v5"/>
+          <span class="titleA">葡萄糖（参考值：<input :disabled="isShow" class="ckz" v-model="repData.glucose"/>）：</span><input :disabled="isShow" v-model="repData.glucose_values"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">尿素（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v6_2"/>）：</span><input :disabled="isShow" v-model="repData.v6"/>
+          <span class="titleA">尿素（参考值：<input :disabled="isShow" class="ckz" v-model="repData.urea_values"/>）：</span><input :disabled="isShow" v-model="repData.urea"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">肌酐（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v7_2"/>）：</span><input :disabled="isShow" v-model="repData.v7"/>
+          <span class="titleA">肌酐（参考值：<input :disabled="isShow" class="ckz" v-model="repData.cre_values"/>）：</span><input :disabled="isShow" v-model="repData.cre"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">估算肾小球滤过率（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v8_2"/>）：</span><input :disabled="isShow" v-model="repData.v8"/>
+          <span class="titleA">估算肾小球滤过率（参考值：<input :disabled="isShow" class="ckz" v-model="repData.gfr_values"/>）：</span><input :disabled="isShow" v-model="repData.gfr"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">尿酸（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v9_2"/>）：</span><input :disabled="isShow" v-model="repData.v9"/>
+          <span class="titleA">尿酸（参考值：<input :disabled="isShow" class="ckz" v-model="repData.uric_acid_values"/>）：</span><input :disabled="isShow" v-model="repData.uric_acid"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">甘油三脂（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v10_2"/>）：</span><input :disabled="isShow" v-model="repData.v10"/>
+          <span class="titleA">甘油三脂（参考值：<input :disabled="isShow" class="ckz" v-model="repData.tg_values"/>）：</span><input :disabled="isShow" v-model="repData.tg"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">胆固醇（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v11_2"/>）：</span><input :disabled="isShow" v-model="repData.v11"/>
+          <span class="titleA">胆固醇（参考值：<input :disabled="isShow" class="ckz" v-model="repData.cholesterol_values"/>）：</span><input :disabled="isShow" v-model="repData.cholesterol"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">高密度脂蛋白（参考值：><input :disabled="isShow" class="ckz" v-model="repData.v12_2"/>）：</span><input :disabled="isShow" v-model="repData.v12"/>
+          <span class="titleA">高密度脂蛋白（参考值：><input :disabled="isShow" class="ckz" v-model="repData.hdl_values"/>）：</span><input :disabled="isShow" v-model="repData.hdl"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">低密度脂蛋白（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.v13_2"/>）：</span><input :disabled="isShow" v-model="repData.v13"/>
+          <span class="titleA">低密度脂蛋白（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.ldl_values"/>）：</span><input :disabled="isShow" v-model="repData.ldl"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">谷氨酰转肽酶（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.v14_2"/>）：</span><input :disabled="isShow" v-model="repData.v14"/>
+          <span class="titleA">谷氨酰转肽酶（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.ygt_values"/>）：</span><input :disabled="isShow" v-model="repData.ygt"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">肌酸激酶（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v15_2"/>）：</span><input :disabled="isShow" v-model="repData.v15"/>
+          <span class="titleA">肌酸激酶（参考值：<input :disabled="isShow" class="ckz" v-model="repData.ck_values"/>）：</span><input :disabled="isShow" v-model="repData.ck"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">乳酸脱氢酶（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v16_2"/>）：</span><input :disabled="isShow" v-model="repData.v16"/>
+          <span class="titleA">乳酸脱氢酶（参考值：<input :disabled="isShow" class="ckz" v-model="repData.ldh_values"/>）：</span><input :disabled="isShow" v-model="repData.ldh"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">羟丁酸脱氢酶（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v17_2"/>）：</span><input :disabled="isShow" v-model="repData.v17"/>
+          <span class="titleA">羟丁酸脱氢酶（参考值：<input :disabled="isShow" class="ckz" v-model="repData.hbdh_values"/>）：</span><input :disabled="isShow" v-model="repData.hbdh"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">钠（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v18_2"/>）：</span><input :disabled="isShow" v-model="repData.v18"/>
+          <span class="titleA">钠（参考值：<input :disabled="isShow" class="ckz" v-model="repData.na_values"/>）：</span><input :disabled="isShow" v-model="repData.na"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">钾（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v19_2"/>）：</span><input :disabled="isShow" v-model="repData.v19"/>
+          <span class="titleA">钾（参考值：<input :disabled="isShow" class="ckz" v-model="repData.k_values"/>）：</span><input :disabled="isShow" v-model="repData.k"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">氯（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v20_2"/>）：</span><input :disabled="isShow" v-model="repData.v20"/>
+          <span class="titleA">氯（参考值：<input :disabled="isShow" class="ckz" v-model="repData.cl_values"/>）：</span><input :disabled="isShow" v-model="repData.cl"/>
         </el-col>
         <el-col :span="24" >
           <span class="titleC">血常规</span>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">红细胞计数（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v21_2"/>）：</span><input :disabled="isShow" v-model="repData.v21"/>
+          <span class="titleA">红细胞计数（参考值：<input :disabled="isShow" class="ckz" v-model="repData.rbc_values"/>）：</span><input :disabled="isShow" v-model="repData.rbc"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">血红蛋白（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v22_2"/>）：</span><input :disabled="isShow" v-model="repData.v22"/>
+          <span class="titleA">血红蛋白（参考值：<input :disabled="isShow" class="ckz" v-model="repData.hgb_values"/>）：</span><input :disabled="isShow" v-model="repData.hgb"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">血小板计数（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v23_2"/>）：</span><input :disabled="isShow" v-model="repData.v23"/>
+          <span class="titleA">血小板计数（参考值：<input :disabled="isShow" class="ckz" v-model="repData.platelet_values"/>）：</span><input :disabled="isShow" v-model="repData.platelet"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">白细胞计数（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v24_2"/>）：</span><input :disabled="isShow" v-model="repData.v24"/>
+          <span class="titleA">白细胞计数（参考值：<input :disabled="isShow" class="ckz" v-model="repData.wbc_values"/>）：</span><input :disabled="isShow" v-model="repData.wbc"/>
         </el-col>
         <el-col :span="24" >
           <span class="titleC">心肌标志物</span>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">肌红蛋白（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.v25_2"/>）：</span><input :disabled="isShow" v-model="repData.v25"/>
+          <span class="titleA">肌红蛋白（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.myo_values"/>）：</span><input :disabled="isShow" v-model="repData.myo"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">肌酸激酶同功酶MB质量（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.v26_2"/>）：</span><input :disabled="isShow" v-model="repData.v26"/>
+          <span class="titleA">肌酸激酶同功酶MB质量（参考值：<<input :disabled="isShow" class="ckz" v-model="repData.creatine_kinase_isoenzymes_mb_values"/>）：</span><input :disabled="isShow" v-model="repData.creatine_kinase_isoenzymes_mb"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">尿钠素（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v27_2"/>）：</span><input :disabled="isShow" v-model="repData.v27"/>
+          <span class="titleA">尿钠素（参考值：<input :disabled="isShow" class="ckz" v-model="repData.pro_bnp_values"/>）：</span><input :disabled="isShow" v-model="repData.pro_bnp"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">肌钙蛋白-T（参考值：<input :disabled="isShow" class="ckz" v-model="repData.v28_2"/>）：</span><input :disabled="isShow" v-model="repData.v28"/>
+          <span class="titleA">肌钙蛋白-T（参考值：<input :disabled="isShow" class="ckz" v-model="repData.tn_t_values"/>）：</span><input :disabled="isShow" v-model="repData.tn_t"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">大便隐血：</span><input :disabled="isShow" v-model="repData.v29"/>
+          <span class="titleA">大便隐血：</span><input :disabled="isShow" v-model="repData.stool_ob"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">血压：</span><input :disabled="isShow" v-model="repData.v30"/>
+          <span class="titleA">血压：</span><input :disabled="isShow" v-model="repData.blood_pressure"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">心率：</span><input :disabled="isShow" v-model="repData.v31"/>
+          <span class="titleA">心率：</span><input :disabled="isShow" v-model="repData.heart_rate"/>
         </el-col>
         <el-col :span="24">
           <div class="titleA">冠脉造影结果：</div>
-          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="repData.v32"></textarea>
+          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="repData.coronary_angiography_results"></textarea>
         </el-col>
         <el-col :span="24">
           <div class="titleA">支架置入个数、部位：</div>
-          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="repData.v33"></textarea>
+          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="repData.support_count_position"></textarea>
         </el-col>
         <el-col :span="24">
           <div class="titleA">其他</div>
-          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="repData.v34"></textarea>
+          <textarea :disabled="isShow" cols="100" style="resize: none" :maxlength="300" rows="3" v-model="repData.others"></textarea>
         </el-col>
       </el-row>
       <span slot="footer" class="dialog-footer">
@@ -165,7 +165,7 @@
         dialogVisible: false,
         isShow: false,
         repData: {
-          date: '',
+          check_time: '',
           diagnosis: '',
           lv: '',
           la: '',
@@ -173,73 +173,73 @@
           ra: '',
           ef: '',
           alt: '',
-          v2: '',
-          v3: '',
-          v4: '',
-          v5: '',
-          v6: '',
-          v7: '',
-          v8: '',
-          v9: '',
-          v10: '',
-          v11: '',
-          v12: '',
-          v13: '',
-          v14: '',
-          v15: '',
-          v16: '',
-          v17: '',
-          v18: '',
-          v19: '',
-          v20: '',
-          v21: '',
-          v22: '',
-          v23: '',
-          v24: '',
-          v25: '',
-          v26: '',
-          v27: '',
-          v28: '',
-          v29: '',
-          v30: '',
-          v31: '',
-          v32: '',
-          v33: '',
-          v34: '',
-          v1_2: 50,
-          v2_2: 40,
-          v3_2: '65-85',
-          v4_2: '40-55',
-          v5_2: '3.9-5.9',
-          v6_2: '3.82-8.86',
-          v7_2: '53-140',
-          v8_2: '56-122',
-          v9_2: '240-490',
-          v10_2: '0.29-1.83',
-          v11_2: '2.8-5.7',
-          v12_2: 0.9,
-          v13_2: 4,
-          v14_2: 60,
-          v15_2: '19-226',
-          v16_2: '110-220',
-          v17_2: '72-182',
-          v18_2: '137-147',
-          v19_2: '3.5-5.3',
-          v20_2: '99-110',
-          v21_2: '4.3-5.8',
-          v22_2: '130-175',
-          v23_2: '100-300',
-          v24_2: '3.9-9.5',
-          v25_2: 72,
-          v26_2: 4.94,
-          v27_2: '0-227',
-          v28_2: '0-14',
+          ast: '',
+          tp: '',
+          alb: '',
+          glucose: '',
+          urea: '',
+          cre: '',
+          gfr: '',
+          uric_acid: '',
+          tg: '',
+          cholesterol: '',
+          hdl: '',
+          ldl: '',
+          ygt: '',
+          ck: '',
+          ldh: '',
+          hbdh: '',
+          na: '',
+          k: '',
+          cl: '',
+          rbc: '',
+          hgb: '',
+          platelet: '',
+          wbc: '',
+          myo: '',
+          creatine_kinase_isoenzymes_mb: '',
+          pro_bnp: '',
+          tn_t: '',
+          stool_ob: '',
+          blood_pressure: '',
+          heart_rate: '',
+          coronary_angiography_results: '',
+          support_count_position: '',
+          others: '',
+          alt_values: 50,
+          ast_values: 40,
+          tp_values: '65-85',
+          alb_values: '40-55',
+          glucose_values: '3.9-5.9',
+          urea_values: '3.82-8.86',
+          cre_values: '53-140',
+          gfr_values: '56-122',
+          uric_acid_values: '240-490',
+          tg_values: '0.29-1.83',
+          cholesterol_values: '2.8-5.7',
+          hdl_values: 0.9,
+          ldl_values: 4,
+          ygt_values: 60,
+          ck_values: '19-226',
+          ldh_values: '110-220',
+          hbdh_values: '72-182',
+          na_values: '137-147',
+          k_values: '3.5-5.3',
+          cl_values: '99-110',
+          rbc_values: '4.3-5.8',
+          hgb_values: '130-175',
+          platelet_values: '100-300',
+          wbc_values: '3.9-9.5',
+          myo_values: '72',
+          creatine_kinase_isoenzymes_mb_values: '4.94',
+          pro_bnp_values: '0-227',
+          tn_t_values: '0-14',
         },
       };
     },
     methods: {
       dateChange(date) {
-        this.date = date;
+        this.check_time = date;
       },
       inpure(data) {
         if(typeof data.preventDefault == 'function') { //新建
@@ -249,6 +249,7 @@
           this.isShow = true;
           this.getInfo(data.id);
         }
+        this.clear();
         this.dialogVisible = true;
       },
       getInfo(id){
@@ -263,12 +264,7 @@
           method: 'GET',
           url: getCustomerCheckReportDetail() + '?check_report_id='+id+'&customer_id=' + customer_id,
         }).then((res) => {
-          this.repData = {a:1, b:2, c:3}
-          this.repData = res.data.check_port;
-          console.log(this.repData)
-//          this.repData = res.data.check_port;
-//          console.log(this.repData)
-//          res.data.template;
+          Object.assign(this.repData, res.data.template, res.data.check_port);
         }).catch((error) => {
           this.$message.error('网络异常请稍候');
         });
@@ -295,69 +291,68 @@
           ef: this.repData.ef,
           alt: this.repData.alt,
           ast: this.repData.ast,
-          tp: this.repData.v3,
-          alb: this.repData.v4,
-          glucose: this.repData.v5,
-          urea: this.repData.v6,
-          cre: this.repData.v7,
-          gfr: this.repData.v8,
-          uric_acid: this.repData.v9,
-          tg: this.repData.v10,
-          cholesterol: this.repData.v11,
-          hdl: this.repData.v12,
-          ldl: this.repData.v13,
-          ygt: this.repData.v14,
-          ck: this.repData.v15,
-          ldh: this.repData.v16,
-          hbdh: this.repData.v17,
-          na: this.repData.v18,
-          k: this.repData.v19,
-          cl: this.repData.v20,
-          rbc: this.repData.v21,
-          hgb: this.repData.v22,
-          platelet: this.repData.v23,
-          wbc: this.repData.v24,
-          myo: this.repData.v25,
-          creatine_kinase_isoenzymes_mb: this.repData.v26,
-          pro_bnp: this.repData.v27,
-          tn_t: this.repData.v28,
-          stool_ob: this.repData.v29,
-          heart_rate: this.repData.v31,
-          blood_pressure: this.repData.v30,
-          coronary_angiography_results:this.repData.v32,
-          support_count_position: this.repData.v33,
-          others: this.repData.v34,
-          check_time: this.repData.date,
+          tp: this.repData.tp,
+          alb: this.repData.alb,
+          glucose: this.repData.glucose_values,
+          urea: this.repData.urea,
+          cre: this.repData.cre,
+          gfr: this.repData.gfr,
+          uric_acid: this.repData.uric_acid,
+          tg: this.repData.tg,
+          cholesterol: this.repData.cholesterol,
+          hdl: this.repData.hdl,
+          ldl: this.repData.ldl,
+          ygt: this.repData.ygt,
+          ck: this.repData.ck,
+          ldh: this.repData.ldh,
+          hbdh: this.repData.hbdh,
+          na: this.repData.na,
+          k: this.repData.k,
+          cl: this.repData.cl,
+          rbc: this.repData.rbc,
+          hgb: this.repData.hgb,
+          platelet: this.repData.platelet,
+          wbc: this.repData.wbc,
+          myo: this.repData.myo,
+          creatine_kinase_isoenzymes_mb: this.repData.creatine_kinase_isoenzymes_mb,
+          pro_bnp: this.repData.pro_bnp,
+          tn_t: this.repData.tn_t,
+          stool_ob: this.repData.stool_ob,
+          heart_rate: this.repData.heart_rate,
+          blood_pressure: this.repData.blood_pressure,
+          coronary_angiography_results:this.repData.coronary_angiography_results,
+          support_count_position: this.repData.support_count_position,
+          others: this.repData.others,
+          check_time: this.repData.check_time,
           customerCheckReportTemplateJson: {
-            ef_values: this.repData.v1_2,
-            alt_values: this.repData.v1_2,
-            ast_values: this.repData.v2_2,
-            tp_values: this.repData.v3_2,
-            alb_values: this.repData.v4_2,
-            glucose_values: this.repData.v5_2,
-            urea_values: this.repData.v6_2,
-            cre_values: this.repData.v7_2,
-            gfr_values: this.repData.v8_2,
-            uric_acid_values: this.repData.v9_2,
-            tg_values: this.repData.v10_2,
-            cholesterol_values: this.repData.v11_2,
-            hdl_values: this.repData.v12_2,
-            ldl_values: this.repData.v13_2,
-            ygt_values: this.repData.v14_2,
-            ck_values: this.repData.v15_2,
-            ldh_values: this.repData.v16_2,
-            hbdh_values: this.repData.v17_2,
-            na_values: this.repData.v18_2,
-            k_values: this.repData.v19_2,
-            cl_values: this.repData.v20_2,
-            rbc_values: this.repData.v21_2,
-            hgb_values: this.repData.v22_2,
-            platelet_values: this.repData.v23_2,
-            wbc_values: this.repData.v24_2,
-            myo_values: this.repData.v25_2,
-            creatine_kinase_isoenzymes_mb_values: this.repData.v26_2,
-            pro_bnp_values: this.repData.v27_2,
-            tn_t_values: this.repData.v28_2,
+            alt_values: this.repData.alt_values,
+            ast_values: this.repData.ast_values,
+            tp_values: this.repData.tp_values,
+            alb_values: this.repData.alb_values,
+            glucose_values: this.repData.glucose_values,
+            urea_values: this.repData.urea_values,
+            cre_values: this.repData.cre_values,
+            gfr_values: this.repData.gfr_values,
+            uric_acid_values: this.repData.uric_acid_values,
+            tg_values: this.repData.tg_values,
+            cholesterol_values: this.repData.cholesterol_values,
+            hdl_values: this.repData.hdl_values,
+            ldl_values: this.repData.ldl_values,
+            ygt_values: this.repData.ygt_values,
+            ck_values: this.repData.ck_values,
+            ldh_values: this.repData.ldh_values,
+            hbdh_values: this.repData.hbdh_values,
+            na_values: this.repData.na_values,
+            k_values: this.repData.k_values,
+            cl_values: this.repData.cl_values,
+            rbc_values: this.repData.rbc_values,
+            hgb_values: this.repData.hgb_values,
+            platelet_values: this.repData.platelet_values,
+            wbc_values: this.repData.wbc_values,
+            myo_values: this.repData.myo_values,
+            creatine_kinase_isoenzymes_mb_values: this.repData.creatine_kinase_isoenzymes_mb_values,
+            pro_bnp_values: this.repData.pro_bnp_values,
+            tn_t_values: this.repData.tn_t_values,
           },
         };
         this.$ajax({
@@ -377,47 +372,47 @@
         this.clear();
       },
       clear(){
-        this.date='';
-        this.diagnosis='';
-        this.lv='';
-        this.la='';
-        this.rv='';
-        this.ra='';
-        this.ef='';
-        this.v1='';
-        this.v2='';
-        this.v3='';
-        this.v4='';
-        this.v5='';
-        this.v6='';
-        this.v7='';
-        this.v8='';
-        this.v9='';
-        this.v10='';
-        this.v11='';
-        this.v12='';
-        this.v13='';
-        this.v14='';
-        this.v15='';
-        this.v16='';
-        this.v17='';
-        this.v18='';
-        this.v19='';
-        this.v20='';
-        this.v21='';
-        this.v22='';
-        this.v23='';
-        this.v24='';
-        this.v25='';
-        this.v26='';
-        this.v27='';
-        this.v28='';
-        this.v29='';
-        this.v30='';
-        this.v31='';
-        this.v32='';
-        this.v33='';
-        this.v34='';
+        this.repData.check_time='';
+        this.repData.diagnosis='';
+        this.repData.lv='';
+        this.repData.la='';
+        this.repData.rv='';
+        this.repData.ra='';
+        this.repData.ef='';
+        this.repData.alt='';
+        this.repData.ast='';
+        this.repData.v3='';
+        this.repData.alb='';
+        this.repData.glucose_values='';
+        this.repData.urea='';
+        this.repData.cre='';
+        this.repData.gfr='';
+        this.repData.uric_acid='';
+        this.repData.tg='';
+        this.repData.cholesterol='';
+        this.repData.hdl='';
+        this.repData.ldl='';
+        this.repData.ygt='';
+        this.repData.ck='';
+        this.repData.ldh='';
+        this.repData.hbdh='';
+        this.repData.na='';
+        this.repData.k='';
+        this.repData.cl='';
+        this.repData.rbc='';
+        this.repData.hgb='';
+        this.repData.platelet='';
+        this.repData.wbc='';
+        this.repData.myo='';
+        this.repData.creatine_kinase_isoenzymes_mb='';
+        this.repData.pro_bnp='';
+        this.repData.tn_t='';
+        this.repData.stool_ob='';
+        this.repData.blood_pressure='';
+        this.repData.heart_rate='';
+        this.repData.coronary_angiography_results='';
+        this.repData.support_count_position='';
+        this.repData.others='';
       }
     },
   };
