@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding: 10px 2px; overflow:auto;">
     <el-radio v-model="radio" label="1">服务包</el-radio>
     <el-radio v-model="radio" label="2">商品</el-radio>
     <el-table :data="tableData" style="width: 100%">

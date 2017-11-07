@@ -7,7 +7,7 @@
       <el-col :xs="12">时间</el-col>
       <el-col :xs="12" style="text-align: right">状态</el-col>
     </el-row>
-    <el-row :gutter="10" class="item" v-for="(it, i) in data">
+    <el-row :gutter="10" class="item" v-for="(it, i) in data" key="i">
       <el-col :xs="12">{{it.appointment_time==null?'暂未安排':it.appointment_time}}</el-col>
       <el-col :xs="12" class="Blue" style="text-align: right" v-if="it.status==1">预约中</el-col>
       <el-col :xs="12" class="Success" style="text-align: right" v-if="it.status==2">预约成功</el-col>

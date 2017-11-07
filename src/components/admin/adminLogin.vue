@@ -1,6 +1,6 @@
 <template>
   <div class="doccontent" ref="logonBG">
-    <div class="center titleA">华西医生集团</div>
+    <div class="center titleA">哈瑞特</div>
     <div class="center" style="font-size: 18px">团队公众号</div>
     <div class="infoContent">
       <input type="text" class="inputtype" placeholder="账号" v-model="u"/>

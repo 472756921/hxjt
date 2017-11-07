@@ -23,11 +23,6 @@
                 <el-menu-item index="3-1"><router-link :to="{ name: 'goodList' }">商品管理</router-link></el-menu-item>
                 <el-menu-item index="3-1"><router-link :to="{ name: 'orderList' }">订单记录</router-link></el-menu-item>
               </el-submenu>
-              <el-submenu index="7" v-if="type==1&&adminType==1">
-                <template slot="title"><i class="iconfont icon-guanliyuan"></i> 管理员管理</template>
-                <el-menu-item index="7-1"><router-link :to="{ name: 'adminUserList' }">管理员列表</router-link></el-menu-item>
-                <el-menu-item index="7-1"><router-link :to="{ name: 'addAdmin' }">新增管理员</router-link></el-menu-item>
-              </el-submenu>
             </el-menu>
           </el-col>
         </el-row>

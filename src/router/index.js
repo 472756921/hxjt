@@ -17,8 +17,6 @@ import questionDatile from '@/components/user/questionDatile'
 import AdminIndex from '@/components/admin/adminIndex'
 import AdminLogin from '@/components/admin/adminLogin'
 
-import AdminUserList from '@/components/admin/adminUser/adminUserList'
-import AddAdmin from '@/components/admin/adminUser/addAdmin'
 import List from '@/components/admin/user/list'
 import userDatile from '@/components/admin/user/userDatile'
 import askList from '@/components/admin/user/askList'
@@ -53,16 +51,6 @@ export default new Router({
           path: 'allData',
           name: 'allData',
           component: AdminLogin,
-        },
-        {
-          path: 'adminUserList',
-          name: 'adminUserList',
-          component: AdminUserList,
-        },
-        {
-          path: 'addAdmin',
-          name: 'addAdmin',
-          component: AddAdmin,
         },
         {
           path: 'list',
