@@ -8,7 +8,7 @@
             <div class="grid-content">
               <div>健康豆</div>
               <div>12个</div>
-              <div><el-button type="danger" size="mini">充值</el-button></div>
+              <div><el-button type="danger" size="mini" @click="cz">充值</el-button></div>
             </div>
           </el-col>
           <el-col :span="12">
@@ -21,7 +21,7 @@
           <el-col :span="6">
             <div class="grid-content">
               <div>刘德华</div>
-              <div>22岁 <i class="iconfont icon-nan sex" v-if="1 == 1"></i><i class="iconfont icon-nv sex" v-if="1 == 0"></i></div>
+              <div><i class="iconfont icon-nan sex" v-if="1 == 1"></i><i class="iconfont icon-nv sex" v-if="1 == 0"></i></div>
             </div>
           </el-col>
         </el-row>
@@ -85,6 +85,19 @@
       buyHist(){},
       show(data){},
       change(){},
+      cz(){
+        this.$router.push({path:'gl_recharge'});
+      },
+      show(val) {
+        if (val === 'phone') {
+          this.text = '电话号码';
+          this.val = '';
+        } else {
+          this.text = '联系地址';
+          this.val = '';
+        }
+        this.dialogVisible = true;
+      },
     },
   };
 </script>

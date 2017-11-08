@@ -31,6 +31,8 @@ import orderList from '@/components/admin/goods/orderList'
 import gl_team from '@/components/gl/user/gl_team'
 import gl_reg from '@/components/gl/user/gl_reg'
 import gl_userInfo from '@/components/gl/user/gl_userInfo'
+import gl_recharge from '@/components/gl/user/gl_recharge'
+import gl_buyHistor from '@/components/gl/user/gl_buyHistor'
 
 
 Vue.use(Router)
@@ -178,6 +180,11 @@ export default new Router({
       path:'/gl_userInfo',
       name: 'gl_userInfo',
       component: gl_userInfo,
+    },
+    {
+      path:'/gl_recharge',
+      name: 'gl_recharge',
+      component: gl_recharge,
     },
   ]
 })

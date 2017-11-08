@@ -14,14 +14,14 @@
           <el-col :span="12">
             <div class="">
               <div class="round" @click="head" v-if="infoover">
-                <img :src="userInfo.customer.customer_icon.image_url" width="100%">
+                <!--<img :src="userInfo.customer.customer_icon.image_url" width="100%">-->
               </div>
             </div>
           </el-col>
           <el-col :span="6">
             <div class="grid-content" v-if="infoover">
               <div>{{userInfo.customer.real_name}}</div>
-              <div>22岁 <i class="iconfont icon-nan sex" v-if="userInfo.customer.gender == 1"></i><i class="iconfont icon-nv sex" v-if="userInfo.customer.gender == 0"></i></div>
+              <div><i class="iconfont icon-nan sex" v-if="userInfo.customer.gender == 1"></i><i class="iconfont icon-nv sex" v-if="userInfo.customer.gender == 0"></i></div>
             </div>
           </el-col>
         </el-row>
