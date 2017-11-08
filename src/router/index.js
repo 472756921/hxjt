@@ -181,10 +181,10 @@ export default new Router({
       name: 'gl_userInfo',
       component: gl_userInfo,
     },
-    {
-      path:'/gl_recharge',
-      name: 'gl_recharge',
-      component: gl_recharge,
-    },
+    //{
+    //  path:'/gl_recharge',
+    //  name: 'gl_recharge',
+    //  component: gl_recharge,
+    //},
   ]
 })

@@ -88,6 +88,9 @@
       cz(){
         this.$router.push({path:'gl_recharge'});
       },
+      buyHist(){
+        this.$router.push({path:'gl_recharge'});
+      },
       show(val) {
         if (val === 'phone') {
           this.text = '电话号码';

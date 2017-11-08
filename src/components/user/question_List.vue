@@ -28,7 +28,9 @@
       this.getInfo(1);
     },
     methods: {
-      changPage() {},
+      changPage(newPage) {
+        this.getInfo(newPage);
+      },
       getInfo(page) {
         this.$ajax({
           method: 'get',

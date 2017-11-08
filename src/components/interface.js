@@ -151,8 +151,8 @@ export const getMedicalGoodsByPage = function () {
   const API = host + URL;
   return API;
 };
-export const getCustomerHealthServiceOrder = function () {
-  const URL = '/healthServiceManager/getCustomerHealthServiceOrder';
+export const getHealthServiceOrder = function () {
+  const URL = '/healthServiceManager/getHealthServiceOrder';
   const API = host + URL;
   return API;
 };
