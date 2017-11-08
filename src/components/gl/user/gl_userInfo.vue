@@ -89,7 +89,7 @@
         this.$router.push({path:'gl_recharge'});
       },
       buyHist(){
-        this.$router.push({path:'gl_recharge'});
+        this.$router.push({path:'gl_buyHistor'});
       },
       show(val) {
         if (val === 'phone') {

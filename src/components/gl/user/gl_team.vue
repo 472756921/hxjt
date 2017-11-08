@@ -7,7 +7,7 @@
         <el-col :span="18">
           <div @click="show">
             <div class="teamTitle">团队名称</div>
-            <div class="teamDatile">团队介绍团队介绍团队介绍团队介绍团队介绍团队介绍团队介绍团队介绍团队介绍</div>
+            <div class="teamDatile">团队介绍团队介绍团队介绍团队绍团队介绍团队介绍团队介绍团队介绍</div>
             <div class="teamCount">当前人数：309人</div>
             <div class="teamCreateDate">创建时间：2017-06-18</div>
           </div>
@@ -45,7 +45,6 @@
   .teamTitle{
     font-size: 1.2rem;
     color: #409EFF;
-    margin-bottom: .4rem;
   }
   .teamDatile{
     max-height: 40px;

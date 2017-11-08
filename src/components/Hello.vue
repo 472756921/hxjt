@@ -20,7 +20,7 @@
       <li><a>联系我们</a></li>
       <li><a>更多服务</a></li>
     </ul>
-    <h1>团队系统</h1>
+    <h1>集团系统</h1>
     <ul>
       <li><a href="#/gl_reg">用户注册</a></li>
       <li><a href="#/gl_team">团队列表</a></li>

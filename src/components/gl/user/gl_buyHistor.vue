@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>商品购买历史记录</h3>
+    <h3 style="padding: .4rem">商品购买历史记录</h3>
     <el-row :gutter="10" class="bo">
       <el-col :xs="8">
         <img src="http://iph.href.lu/120x120?text=%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87" width="100%"/>
@@ -39,16 +39,10 @@
 </script>
 
 <style scoped>
-  .title {
-    font-size: 1rem;
-    font-weight: 600;
-    padding-bottom: 1rem;
-    overflow: auto;
-    color: #409EFF;
-  }
   .bo{
-    padding: 1rem;
+    padding: .4rem;
     box-shadow: 0 0 .8rem .1rem #eee;
-    margin-top: .8rem;
+    margin: 0!important;
+    margin-top: .6rem!important;
   }
 </style>

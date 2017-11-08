@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import UserIndex from '@/components/user/userIndex'
+import checkUser from '@/components/user/checkUser'
 import Reservation from '@/components/user/reservation'
 import UserInfo from '@/components/user/userInfo'
 import buyHistor from '@/components/user/buyHistor'
@@ -109,6 +110,11 @@ export default new Router({
       component: UserIndex,
       children: [
         {
+          path: 'checkUser',
+          name: 'checkUser',
+          component: checkUser,
+        },
+        {
           path: 'reservation',
           name: 'reservation',
           component: Reservation,
@@ -181,10 +187,15 @@ export default new Router({
       name: 'gl_userInfo',
       component: gl_userInfo,
     },
-    //{
-    //  path:'/gl_recharge',
-    //  name: 'gl_recharge',
-    //  component: gl_recharge,
-    //},
+    {
+      path:'/gl_recharge',
+      name: 'gl_recharge',
+      component: gl_recharge,
+    },
+    {
+      path:'/gl_buyHistor',
+      name: 'gl_buyHistor',
+      component: gl_buyHistor,
+    },
   ]
 })

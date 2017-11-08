@@ -3,9 +3,15 @@
  */
 
 
-const host = 'http://118.31.38.185/hrt';
+//const host = 'http://118.31.38.185/hrt';
+const host = 'http://www.schrtinfo.com/hrt';
 //const host = 'http://192.168.0.5:8080';
 
+export const jumpPage = function () {
+  const URL = '/teamUser/jumpPage';
+  const API = host + URL;
+  return API;
+};
 export const getslzb = function () {
   const URL = '/teamUser/getHealthDateJsonByUctomerId';
   const API = host + URL;
@@ -183,6 +189,11 @@ export const updateGroupMedicalGoodsStatus = function () {
 };
 export const getCustomerCheckReportDetail = function () {
   const URL = '/checkReport/getCustomerCheckReportDetail';
+  const API = host + URL;
+  return API;
+};
+export const updatetMedicalGoodsOrderStatus = function () {
+  const URL = '/medicalGoods/updatetMedicalGoodsOrderStatus';
   const API = host + URL;
   return API;
 };
