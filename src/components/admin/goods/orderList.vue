@@ -62,8 +62,6 @@
         this.$router.push({ name: 'userDatile', params: { userID:row.userID } })
       },
     },
-    created() {
-    },
     data() {
       return {
         radio: '1',

@@ -27,6 +27,10 @@ import treatmentS from '@/components/admin/user/treatmentS'
 import goodList from '@/components/admin/goods/goodList'
 import orderList from '@/components/admin/goods/orderList'
 
+//gl集团平台
+import gl_team from '@/components/gl/user/gl_team'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -42,6 +46,7 @@ export default new Router({
       name: 'adminLogin',
       component: AdminLogin,
     },
+    //团队
     {
       path: '/admin',
       name: 'admin',
@@ -155,6 +160,12 @@ export default new Router({
           component: questionDatile,
         },
       ],
-    }
+    },
+    //集团
+    {
+      path:'/gl_team',
+      name: 'gl_team',
+      component: gl_team,
+    },
   ]
 })
