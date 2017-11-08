@@ -4,6 +4,7 @@
     <br/>
     <a href="#/login">后台</a>
     <br/>
+    <button @click="clear">清除个人信息</button>
     <br/>
     <a href="#/user/userInfo">个人中心</a>
     <br/>
@@ -38,11 +39,17 @@ export default {
     }
   },
   created(){
+    localStorage.setItem('customer_id', 3);
     this.$ajax({
       method: 'GET',
-      url: 'http://118.31.38.185/hrt/admin/saveSession?group_id=1',
+      url: 'http://www.schrtinfo.com/hrt/admin/saveSession?group_id=1',
     }).then((res) => {
     })
+  },
+  methods:{
+    clear(){
+      localStorage.removeItem('customer_id');
+    },
   },
 }
 </script>

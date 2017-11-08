@@ -101,7 +101,6 @@
     },
     created() {
       let user = localStorage.getItem('customer_id');
-      console.log(user)
       if (user == '' || user == null) {
         this.bangding = true;
         this.over = false;
@@ -170,7 +169,6 @@
           this.over = false;
           this.infoover = true;
         }).catch((error) => {
-          console.log(error.response.status);
           if(error.response.status == 400 || error.response.status == 1000) {
             this.$message.error('服务器开小差了，请稍后再试');
           }
@@ -180,6 +178,7 @@
           if(error.response.status == 1009) {
             this.$message.error('用户不存在');
           }
+          this.bangding = true;
         });
       },
       updataLive() {
@@ -197,20 +196,19 @@
           data: data,
           url: customerBindGroup(),
         }).then((res) => {
-          if(res.data.errorCode == 1000){
-            this.$message.error('网络服务错误');
-          }
           this.$message.success('绑定成功');
-          console.log(res.data);
-          localStorage.setItem('user',JSON.stringify({customer_id: 3}));
-          localStorage.setItem('customer_id',3);
+          localStorage.setItem('customer_id', res.data);
+          this.bangding = false;
+          setTimeout(()=>{window.location.reload();},600)
         }).catch((error) => {
           const code = error.response.data.errorCode;
           if (code == 1009) {
             this.$message.error('用户不存在');
           }
+          if(code == 1000){
+            this.$message.error('网络服务错误');
+          }
         });
-        this.bangding = false;
       },
     },
   };
