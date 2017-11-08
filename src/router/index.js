@@ -29,6 +29,8 @@ import orderList from '@/components/admin/goods/orderList'
 
 //gl集团平台
 import gl_team from '@/components/gl/user/gl_team'
+import gl_reg from '@/components/gl/user/gl_reg'
+import gl_userInfo from '@/components/gl/user/gl_userInfo'
 
 
 Vue.use(Router)
@@ -166,6 +168,16 @@ export default new Router({
       path:'/gl_team',
       name: 'gl_team',
       component: gl_team,
+    },
+    {
+      path:'/gl_reg',
+      name: 'gl_reg',
+      component: gl_reg,
+    },
+    {
+      path:'/gl_userInfo',
+      name: 'gl_userInfo',
+      component: gl_userInfo,
     },
   ]
 })
