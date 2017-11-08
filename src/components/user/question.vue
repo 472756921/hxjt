@@ -46,7 +46,7 @@
           this.$message.error('请输入问题描述');
           return false;
         }
-        const data = { describe: this.textarea, img: this.img, customer_id: sessionStorage.getItem('customer_id')};
+        const data = { describe: this.textarea, img: this.img, customer_id: localStorage.getItem('customer_id')};
         this.$ajax({
           method: 'POST',
           data: data,
@@ -65,7 +65,7 @@
       getTimes() {
         this.$ajax({
           method: 'get',
-          url: getCustomerServiceDetailCount() + '?customer_id='+sessionStorage.getItem('customer_id')+'&health_service_id=1',
+          url: getCustomerServiceDetailCount() + '?customer_id='+localStorage.getItem('customer_id')+'&health_service_id=1',
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {

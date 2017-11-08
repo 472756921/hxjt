@@ -39,7 +39,7 @@
       getData(page){
         this.$ajax({
           method: 'get',
-          url: customerGetReservationList() + '?customer_id='+sessionStorage.getItem('customer_id')+'&page='+page,
+          url: customerGetReservationList() + '?customer_id='+localStorage.getItem('customer_id')+'&page='+page,
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {

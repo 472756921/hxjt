@@ -8,6 +8,8 @@
     <br/>
     <el-button type="primary" class="center_block" @click="yy" >我要预约</el-button>
     <br/>
+    <br/>
+    <br/>
     <div class="textCenter"><span @click="hist">预约历史</span></div>
   </div>
 </template>
@@ -39,7 +41,7 @@
     created(){
       this.$ajax({
         method: 'get',
-        url: getCustomerServiceDetailCount() + '?customer_id='+sessionStorage.getItem('customer_id')+'&health_service_id=2',
+        url: getCustomerServiceDetailCount() + '?customer_id='+localStorage.getItem('customer_id')+'&health_service_id=2',
         dataType: 'JSON',
         contentType: 'application/json;charset=UTF-8',
       }).then((res) => {
@@ -54,7 +56,7 @@
         this.$router.push({name: 'reservationList'});
       },
       yy() {
-        const data = {customer_id: sessionStorage.getItem('customer_id')};
+        const data = {customer_id: localStorage.getItem('customer_id')};
         this.$ajax({
           method: 'POST',
           data: data,
@@ -87,5 +89,9 @@
   }
   .content{
     background-color: #F9FAFC;
+  }
+  .center_block{
+    display: block;
+    margin: 0 auto;
   }
 </style>

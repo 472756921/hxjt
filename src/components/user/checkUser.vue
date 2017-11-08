@@ -11,17 +11,11 @@
     name: 'checkUser',
     created(){
       const customer_id = localStorage.getItem('customer_id');
+      console.log(customer_id)
       if(customer_id == null){
         this.$router.push({name:'userInfo'});
       } else {
-        console.log('123123')
-        this.$ajax({
-          method: 'GET',
-          url: jumpPage(),
-        }).then((res) => {
-        }).catch((error) => {
-          this.$message.error(error.message);
-        });
+        window.location.href=jumpPage();
       }
     },
   };

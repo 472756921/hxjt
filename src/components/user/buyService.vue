@@ -117,14 +117,14 @@
           if(this.radio=='1'){
             url = CustomerPayHealthServicePackage();
             data = {
-              customer_id: sessionStorage.getItem('customer_id'),
+              customer_id: localStorage.getItem('customer_id'),
               group_package_id: doc.id,
             };
           }
           if(this.radio=='2'){
             url = customerPayMedicalGoods();
             data = {
-              customer_id: sessionStorage.getItem('customer_id'),
+              customer_id: localStorage.getItem('customer_id'),
               medical_goods_id: doc.id,
               price: doc.price,
             };

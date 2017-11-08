@@ -4,7 +4,7 @@
       <el-tab-pane label="基础指标" name="first">
         <h3>生理指标<i class="iconfont icon-add" style="float:right;color: #1D8CE0;" @click="dialogVisible = true"></i></h3>
         <el-row class="card" v-for="(o, index) in data" key="index">
-          <el-col :span="12"><div>日期：{{o.create_date}}</div></el-col>
+          <el-col :span="12"><div>日期：{{o.create_date.split(' ')[0]}}</div></el-col>
           <el-col :span="12"><div>血压：{{o.blood_pressure.split('/')[0]}}(高) / {{o.blood_pressure.split('/')[1]}}(低)</div></el-col>
           <el-col :span="12"> <div>血糖：{{o.blood_sugar}}</div></el-col>
           <el-col :span="12"><div>心率：{{o.heart_rate}}</div></el-col>
@@ -84,7 +84,7 @@
       getData(page) {
         this.$ajax({
           method: 'GET',
-          url: getslzb() + '?customer_id='+sessionStorage.getItem('customer_id')+'&page=' + page,
+          url: getslzb() + '?customer_id='+localStorage.getItem('customer_id')+'&page=' + page,
         }).then((res) => {
           this.data = res.data.healthDatas;
           this.pageNow = res.data.page;
@@ -96,7 +96,7 @@
       getData2(page) {
         this.$ajax({
           method: 'GET',
-          url: getCheckReportListByPage() + '?customer_id='+sessionStorage.getItem('customer_id')+'&page=' + page,
+          url: getCheckReportListByPage() + '?customer_id='+localStorage.getItem('customer_id')+'&page=' + page,
         }).then((res) => {
           this.data2 = res.data.checkReport;
           this.pageNow2 = res.data.page;
@@ -124,7 +124,7 @@
             blood_sugar: this.blood_sugar,
             heart_rate: this.heart_rate,
             create_date: this.datetime,
-            customer_id: sessionStorage.getItem('customer_id')
+            customer_id: localStorage.getItem('customer_id')
           };
           this.$ajax({
             method: 'POST',
