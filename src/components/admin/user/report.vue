@@ -43,7 +43,7 @@
           <span class="titleA">白蛋白（参考值：<input :disabled="isShow" class="ckz" v-model="repData.alb_values"/>）：</span><input :disabled="isShow" v-model="repData.alb"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">葡萄糖（参考值：<input :disabled="isShow" class="ckz" v-model="repData.glucose"/>）：</span><input :disabled="isShow" v-model="repData.glucose_values"/>
+          <span class="titleA">葡萄糖（参考值：<input :disabled="isShow" class="ckz" v-model="repData.glucose_values"/>）：</span><input :disabled="isShow" v-model="repData.glucose"/>
         </el-col>
         <el-col :span="12">
           <span class="titleA">尿素（参考值：<input :disabled="isShow" class="ckz" v-model="repData.urea_values"/>）：</span><input :disabled="isShow" v-model="repData.urea"/>

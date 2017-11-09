@@ -4,10 +4,10 @@
       <el-tab-pane label="基础指标" name="first">
         <h3>生理指标<i class="iconfont icon-add" style="float:right;color: #1D8CE0;" @click="dialogVisible = true"></i></h3>
         <el-row class="card" v-for="(o, index) in data" key="index">
-          <el-col :span="12"><div>日期：{{o.create_date.split(' ')[0]}}</div></el-col>
-          <el-col :span="12"><div>血压：{{o.blood_pressure.split('/')[0]}}(高) / {{o.blood_pressure.split('/')[1]}}(低)</div></el-col>
-          <el-col :span="12"> <div>血糖：{{o.blood_sugar}}</div></el-col>
-          <el-col :span="12"><div>心率：{{o.heart_rate}}</div></el-col>
+          <el-col :span="24"><div>血压：(高){{o.blood_pressure.split('/')[0]}} mmhg / (低){{o.blood_pressure.split('/')[1]}} mmhg</div></el-col>
+          <el-col :span="24"> <div>血糖：{{o.blood_sugar}} mmol/L</div></el-col>
+          <el-col :span="24"><div>心率：{{o.heart_rate}} bpm</div></el-col>
+          <el-col :span="24"><div style="color: #bbb;text-align: right">{{o.create_date.split('.')[0]}}</div></el-col>
         </el-row>
         <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle"  @current-change="changPage1"></el-pagination>
         <el-dialog title="录入指标" :visible.sync="dialogVisible" size="large" :before-close="handleClose">
@@ -31,7 +31,7 @@
       </el-tab-pane>
       <el-tab-pane label="检查指标" name="second">
         <el-row class="card" v-for="(o, index) in data2" key="index">
-          <el-col :span="12"><div>日期：{{o.split(' ')[0]}}</div></el-col>
+          <el-col :span="12"><div>日期：{{o.upload_time}}</div></el-col>
           <el-col :span="12" style="text-align: right"><el-button type="text" size="small" @click="datile(o.id)">查看详情</el-button></el-col>
         </el-row>
         <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow2" :page-count="pageTotle2"  @current-change="changPage2"></el-pagination>
@@ -159,6 +159,6 @@
     padding: 1rem .6rem;
     border-radius: .2rem;
     margin-bottom: .6rem;
-    line-height: 1.3rem;
+    line-height: 1.6rem;
   }
 </style>
