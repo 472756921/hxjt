@@ -42,7 +42,7 @@ export default {
     localStorage.setItem('customer_id', 3);
     this.$ajax({
       method: 'GET',
-      url: 'http://www.schrtinfo.com/hrt/admin/saveSession?group_id=1',
+      url: 'http://192.168.1.122:8080/hrt/admin/saveSession?group_id=1',
     }).then((res) => {
     })
   },

@@ -20,8 +20,8 @@
           </el-col>
           <el-col :span="6">
             <div class="grid-content">
-              <div>刘德华</div>
-              <div><i class="iconfont icon-nan sex" v-if="1 == 1"></i><i class="iconfont icon-nv sex" v-if="1 == 0"></i></div>
+              <div>{{customer.userName}}</div>
+              <div><i class="iconfont icon-nan sex" v-if="customer.sex == '男'"></i><i class="iconfont icon-nv sex" v-if="customer.sex == '女'"></i></div>
             </div>
           </el-col>
         </el-row>
@@ -32,22 +32,22 @@
       <br/>
       <div class="text">
         <span>身份证号码</span>
-        <span class="itemText" >{{'5103021993832727588'.substr(0,6)}}********{{'5103021993832727588'.substr(14,4)}}</span>
+        <span class="itemText" >{{customer.idNumber.substr(0,6)}}********{{customer.idNumber.substr(14,4)}}</span>
       </div>
       <div class="line2"></div>
       <div class="text" @click="show('phone')">
         <span>联系电话</span>
-        <span class="itemText" >{{'12231121231'.substr(0,3)}}****{{'12231121231'.substr(7)}}</span>
+        <span class="itemText" >{{customer.phone.substr(0,3)}}****{{customer.phone.substr(7)}}</span>
       </div>
       <div class="line2"></div>
-      <div class="text"  @click="show('address')">
+      <div class="text" @click="show('address')">
         <span>联系地址</span>
-        <span class="itemText" >上海</span>
+        <span class="itemText">{{customer.address}}</span>
       </div>
       <div class="line2"></div>
-      <div class="text" >
+      <div class="text" @click="teamList">
         <span>团队</span>
-        <span class="itemText" >第一团队</span>
+        <span class="itemText">》</span>
       </div>
       <div class="line2"></div>
       <div class="text" @click="buyHist">
@@ -69,6 +69,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {getCustomerMessage, updateUserMessage} from '../../interface';
 
   export default {
     name: 'gl_userInfo',
@@ -77,19 +78,74 @@
         dialogVisible: false,
         text: 'ces',
         val: '',
+        customer: {
+          address: '',
+          id: '',
+          idNumber: '',
+          phone: '',
+          sex: '',
+          userHeadImg: '',
+          userName: '',
+        },
       };
     },
     created() {
+      this.getData();
     },
     methods: {
-      buyHist(){},
-      show(data){},
-      change(){},
+      getData() {
+        this.$ajax({
+          method: 'GET',
+          url: getCustomerMessage(),
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          this.customer = res.data.customer;
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
+      teamList(){
+        this.$router.push({name:'gl_team', params:{type: 'user'}});
+      },
+      change(){
+        let data;
+        if(this.text === '电话号码') {
+          data = {phone: this.val};
+        }
+        if(this.text === '联系地址') {
+          data = {address: this.val};
+        }
+        if(this.val === '') {
+          return;
+        }
+        this.$ajax({
+          method: 'POST',
+          data: data,
+          url: updateUserMessage(),
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if (res.data === 1) {
+            this.$message.success('修改成功');
+          }
+          if(this.text === '电话号码') {
+            this.customer.phone =  this.val;
+          }
+          if(this.text === '联系地址') {
+            this.customer.address =  this.val;
+          }
+        }).catch((error) => {
+          console.log(error)
+          this.$message.error(error.message);
+        });
+        this.dialogVisible = false;
+      },
       cz(){
-        this.$router.push({path:'gl_recharge'});
+        this.$router.push({name:'gl_recharge'});
       },
       buyHist(){
-        this.$router.push({path:'gl_buyHistor'});
+        this.$router.push({name:'gl_buyHistor'});
       },
       show(val) {
         if (val === 'phone') {
