@@ -23,6 +23,7 @@
                 <el-menu-item index="3-1"><router-link :to="{ name: 'goodList' }">商品管理</router-link></el-menu-item>
                 <el-menu-item index="3-1"><router-link :to="{ name: 'orderList' }">订单记录</router-link></el-menu-item>
               </el-submenu>
+              <el-menu-item index="4"><router-link :to="{ name: 'gl_userList' }">用户列表</router-link></el-menu-item>
             </el-menu>
           </el-col>
         </el-row>

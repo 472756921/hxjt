@@ -36,6 +36,8 @@ import gl_recharge from '@/components/gl/user/gl_recharge'
 import gl_buyHistor from '@/components/gl/user/gl_buyHistor'
 import gl_buy from '@/components/gl/user/gl_buy'
 
+import gl_userList from '@/components/gl/admin/gl_userList'
+
 
 Vue.use(Router)
 
@@ -102,6 +104,12 @@ export default new Router({
           path: 'orderList',
           name: 'orderList',
           component: orderList,
+        },
+        //集团后台
+        {
+          path: 'gl_userList',
+          name: 'gl_userList',
+          component: gl_userList,
         },
       ],
     },

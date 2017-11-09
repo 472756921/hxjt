@@ -230,3 +230,8 @@ export const customerGetMedicalGoods = function () {
   const API = host + URL;
   return API;
 };
+export const admingetCustomers = function () {
+  const URL = '/admin/admingetCustomers';
+  const API = host + URL;
+  return API;
+};
