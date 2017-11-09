@@ -15,8 +15,8 @@
       <el-table-column prop="is_shelf" label="状态" :formatter = 'formatter'></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
-          <span class="Success" @click="chang(scope.$index, 1)" v-if="tableData[scope.$index].is_shelf==0">上架</span>
-          <span class="danger pointer" @click="chang(scope.$index, 0)" v-if="tableData[scope.$index].is_shelf==1">下架</span>
+          <span class="Success" @click="chang(scope.$index, 1)" v-if="tableData[scope.$index].is_shelf==0">激活</span>
+          <span class="danger pointer" @click="chang(scope.$index, 0)" v-if="tableData[scope.$index].is_shelf==1">失效</span>
         </template>
       </el-table-column>
     </el-table>
@@ -129,10 +129,10 @@
       }      ,
       formatter(r,i) {
         if(r.is_shelf == '1') {
-          return '上架';
+          return '生效';
         }
         if(r.is_shelf == '0') {
-          return '下架';
+          return '失效';
         }
       },
       changPage(newPage){

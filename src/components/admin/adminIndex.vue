@@ -24,6 +24,17 @@
                 <el-menu-item index="3-1"><router-link :to="{ name: 'orderList' }">订单记录</router-link></el-menu-item>
               </el-submenu>
               <el-menu-item index="4"><router-link :to="{ name: 'gl_userList' }">用户列表</router-link></el-menu-item>
+              <el-submenu index="5">
+                <template slot="title"><i class="iconfont icon-guanliyuan"></i> 商城管理</template>
+                <el-menu-item index="5-1"><router-link :to="{ name: 'gl_goodList' }">商品管理</router-link></el-menu-item>
+                <el-menu-item index="5-2"><router-link :to="{ name: 'goodList' }">添加商品</router-link></el-menu-item>
+                <el-menu-item index="5-3"><router-link :to="{ name: 'orderList' }">订单记录</router-link></el-menu-item>
+              </el-submenu>
+              <el-submenu index="6">
+                <template slot="title"><i class="iconfont icon-guanliyuan"></i> 团队管理</template>
+                <el-menu-item index="6-1"><router-link :to="{ name: 'gl_goodList' }">团队列表</router-link></el-menu-item>
+                <el-menu-item index="6-2"><router-link :to="{ name: 'goodList' }">添加团队</router-link></el-menu-item>
+              </el-submenu>
             </el-menu>
           </el-col>
         </el-row>

@@ -37,6 +37,7 @@ import gl_buyHistor from '@/components/gl/user/gl_buyHistor'
 import gl_buy from '@/components/gl/user/gl_buy'
 
 import gl_userList from '@/components/gl/admin/gl_userList'
+import gl_goodList from '@/components/gl/admin/gl_goodList'
 
 
 Vue.use(Router)
@@ -110,6 +111,11 @@ export default new Router({
           path: 'gl_userList',
           name: 'gl_userList',
           component: gl_userList,
+        },
+        {
+          path: 'gl_goodList',
+          name: 'gl_goodList',
+          component: gl_goodList,
         },
       ],
     },
