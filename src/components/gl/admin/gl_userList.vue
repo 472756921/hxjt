@@ -27,7 +27,7 @@
   import {getGroupCustomers} from '../../interface'
 
   export default {
-    name: 'list',
+    name: 'gl_userList',
     data() {
       return {
         pageNow: 1,

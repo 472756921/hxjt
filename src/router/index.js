@@ -34,6 +34,7 @@ import gl_reg from '@/components/gl/user/gl_reg'
 import gl_userInfo from '@/components/gl/user/gl_userInfo'
 import gl_recharge from '@/components/gl/user/gl_recharge'
 import gl_buyHistor from '@/components/gl/user/gl_buyHistor'
+import gl_buy from '@/components/gl/user/gl_buy'
 
 
 Vue.use(Router)
@@ -196,6 +197,11 @@ export default new Router({
       path:'/gl_buyHistor',
       name: 'gl_buyHistor',
       component: gl_buyHistor,
+    },
+    {
+      path:'/gl_buy',
+      name: 'gl_buy',
+      component: gl_buy,
     },
   ]
 })

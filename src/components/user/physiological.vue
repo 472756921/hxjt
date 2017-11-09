@@ -106,7 +106,6 @@
         });
       },
       datile(id){
-        console.log(id)
         this.$router.push({path:'report/'+id})
       },
       handleClose(done) {

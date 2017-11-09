@@ -11,7 +11,6 @@
     name: 'checkUser',
     created(){
       const customer_id = localStorage.getItem('customer_id');
-      console.log(customer_id)
       if(customer_id == null){
         this.$router.push({name:'userInfo'});
       } else {

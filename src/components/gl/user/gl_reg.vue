@@ -70,7 +70,12 @@
             this.times -= 1;
           }
         }).catch((error) => {
-          this.$message.error(error.message);
+          if(error.response.status == 400 || error.response.status == 1000) {
+            this.$message.error('服务器开小差了，请稍后再试');
+          }
+          if(error.response.status == 1003) {
+            this.$message.error('身份证格式错误');
+          }
         });
       },
     },

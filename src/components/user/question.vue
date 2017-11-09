@@ -69,7 +69,6 @@
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
-          console.log(res.data)
           this.times = res.data;
         })
       },

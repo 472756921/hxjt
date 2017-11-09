@@ -20,8 +20,10 @@
           </el-col>
           <el-col :span="6">
             <div class="grid-content" v-if="infoover">
-              <div>{{userInfo.customer.real_name}}</div>
-              <div><i class="iconfont icon-nan sex" v-if="userInfo.customer.gender == 1"></i><i class="iconfont icon-nv sex" v-if="userInfo.customer.gender == 0"></i></div>
+              <div>
+                {{userInfo.customer.real_name}}
+                <i class="iconfont icon-nan sex" v-if="userInfo.customer.gender == 1"></i><i class="iconfont icon-nv sex" v-if="userInfo.customer.gender == 0"></i>
+              </div>
             </div>
           </el-col>
         </el-row>

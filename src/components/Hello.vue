@@ -26,6 +26,7 @@
       <li><a href="#/gl_reg">用户注册</a></li>
       <li><a href="#/gl_team">团队列表</a></li>
       <li><a href="#/gl_userInfo">个人中心</a></li>
+      <li><a href="#/gl_buy">商城</a></li>
     </ul>
   </div>
 </template>
