@@ -1,24 +1,75 @@
 <template>
-  <div>
-
+  <div style="padding: 20px;overflow:auto;">
+    <el-row :gutter="20" style="line-height: 30px">
+      <el-col :span="3">
+        <div class="">
+          <img src="http://iph.href.lu/180x250?text=团队图片" width="100%"/>
+        </div>
+      </el-col>
+      <el-col :span="3">
+        <div class="">
+          <img src="http://iph.href.lu/180x250?text=二维码图片" width="100%"/>
+        </div>
+      </el-col>
+      <el-col :span="4">
+        <div class="">团队名称：</div>
+      </el-col>
+      <el-col :span="4">
+        <div class="">团队建立时间：</div>
+      </el-col>
+      <el-col :span="4">
+        <div class="">团队人数：</div>
+      </el-col>
+      <el-col :span="4">
+        <div class="">状态：</div>
+      </el-col>
+      <el-col :span="18">
+        <div class="Introduction">团队简介：XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx</div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import {getGroupDetail} from '../../interface';
+
   export default {
     name: 'gl_teamDatile',
     data(){
       return{
         teamID: '',
-
+        data:{
+          teamImg: '',
+          teamName: '',
+          teamIntroduction: '',
+          teamNumber: '',
+          teamCreateDate: '',
+          teamCode: '',
+          status: '',
+        },
       };
     },
     created(){
       this.teamID = this.$route.params.teamID;
+      this.getData();
+    },
+    methods:{
+      getData(){
+        this.$ajax({
+          method: 'GET',
+          url:getGroupDetail()+"?group_id="+this.teamID,
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
     },
   };
 </script>
 
 <style scoped>
-
+  .Introduction{
+    word-wrap:break-word;
+  }
 </style>

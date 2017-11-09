@@ -40,6 +40,7 @@ import gl_userList from '@/components/gl/admin/gl_userList'
 import gl_goodList from '@/components/gl/admin/gl_goodList'
 import gl_teamList from '@/components/gl/admin/gl_teamList'
 import gl_teamDatile from '@/components/gl/admin/gl_teamDatile'
+import gl_teamAdd from '@/components/gl/admin/gl_teamAdd'
 
 
 Vue.use(Router)
@@ -128,6 +129,11 @@ export default new Router({
           path: 'gl_teamDatile',
           name: 'gl_teamDatile',
           component: gl_teamDatile,
+        },
+        {
+          path: 'gl_teamAdd',
+          name: 'gl_teamAdd',
+          component: gl_teamAdd,
         },
       ],
     },

@@ -1,6 +1,6 @@
 <template>
-  <el-row>
-    <el-col :span="4">
+  <el-row style="height: 100%;">
+    <el-col :span="4" style="height: 100%;background: #eef1f6;">
       <div class="side">
         <div class="sideHead">心内科管理系统</div>
         <el-row class="tac">
@@ -33,7 +33,7 @@
               <el-submenu index="6">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 团队管理</template>
                 <el-menu-item index="6-1"><router-link :to="{ name: 'gl_teamList' }">团队列表</router-link></el-menu-item>
-                <el-menu-item index="6-2"><router-link :to="{ name: 'goodList' }">添加团队</router-link></el-menu-item>
+                <el-menu-item index="6-2"><router-link :to="{ name: 'gl_teamAdd' }">添加团队</router-link></el-menu-item>
               </el-submenu>
             </el-menu>
           </el-col>

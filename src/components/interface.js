@@ -4,8 +4,8 @@
 
 
 //const host = 'http://118.31.38.185/hrt';
-//const host = 'http://www.schrtinfo.com/hrt';
-const host = 'http://192.168.1.122:8080/hrt';
+const host = 'http://www.schrtinfo.com/hrt';
+//const host = 'http://192.168.1.122:8080/hrt';
 
 export const jumpPage = function () {
   const URL = '/teamUser/jumpPage';
@@ -237,6 +237,11 @@ export const admingetCustomers = function () {
 };
 export const updateGroupStatus = function () {
   const URL = '/teamUser/updateGroupStatus';
+  const API = host + URL;
+  return API;
+};
+export const getGroupDetail = function () {
+  const URL = '/teamUser/getGroupDetail';
   const API = host + URL;
   return API;
 };
