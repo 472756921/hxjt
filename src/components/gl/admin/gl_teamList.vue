@@ -60,7 +60,7 @@
         }
       },
       datile(index){
-        this.$route.push();
+        this.$router.push({name: 'gl_teamDatile', params:{teamID: this.tableData[index].teamID}});
       },
       getDate(page){
         this.$ajax({
