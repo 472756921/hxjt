@@ -56,12 +56,6 @@
           this.$message.error(error.message);
         });
       },
-      del(index) {
-        const r = confirm("确认删除？")
-        if (r === true) {
-          this.tableData.splice(index, 1);
-        }
-      },
       chang(index) {
         this.$router.push({ name: 'userDatile', params: { userID: this.tableData[index].id } })
       },
@@ -75,7 +69,6 @@
         }
       },
     },
-
   };
 </script>
 
