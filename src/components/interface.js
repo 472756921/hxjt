@@ -235,3 +235,8 @@ export const admingetCustomers = function () {
   const API = host + URL;
   return API;
 };
+export const updateGroupStatus = function () {
+  const URL = '/teamUser/updateGroupStatus';
+  const API = host + URL;
+  return API;
+};

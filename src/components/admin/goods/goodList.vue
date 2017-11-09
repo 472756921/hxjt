@@ -126,7 +126,7 @@
         }).catch((error) => {
           this.$message.error(error.message);
         });
-      }      ,
+      },
       formatter(r,i) {
         if(r.is_shelf == '1') {
           return '上架';

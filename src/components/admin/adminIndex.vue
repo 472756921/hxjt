@@ -32,7 +32,7 @@
               </el-submenu>
               <el-submenu index="6">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 团队管理</template>
-                <el-menu-item index="6-1"><router-link :to="{ name: 'gl_goodList' }">团队列表</router-link></el-menu-item>
+                <el-menu-item index="6-1"><router-link :to="{ name: 'gl_teamList' }">团队列表</router-link></el-menu-item>
                 <el-menu-item index="6-2"><router-link :to="{ name: 'goodList' }">添加团队</router-link></el-menu-item>
               </el-submenu>
             </el-menu>
