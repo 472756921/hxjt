@@ -12,7 +12,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { userLogin } from '../../interface';
+  import { adminLogin } from '../../interface';
 
   export default {
     name: 'gl_adminLogin',
@@ -34,13 +34,12 @@
         };
         this.$ajax({
           method: 'post',
-          url: userLogin(),
+          url: adminLogin(),
           data: data,
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
-          sessionStorage.setItem('doc', JSON.stringify(res.data.doctor));
-          sessionStorage.setItem('docID', res.data.doctor.id);
+          sessionStorage.setItem('admin', res.data.account);
           this.$router.push({ name: 'admin' });
         }).catch((error) => {
           this.$message.error('账号或密码错误');

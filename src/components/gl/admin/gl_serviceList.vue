@@ -2,14 +2,9 @@
   <div style="padding: 10px 2px; overflow:auto;">
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="service_name" label="商品名"></el-table-column>
-      <el-table-column label="图片">
-        <template scope="scope">
-          <img :src="123"/>
-        </template>
-      </el-table-column>
-      <el-table-column prop="price" label="指导价格"></el-table-column>
-      <el-table-column prop="status" label="生失效状态" :formatter = 'formatter'></el-table-column>
-      <el-table-column prop="is_shelf" label="上下架状态" :formatter = 'formatter'></el-table-column>
+      <el-table-column prop="shelf_price" label="现价格"></el-table-column>
+      <el-table-column prop="price" label="指导价格" ></el-table-column>
+      <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
           <span class="Success" @click="chang(scope.$index, 1)" v-if="tableData[scope.$index].status==0">激活</span>
@@ -18,34 +13,44 @@
       </el-table-column>
     </el-table>
     <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle" @current-change="changPage" ></el-pagination>
-
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import { getHealthPackageByPage, getMedicalGoodsByPage, GroupBindPackage, updateGroupBindPackageStatus, groupBindMedicalGoods, updateGroupMedicalGoodsStatus } from '../../interface';
+  import { getHealthPackageByPage } from '../../interface';
 
   export default {
-    name: 'gl_goodList',
+    name: 'gl_serviceList',
+    created() {
+      this.getList(1,1);
+    },
+    data() {
+      return {
+        dialogVisible: false,
+        tableData: [],
+        pageNow: 1,
+        pageTotle: 1,
+        price: '',
+        JsonData: {},
+      }
+    },
     methods: {
-      chang(index, type) {
-        this.pushChange(url, data);
-      },
-      pushChange(url, data){
-        this.$ajax({
-          method: 'POST',
-          data: data,
-          url:url,
-          dataType: 'JSON',
-          contentType: 'application/json;charset=UTF-8',
-        }).then((res) => {
-          if(res.data == 1) {
-            this.$message.success('操作成功');
-            setTimeout(()=>{window.location.reload();},1000)
-          }
-        }).catch((error) => {
-          this.$message.error(error.message);
-        });
+      chang(index, type){
+//        this.$ajax({
+//          method: 'POST',
+//          data: data,
+//          url:url,
+//          dataType: 'JSON',
+//          contentType: 'application/json;charset=UTF-8',
+//        }).then((res) => {
+//          if(res.data == 1) {
+//            this.$message.success('操作成功');
+//            this.dialogVisible = false;
+//            setTimeout(()=>{window.location.reload();},1000)
+//          }
+//        }).catch((error) => {
+//          this.$message.error(error.message);
+//        });
       }      ,
       formatter(r,i) {
         if(r.status == '1') {
@@ -61,7 +66,7 @@
       getList(page){
         this.$ajax({
           method: 'GET',
-          url: url + "?page="+page,
+          url: getHealthPackageByPage() + "?page="+page,
         }).then((res) => {
           this.tableData = res.data.goods;
           this.pageNow = res.data.page;
@@ -72,18 +77,6 @@
         });
       },
     },
-    created() {
-      this.getList(1,1);
-    },
-    data() {
-      return {
-        tableData: [],
-        pageNow: 1,
-        pageTotle: 1,
-        price: '',
-        JsonData: {},
-      }
-    }
   };
 </script>
 

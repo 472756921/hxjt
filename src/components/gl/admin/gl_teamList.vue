@@ -8,7 +8,7 @@
       <el-table-column label="操作">
         <template scope="scope">
           <span class="Success pointer" @click="chang(scope.$index, 1)" v-if="tableData[scope.$index].status==0">激活</span>
-          <span class="danger pointer" @click="chang(scope.$index, 0)" v-if="tableData[scope.$index].status==1">失效</span>
+          <span class="danger pointer" @click="chang(scope.$index, 0)" v-if="tableData[scope.$index].status==1">注销</span>
           <span class="Blue pointer" @click="datile(scope.$index)">详情</span>
         </template>
       </el-table-column>

@@ -245,3 +245,13 @@ export const getGroupDetail = function () {
   const API = host + URL;
   return API;
 };
+export const createGroup = function () {
+  const URL = '/teamUser/createGroup';
+  const API = host + URL;
+  return API;
+};
+export const adminLogin = function () {
+  const URL = '/admin/adminLogin';
+  const API = host + URL;
+  return API;
+};
