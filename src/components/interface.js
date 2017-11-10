@@ -4,8 +4,8 @@
 
 
 //const host = 'http://118.31.38.185/hrt';
-const host = 'http://www.schrtinfo.com/hrt';
-//const host = 'http://192.168.1.122:8080/hrt';
+//const host = 'http://www.schrtinfo.com/hrt';
+const host = 'http://192.168.0.15:8080/hrt';
 
 export const jumpPage = function () {
   const URL = '/teamUser/jumpPage';
@@ -252,6 +252,36 @@ export const createGroup = function () {
 };
 export const adminLogin = function () {
   const URL = '/admin/adminLogin';
+  const API = host + URL;
+  return API;
+};
+export const getServiceGoods = function () {
+  const URL = '/healthServiceManager/getServiceGoods';
+  const API = host + URL;
+  return API;
+};
+export const createHealthPackage = function () {
+  const URL = '/healthServiceManager/createHealthPackage';
+  const API = host + URL;
+  return API;
+};
+export const adminGetMedicalGoodsByPage = function () {
+  const URL = '/medicalGoods/adminGetMedicalGoodsByPage';
+  const API = host + URL;
+  return API;
+};
+export const adminGetHealthPackageByPage = function () {
+  const URL = '/healthServiceManager/adminGetHealthPackageByPage';
+  const API = host + URL;
+  return API;
+};
+export const createMedicalGoods = function () {
+  const URL = '/medicalGoods/createMedicalGoods';
+  const API = host + URL;
+  return API;
+};
+export const updateMedicalGoodsStatus = function () {
+  const URL = '/medicalGoods/updateMedicalGoodsStatus';
   const API = host + URL;
   return API;
 };

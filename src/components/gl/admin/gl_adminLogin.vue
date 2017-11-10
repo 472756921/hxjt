@@ -39,7 +39,11 @@
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
-          sessionStorage.setItem('admin', res.data.account);
+          if(res.data.admin_type == undefined || res.data.admin_type == ''){
+            sessionStorage.setItem('admin', '0');
+          } else {
+            sessionStorage.setItem('admin', res.data.admin_type);
+          }
           this.$router.push({ name: 'admin' });
         }).catch((error) => {
           this.$message.error('账号或密码错误');

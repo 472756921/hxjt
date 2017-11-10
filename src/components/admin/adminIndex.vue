@@ -6,31 +6,27 @@
         <el-row class="tac">
           <el-col :span="24">
             <el-menu default-active="2" class="el-menu-vertical-demo">
-              <el-submenu index="1" v-if="type==1">
-                <template slot="title"><i class="iconfont icon-icon-test"></i> 统计数据</template>
-                <el-menu-item index="1-1">暂无</el-menu-item>
-                <el-menu-item index="1-2">暂无</el-menu-item>
-              </el-submenu>
-              <el-submenu index="2">
+              <el-submenu index="2"  v-if="type==0">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 用户管理</template>
                 <el-menu-item index="2-1"><router-link :to="{ name: 'list' }">用户列表</router-link></el-menu-item>
                 <el-menu-item index="2-2"><router-link :to="{ name: 'askList' }">用户问答</router-link></el-menu-item>
                 <el-menu-item index="2-2"><router-link :to="{ name: 'treatment' }">预约管理</router-link></el-menu-item>
                 <el-menu-item index="2-2"><router-link :to="{ name: 'treatmentS' }">已预约门诊用户</router-link></el-menu-item>
               </el-submenu>
-              <el-submenu index="3">
+              <el-submenu index="3" v-if="type==0">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 商城管理</template>
                 <el-menu-item index="3-1"><router-link :to="{ name: 'goodList' }">商品管理</router-link></el-menu-item>
                 <el-menu-item index="3-1"><router-link :to="{ name: 'orderList' }">订单记录</router-link></el-menu-item>
               </el-submenu>
-              <el-menu-item index="4"><router-link :to="{ name: 'gl_userList' }">用户列表</router-link></el-menu-item>
-              <el-submenu index="5">
+              <el-menu-item index="4" v-if="type==1"><router-link :to="{ name: 'gl_userList' }">用户列表</router-link></el-menu-item>
+              <el-menu-item index="7" v-if="type==1"><router-link :to="{ name: 'gl_orderList' }">订单列表</router-link></el-menu-item>
+              <el-submenu index="5" v-if="type==1">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 商城管理</template>
                 <el-menu-item index="5-1"><router-link :to="{ name: 'gl_goodList' }">商品管理</router-link></el-menu-item>
-                <el-menu-item index="5-2"><router-link :to="{ name: 'goodList' }">添加商品</router-link></el-menu-item>
-                <el-menu-item index="5-3"><router-link :to="{ name: 'orderList' }">订单记录</router-link></el-menu-item>
+                <el-menu-item index="5-1"><router-link :to="{ name: 'gl_serviceList' }">服务包管理</router-link></el-menu-item>
+                <el-menu-item index="5-2"><router-link :to="{ name: 'gl_goodsAdd' }">添加商品/服务包</router-link></el-menu-item>
               </el-submenu>
-              <el-submenu index="6">
+              <el-submenu index="6" v-if="type==1">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 团队管理</template>
                 <el-menu-item index="6-1"><router-link :to="{ name: 'gl_teamList' }">团队列表</router-link></el-menu-item>
                 <el-menu-item index="6-2"><router-link :to="{ name: 'gl_teamAdd' }">添加团队</router-link></el-menu-item>
@@ -53,18 +49,16 @@
   export default {
     name: 'docIndex',
     created() {
-      const userdata = sessionStorage.getItem('user');
-      if (userdata == null || userdata == '' || userdata == undefined){
-//        this.$router.push({ name: 'adminLogin' });
-      } else {
-        this.type = sessionStorage.getItem('type');
-        this.adminType = JSON.parse(userdata).admin.admin_type;
+      const admintype = sessionStorage.getItem('admin');
+      if (admintype == '1'){ //集团
+        this.type = '1';
+      } else { //团队
+        this.type = '0';
       }
     },
     data() {
       return {
         type: '',
-        adminType: '',
       };
     },
     methods: {

@@ -17,7 +17,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getHealthPackageByPage } from '../../interface';
+  import { adminGetHealthPackageByPage } from '../../interface';
 
   export default {
     name: 'gl_serviceList',
@@ -66,7 +66,7 @@
       getList(page){
         this.$ajax({
           method: 'GET',
-          url: getHealthPackageByPage() + "?page="+page,
+          url: adminGetHealthPackageByPage() + "?page="+page,
         }).then((res) => {
           this.tableData = res.data.goods;
           this.pageNow = res.data.page;

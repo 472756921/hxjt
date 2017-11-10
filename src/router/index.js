@@ -38,9 +38,13 @@ import gl_buy from '@/components/gl/user/gl_buy'
 
 import gl_userList from '@/components/gl/admin/gl_userList'
 import gl_goodList from '@/components/gl/admin/gl_goodList'
+import gl_serviceList from '@/components/gl/admin/gl_serviceList'
+import gl_goodsAdd from '@/components/gl/admin/gl_goodsAdd'
 import gl_teamList from '@/components/gl/admin/gl_teamList'
 import gl_teamDatile from '@/components/gl/admin/gl_teamDatile'
 import gl_teamAdd from '@/components/gl/admin/gl_teamAdd'
+import gl_orderList from '@/components/gl/admin/gl_orderList'
+import gl_adminLogin from '@/components/gl/admin/gl_adminLogin'
 
 
 Vue.use(Router)
@@ -64,11 +68,6 @@ export default new Router({
       name: 'admin',
       component: AdminIndex,
       children: [
-        {
-          path: 'allData',
-          name: 'allData',
-          component: AdminLogin,
-        },
         {
           path: 'list',
           name: 'list',
@@ -121,6 +120,16 @@ export default new Router({
           component: gl_goodList,
         },
         {
+          path: 'gl_serviceList',
+          name: 'gl_serviceList',
+          component: gl_serviceList,
+        },
+        {
+          path: 'gl_goodsAdd',
+          name: 'gl_goodsAdd',
+          component: gl_goodsAdd,
+        },
+        {
           path: 'gl_teamList',
           name: 'gl_teamList',
           component: gl_teamList,
@@ -134,6 +143,11 @@ export default new Router({
           path: 'gl_teamAdd',
           name: 'gl_teamAdd',
           component: gl_teamAdd,
+        },
+        {
+          path: 'gl_orderList',
+          name: 'gl_orderList',
+          component: gl_orderList,
         },
       ],
     },
@@ -234,6 +248,11 @@ export default new Router({
       path:'/gl_buy',
       name: 'gl_buy',
       component: gl_buy,
+    },
+    {
+      path: '/adminLogin',
+      name: 'gl_adminLogin',
+      component: gl_adminLogin,
     },
   ]
 })

@@ -28,6 +28,7 @@
       <li><a href="#/gl_userInfo">个人中心</a></li>
       <li><a href="#/gl_buy">商城</a></li>
     </ul>
+    <a href="#/adminLogin">后台</a>
   </div>
 </template>
 
