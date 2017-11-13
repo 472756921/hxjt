@@ -20,6 +20,7 @@
               </el-submenu>
               <el-menu-item index="4" v-if="type==1"><router-link :to="{ name: 'gl_userList' }">用户列表</router-link></el-menu-item>
               <el-menu-item index="7" v-if="type==1"><router-link :to="{ name: 'gl_orderList' }">订单列表</router-link></el-menu-item>
+              <el-menu-item index="7" v-if="type==1"><router-link :to="{ name: 'gl_rechargeAdmin' }">充值记录</router-link></el-menu-item>
               <el-submenu index="5" v-if="type==1">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 商城管理</template>
                 <el-menu-item index="5-1"><router-link :to="{ name: 'gl_goodList' }">商品管理</router-link></el-menu-item>
@@ -38,7 +39,7 @@
     </el-col>
     <el-col :span="20">
       <div class="main">
-        <div class="mainHead">用户，您好</div>
+        <div class="mainHead">用户，您好<span style="float: right;cursor: pointer" @click="exit">退出</span></div>
         <router-view></router-view>
       </div>
     </el-col>
@@ -62,6 +63,13 @@
       };
     },
     methods: {
+      exit() {
+        if(this.type == 1) {
+          this.$router.push({name:'adminLogin'});
+        } else if(this.type == 0) {
+          $this.router.push({name:'login'});
+        }
+      }
     }
   };
 </script>

@@ -33,6 +33,7 @@ import gl_team from '@/components/gl/user/gl_team'
 import gl_reg from '@/components/gl/user/gl_reg'
 import gl_userInfo from '@/components/gl/user/gl_userInfo'
 import gl_recharge from '@/components/gl/user/gl_recharge'
+import gl_rechargeList from '@/components/gl/user/gl_rechargeList'
 import gl_buyHistor from '@/components/gl/user/gl_buyHistor'
 import gl_buy from '@/components/gl/user/gl_buy'
 
@@ -45,6 +46,7 @@ import gl_teamDatile from '@/components/gl/admin/gl_teamDatile'
 import gl_teamAdd from '@/components/gl/admin/gl_teamAdd'
 import gl_orderList from '@/components/gl/admin/gl_orderList'
 import gl_adminLogin from '@/components/gl/admin/gl_adminLogin'
+import gl_rechargeAdmin from '@/components/gl/admin/gl_recharge'
 
 
 Vue.use(Router)
@@ -149,6 +151,11 @@ export default new Router({
           name: 'gl_orderList',
           component: gl_orderList,
         },
+        {
+          path: '/gl_rechargeAdmin',
+          name: 'gl_rechargeAdmin',
+          component: gl_rechargeAdmin,
+        },
       ],
     },
     {
@@ -238,6 +245,11 @@ export default new Router({
       path:'/gl_recharge',
       name: 'gl_recharge',
       component: gl_recharge,
+    },
+    {
+      path:'/gl_rechargeList',
+      name: 'gl_rechargeList',
+      component: gl_rechargeList,
     },
     {
       path:'/gl_buyHistor',

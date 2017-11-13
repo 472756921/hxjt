@@ -13,7 +13,6 @@
       <el-table-column prop="payStatus" label="状态"></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
-          <span  v-if="radio=='1'">无</span>
           <el-button type="primary" size="small" v-if="scope.row.payStatus=='未发货'" @click="fahuo(scope.row.id)">发货</el-button>
         </template>
       </el-table-column>

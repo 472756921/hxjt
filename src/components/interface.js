@@ -3,9 +3,9 @@
  */
 
 
-//const host = 'http://118.31.38.185/hrt';
+const host = 'http://118.31.38.185/hrt';
 //const host = 'http://www.schrtinfo.com/hrt';
-const host = 'http://192.168.0.15:8080/hrt';
+//const host = 'http://192.168.0.15:8080/hrt';
 
 export const jumpPage = function () {
   const URL = '/teamUser/jumpPage';
