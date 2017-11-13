@@ -17,24 +17,24 @@
     name: 'gl_recharge',
     data(){
       return{
-        radio: '1',
+        radio: '100',
       };
     },
     methods: {
       remb(){
-        this.$router.push({name:'gl_rechargeList', params: {userID: 1}});
+        this.$router.push({name:'gl_rechargeList'});
       },
       recharges() {
         this.$ajax({
           method: 'post',
           url: recharge(),
-          data: {price: this.radio},
+          data: {price: parseInt(this.radio)},
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
           console.log(res.data);
         }).catch((error) => {
-          this.$message.error('账号或密码错误');
+          this.$message.error(error.message);
         });
       },
     },

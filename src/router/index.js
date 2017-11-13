@@ -48,6 +48,7 @@ import gl_orderList from '@/components/gl/admin/gl_orderList'
 import gl_adminLogin from '@/components/gl/admin/gl_adminLogin'
 import gl_rechargeAdmin from '@/components/gl/admin/gl_recharge'
 
+import noPage from '@/components/noPage'
 
 Vue.use(Router)
 
@@ -265,6 +266,11 @@ export default new Router({
       path: '/adminLogin',
       name: 'gl_adminLogin',
       component: gl_adminLogin,
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: noPage,
     },
   ]
 })
