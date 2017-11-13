@@ -65,13 +65,10 @@
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
-          if(res.data == 1) {
-            this.$message.success('提交成功');
-            this.times -= 1;
-          }
+          this.$message.success('提交成功');
         }).catch((error) => {
-          if(error.response.status == 400 || error.response.status == 1000) {
-            this.$message.error('服务器开小差了，请稍后再试');
+          if(error.response.status == 400) {
+            this.$message.error('身份证或手机号已经被注册');
           }
           if(error.response.status == 1003) {
             this.$message.error('身份证格式错误');

@@ -1,5 +1,7 @@
 <template>
   <div class="hello">
+    <a href='http://www.schrtinfo.com:8080/testWx'>我日你先人1</a>
+    <a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdb31e03e8446be87&redirect_uri=http://www.schrtinfo.com/hrt/userManager/systemWxin&response_type=code&scope=snsapi_base&state=gl_userInfo#wechat_redirect'>我日你先人2</a>
     <h1>团队系统</h1>
     <br/>
     <a href="#/login">后台</a>
@@ -33,6 +35,8 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {saveSession} from './interface';
+
 export default {
   name: 'hello',
   data () {
@@ -41,17 +45,13 @@ export default {
     }
   },
   created(){
-    localStorage.setItem('customer_id', 3);
-    this.$ajax({
-      method: 'GET',
-      url: 'http://192.168.1.122:8080/hrt/admin/saveSession?group_id=1',
-    }).then((res) => {
-    })
   },
   methods:{
     clear(){
       localStorage.removeItem('customer_id');
     },
+    getcode(){
+    }
   },
 }
 </script>

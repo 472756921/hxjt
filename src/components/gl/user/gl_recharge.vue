@@ -44,7 +44,7 @@
 <style scoped>
   .items{
     display: block;
-    margin:  1rem 0;
+    margin:  1rem 0!important;
   }
   .czBtn{
     display: block;

@@ -7,7 +7,7 @@
           <el-col :span="6">
             <div class="grid-content">
               <div>健康豆</div>
-              <div>12个</div>
+              <div>{{customer.money}}个</div>
               <div><el-button type="danger" size="mini" @click="cz">充值</el-button></div>
             </div>
           </el-col>

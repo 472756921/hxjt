@@ -49,12 +49,18 @@ import gl_adminLogin from '@/components/gl/admin/gl_adminLogin'
 import gl_rechargeAdmin from '@/components/gl/admin/gl_recharge'
 
 import noPage from '@/components/noPage'
+import welcome from '@/components/welcome'
 
 Vue.use(Router)
 
 export default new Router({
   //mode: 'history',
   routes: [
+    {
+      path: '/welcome',
+      name: 'welcome',
+      component: welcome,
+    },
     {
       path: '/',
       name: 'Hello',
