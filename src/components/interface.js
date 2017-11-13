@@ -3,8 +3,8 @@
  */
 
 
-const host = 'http://118.31.38.185/hrt';
-//const host = 'http://www.schrtinfo.com/hrt';
+//const host = 'http://118.31.38.185/hrt';
+const host = 'http://www.schrtinfo.com/hrt';
 //const host = 'http://192.168.0.15:8080/hrt';
 
 export const jumpPage = function () {
@@ -282,6 +282,11 @@ export const createMedicalGoods = function () {
 };
 export const updateMedicalGoodsStatus = function () {
   const URL = '/medicalGoods/updateMedicalGoodsStatus';
+  const API = host + URL;
+  return API;
+};
+export const recharge = function () {
+  const URL = '/userManager/recharge';
   const API = host + URL;
   return API;
 };

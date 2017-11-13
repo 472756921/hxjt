@@ -51,6 +51,7 @@
     name: 'docIndex',
     created() {
       const admintype = sessionStorage.getItem('admin');
+      console.log(admintype)
       if (admintype == '1'){ //集团
         this.type = '1';
       } else { //团队

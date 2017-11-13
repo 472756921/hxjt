@@ -41,6 +41,7 @@
         }).then((res) => {
           sessionStorage.setItem('doc', JSON.stringify(res.data.doctor));
           sessionStorage.setItem('docID', res.data.doctor.id);
+          sessionStorage.setItem('admin', '0');
           this.$router.push({ name: 'admin' });
         }).catch((error) => {
           this.$message.error('账号或密码错误');
