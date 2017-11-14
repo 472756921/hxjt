@@ -136,10 +136,7 @@
             dataType: 'JSON',
             contentType: 'application/json;charset=UTF-8',
           }).then((res) => {
-            if(res.data == 1) {
-              this.$message.success('提交成功');
-              this.times -= 1;
-            }
+            this.$message.success('购买成功');
           }).catch((error) => {
             this.$message.error(error.message);
           });

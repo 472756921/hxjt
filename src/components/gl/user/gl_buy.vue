@@ -86,7 +86,7 @@
           }).then((res) => {
               this.$message.success('购买成功');
           }).catch((error) => {
-            this.$message.error(error.message);
+              this.$message.error('对不起您的余额不足以支付');
           });
         }
       }

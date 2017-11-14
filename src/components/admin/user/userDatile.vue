@@ -1,13 +1,5 @@
 <template>
   <div style="padding: 10px;overflow:auto;">
-    <!--{{user.sex==1||user.sex==0?user.sex==1?'男':'女':'未知'}}-->
-    <h4>刘德华 - 39岁 - 男</h4>
-    <el-row>
-      <el-col :span="6"><div>地址：xishan</div></el-col>
-      <el-col :span="6"><div>身份证号码：123123123123123123</div></el-col>
-      <el-col :span="6"><div>电话：123123123123</div></el-col>
-      <el-col :span="6"><div>账户余额：12312</div></el-col>
-    </el-row>
     <br/>
     <report ref="report" style="float: left;margin-right: 10px" :userID=this.userID :userID2=this.userIDt></report>
     <addpr style="float: left" :userID=this.userID :userID2=this.userIDt></addpr>

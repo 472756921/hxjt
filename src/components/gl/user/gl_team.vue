@@ -29,7 +29,7 @@
         :visible.sync="dialogVisible"
         size="large">
         <span>长按识别下方二维码</span>
-        <img width="100%" src="https://qr.api.cli.im/qr?data=http%253A%252F%252Fwww.baidu.com&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=1d654768e833ea12c3e7d7c2873ec606"/>
+        <img width="100%" :src="codeImg"/>
       </el-dialog>
 
     </div>

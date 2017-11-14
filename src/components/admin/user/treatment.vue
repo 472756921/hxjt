@@ -86,13 +86,12 @@
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
-          if(res.data == 1) {
-            this.$message.success('安排成功');
-            this.tableDate[this.index].appointment_time = this.changeDateValue;
-            this.cover = false;
-          }
+          this.$message.success('安排成功');
+          this.tableData[this.index].appointment_time = this.changeDateValue;
+          this.cover = false;
         }).catch((error) => {
-          this.$message.error('123123');
+          console.log(error)
+          this.$message.error('服务器累了，歇会再试吧');
         });
       },
       cancle() {

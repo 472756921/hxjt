@@ -32,7 +32,7 @@
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
-          console.log(res.data);
+          this.$message.success('充值成功');
         }).catch((error) => {
           this.$message.error(error.message);
         });

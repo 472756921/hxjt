@@ -66,6 +66,7 @@
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
           this.$message.success('提交成功');
+          this.$router.push({name: 'gl_userInfo'});
         }).catch((error) => {
           if(error.response.status == 400) {
             this.$message.error('身份证或手机号已经被注册');

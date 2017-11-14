@@ -203,6 +203,11 @@ export const updatetMedicalGoodsOrderStatus = function () {
   const API = host + URL;
   return API;
 };
+export const getCustomerHealthServiceOrder  = function () {
+  const URL = '/medicalGoods/getCustomerHealthServiceOrder';
+  const API = host + URL;
+  return API;
+};
 
 
 //集团

@@ -35,22 +35,23 @@
       }
     },
     methods: {
+      //BensonChen
       chang(index, type){
-//        this.$ajax({
-//          method: 'POST',
-//          data: data,
-//          url:url,
-//          dataType: 'JSON',
-//          contentType: 'application/json;charset=UTF-8',
-//        }).then((res) => {
-//          if(res.data == 1) {
-//            this.$message.success('操作成功');
-//            this.dialogVisible = false;
-//            setTimeout(()=>{window.location.reload();},1000)
-//          }
-//        }).catch((error) => {
-//          this.$message.error(error.message);
-//        });
+        this.$ajax({
+          method: 'POST',
+          data: {id: this.tableData[index].id, status: type},
+          url:url,
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if(res.data == 1) {
+            this.$message.success('操作成功');
+            this.dialogVisible = false;
+            setTimeout(()=>{window.location.reload();},1000)
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
       }      ,
       formatter(r,i) {
         if(r.status == '1') {

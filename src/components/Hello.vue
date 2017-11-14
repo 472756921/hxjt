@@ -7,6 +7,7 @@
     <a href="#/login">后台</a>
     <br/>
     <button @click="clear">清除个人信息</button>
+    <button @click="set">设置团队id=1</button>
     <br/>
     <a href="#/user/userInfo">个人中心</a>
     <br/>
@@ -50,7 +51,12 @@ export default {
     clear(){
       localStorage.removeItem('customer_id');
     },
-    getcode(){
+    set(){
+      this.$ajax({
+        method: 'GET',
+        url: 'http://www.schrtinfo.com/hrt/admin/saveSession?group_id=1',
+      }).then((res) => {
+      })
     }
   },
 }
