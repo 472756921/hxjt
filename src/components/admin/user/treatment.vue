@@ -71,6 +71,7 @@
             contentType: 'application/json;charset=UTF-8',
           }).then((res) => {
             rows.splice(index, 1);
+            this.$message.success('操作成功');
           }).catch((error) => {
             this.$message.error('网络有问题，请稍后再试');
           });

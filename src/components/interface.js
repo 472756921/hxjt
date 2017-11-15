@@ -4,8 +4,8 @@
 
 
 //const host = 'http://118.31.38.185/hrt';
-const host = 'http://www.schrtinfo.com/hrt';
-//const host = 'http://192.168.0.5:8080/hrt';
+//const host = 'http://www.schrtinfo.com/hrt';
+const host = 'http://192.168.0.5:8080/hrt';
 
 export const saveSession = function () {
   const URL = '/admin/saveSession?group_id=1';
@@ -205,6 +205,21 @@ export const updatetMedicalGoodsOrderStatus = function () {
 };
 export const getCustomerHealthServiceOrder  = function () {
   const URL = '/medicalGoods/getCustomerHealthServiceOrder';
+  const API = host + URL;
+  return API;
+};
+export const getVisitTimeList  = function () {
+  const URL = '/teamUser/getVisitTimeList';
+  const API = host + URL;
+  return API;
+};
+export const saveVisitTime  = function () {
+  const URL = '/teamUser/saveVisitTime';
+  const API = host + URL;
+  return API;
+};
+export const updateVisitTime  = function () {
+  const URL = '/teamUser/updateVisitTime';
   const API = host + URL;
   return API;
 };

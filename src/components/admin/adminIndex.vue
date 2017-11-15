@@ -10,6 +10,7 @@
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 用户管理</template>
                 <el-menu-item index="2-1"><router-link :to="{ name: 'list' }">用户列表</router-link></el-menu-item>
                 <el-menu-item index="2-2"><router-link :to="{ name: 'askList' }">用户问答</router-link></el-menu-item>
+                <el-menu-item index="2-2"><router-link :to="{ name: 'treatmentSet' }">坐诊时间设置</router-link></el-menu-item>
                 <el-menu-item index="2-2"><router-link :to="{ name: 'treatment' }">预约管理</router-link></el-menu-item>
                 <el-menu-item index="2-2"><router-link :to="{ name: 'treatmentS' }">已预约门诊用户</router-link></el-menu-item>
                 <el-menu-item index="2-2"><router-link :to="{ name: 'treatmentPhone' }">预约电话</router-link></el-menu-item>

@@ -17,6 +17,7 @@
       <li><a href="#/user/question_u">网上问答</a></li>
       <li><a href="#/user/Physiological">查看健康状况</a></li>
       <li><a href="#/user/reservation">预约服务</a></li>
+      <li><a href="#/user/reservationByPhone">预约电话服务</a></li>
     </ul>
     会员服务
     <ul>
