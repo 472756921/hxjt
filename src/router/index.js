@@ -14,6 +14,7 @@ import buyService from '@/components/user/buyService'
 import question_u from '@/components/user/question'
 import question_List from '@/components/user/question_List'
 import questionDatile from '@/components/user/questionDatile'
+import reservationByPhone from '@/components/user/reservationByPhone'
 
 import AdminIndex from '@/components/admin/adminIndex'
 import AdminLogin from '@/components/admin/adminLogin'
@@ -229,6 +230,11 @@ export default new Router({
           path: 'questionDatile/:id',
           name: 'questionDatile',
           component: questionDatile,
+        },
+        {
+          path: 'reservationByPhone',
+          name: 'reservationByPhone',
+          component: reservationByPhone,
         },
       ],
     },

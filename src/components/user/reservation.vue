@@ -6,9 +6,9 @@
       这里是一些预约服务的介绍，这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍
     </div>
     <br/>
+    <br/>
+    <br/>
     <el-button type="primary" class="center_block" @click="yy" >我要预约</el-button>
-    <br/>
-    <br/>
     <br/>
     <div class="textCenter"><span @click="hist">预约历史</span></div>
   </div>
@@ -21,21 +21,8 @@
     name: 'reservation',
     data() {
       return {
-        childs: '',
         times: '',
-        position: '',
-        positionList: '',
-        hospital: '',
-        hospitalList: '',
-        department: '',
-        departmentList: '',
-        patient: '',
         date: '',
-        pickerOptions0: {
-          disabledDate(time) {
-            return time.getTime() < Date.now() - 8.64e7;
-          }
-        },
       };
     },
     created(){
@@ -49,9 +36,6 @@
       })
     },
     methods: {
-      dateChange(date) {
-        this.date = date;
-      },
       hist() {
         this.$router.push({name: 'reservationList'});
       },
