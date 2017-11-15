@@ -55,7 +55,7 @@ export default {
     set(){
       this.$ajax({
         method: 'GET',
-        url: 'http://www.schrtinfo.com/hrt/admin/saveSession?group_id=1',
+        url: saveSession(),
       }).then((res) => {
       })
     }

@@ -223,6 +223,21 @@ export const updateVisitTime  = function () {
   const API = host + URL;
   return API;
 };
+export const createPhoneConsultation  = function () {
+  const URL = '/telephoneConsultation/createPhoneConsultation';
+  const API = host + URL;
+  return API;
+};
+export const getPhoneConsultations  = function () {
+  const URL = '/telephoneConsultation/getPhoneConsultations';
+  const API = host + URL;
+  return API;
+};
+export const updatePhoneConsulation  = function () {
+  const URL = '/telephoneConsultation/updatePhoneConsulation';
+  const API = host + URL;
+  return API;
+};
 
 
 //集团

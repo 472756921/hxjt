@@ -62,8 +62,10 @@
       </div>
       <div class="line2"></div>
       <!--查看服务次数-->
-      <el-dialog title="提示" :visible.sync="dialogVisible2" size="large">
-        <div></div>
+      <el-dialog title="服务剩余次数" :visible.sync="dialogVisible2" size="large">
+        <div v-for="(it, i) in serviceTime">
+          {{it.service_name}} - {{it.service_count}} 次
+        </div>
         <span slot="footer" class="dialog-footer">
           <el-button type="primary" @click="dialogVisible2 = false">确 定</el-button>
         </span>
@@ -112,6 +114,7 @@
         phone: '',
         address: '',
         val: '',
+        serviceTime: [],
       };
     },
     created() {
@@ -186,6 +189,7 @@
           url: getGroupCustomerMessage()+"?customer_id="+localStorage.getItem('customer_id'),
         }).then((res) => {
           this.userInfo = res.data.customerGroup;
+          this.serviceTime = res.data.service_detail;
           this.group = res.data.group;
           this.over = false;
           this.infoover = true;
