@@ -11,6 +11,7 @@
             <div class="teamDatile">{{it.teamIntroduction}}</div>
             <div class="teamCount">当前人数：{{it.teamNumber}}</div>
             <div class="teamCreateDate">创建时间：{{it.teamCreateDate}}</div>
+            <span style="font-size: .8rem;color: #ccc">（点击团队名称加入）</span>
           </div>
         </el-col>
       </el-row>

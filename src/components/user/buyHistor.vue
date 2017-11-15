@@ -21,7 +21,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getGoodsList } from '../interface';
+  import { customerGetMedicalOrder } from '../interface';
 
   export default {
     name: 'buyHistor',
@@ -30,11 +30,18 @@
       };
     },
     created() {
-      this.getDocList(1);
+      this.getList(1);
     },
     methods: {
-      getDocList(page) {
-
+      getList(page) {
+        this.$ajax({
+          method: 'get',
+          url: customerGetMedicalOrder() +"?page="+page+"&customer_id=" + localStorage.getItem('customer_id'),
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          this.date = res.data;
+        })
       },
     },
   };

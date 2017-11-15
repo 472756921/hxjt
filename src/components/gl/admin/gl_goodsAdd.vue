@@ -22,7 +22,7 @@
         <br/>
         <el-row>
           <el-col :span="6">
-            <span>二维码图片:</span>
+            <span>商品图片:</span>
             <br/>
             <br/>
             <el-upload

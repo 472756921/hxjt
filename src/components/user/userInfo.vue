@@ -47,16 +47,28 @@
         <span class="itemText" v-if="infoover">{{userInfo.customer.address}}</span>
       </div>
       <div class="line2"></div>
-      <div class="text" >
-        <span>团队</span>
-        <span class="itemText" v-if="infoover">{{userInfo.group.group_name}}</span>
-      </div>
-      <div class="line2"></div>
       <div class="text" @click="buyHist">
         <span>购买记录</span>
         <span class="itemText">》</span>
       </div>
       <div class="line2"></div>
+      <div class="text" @click="check">
+        <span>查看生理指标</span>
+        <span class="itemText">》</span>
+      </div>
+      <div class="line2"></div>
+      <div class="text" @click="service">
+        <span>剩余服务次数</span>
+      </div>
+      <div class="line2"></div>
+      <!--查看服务次数-->
+      <el-dialog title="提示" :visible.sync="dialogVisible2" size="large">
+        <div></div>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="dialogVisible2 = false">确 定</el-button>
+        </span>
+      </el-dialog>
+      <!--修改信息弹窗-->
       <el-dialog title="提示" :visible.sync="dialogVisible" size="large">
         <el-input  v-model="val" size="small">
           <template slot="prepend">{{text}}</template>
@@ -66,7 +78,7 @@
           <el-button type="primary" @click="change">确 定</el-button>
         </span>
       </el-dialog>
-
+      <!--绑定用户弹窗-->
       <el-dialog title="绑定账号" :visible.sync="bangding" size="large" :show-close="false" :close-on-click-modal="false" :close-on-press-escape	='false'>
         <div>您还未绑定账号，请输入您的身份证进行绑定</div>
         <br/>
@@ -94,6 +106,7 @@
         idnumberB: '',
         userInfo: '',
         dialogVisible: false,
+        dialogVisible2: false,
         bangding: true,
         text: '',
         phone: '',
@@ -113,8 +126,14 @@
       }
     },
     methods: {
+      service(){
+        this.dialogVisible2 = true;
+      },
       buyHist(){
         this.$router.push({ name: 'buyHistor', params: { src: 'benson' }})
+      },
+      check() {
+        this.$router.push({ path: 'Physiological', params: { src: 'benson' }})
       },
       head() {
         this.$router.push({ name: 'userHeadUplode', params: { src: 'benson' }})

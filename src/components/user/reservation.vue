@@ -59,8 +59,7 @@
           this.$message.error('请选择预约时间');
           return false;
         }
-
-        const data = {customer_id: localStorage.getItem('customer_id')};
+        const data = {customer_id: localStorage.getItem('customer_id'), appointment_time: this.radio};
         this.$ajax({
           method: 'POST',
           data: data,
