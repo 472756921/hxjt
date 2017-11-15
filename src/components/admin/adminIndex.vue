@@ -12,6 +12,7 @@
                 <el-menu-item index="2-2"><router-link :to="{ name: 'askList' }">用户问答</router-link></el-menu-item>
                 <el-menu-item index="2-2"><router-link :to="{ name: 'treatment' }">预约管理</router-link></el-menu-item>
                 <el-menu-item index="2-2"><router-link :to="{ name: 'treatmentS' }">已预约门诊用户</router-link></el-menu-item>
+                <el-menu-item index="2-2"><router-link :to="{ name: 'treatmentPhone' }">预约电话</router-link></el-menu-item>
               </el-submenu>
               <el-submenu index="3" v-if="type==0">
                 <template slot="title"><i class="iconfont icon-guanliyuan"></i> 商城管理</template>

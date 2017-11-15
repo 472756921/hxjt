@@ -1,7 +1,7 @@
 <template>
     <div >
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="appointment_time" label="预约日期" :formatter = 'formatter'></el-table-column>
+        <el-table-column prop="appointment_time" label="预约日期"></el-table-column>
         <el-table-column prop="customer_name" label="用户姓名" >
           <template scope="scope">
             <div class="cursor" @click="goUser(scope.row)"> {{ scope.row.customer_name }}</div>
@@ -11,22 +11,11 @@
         <el-table-column label="操作">
           <template scope="scope">
             <el-button @click.native.prevent="sure(scope.$index, tableData)" type="text" size="small">确认预约</el-button>
-            <el-button @click.native.prevent="changeDate(scope.$index, tableData)" type="text" size="small">时间设置</el-button>
             <el-button @click.native.prevent="cancel(scope.$index)" type="text" size="small">取消预约</el-button>
           </template>
         </el-table-column>
       </el-table>
       <Page :page="page" v-if="over" v-on:pageChange="getList"/>
-      <div class="model" v-if="cover">
-        <div style="font-weight: bold">时间设置</div>
-        <br/>
-        <div class="block">
-          <el-date-picker v-model="changeDateValue" type="datetime" placeholder="选择日期" size="small" @change="dateChange" :picker-options="pickerOptions0"></el-date-picker>
-        </div>
-        <br/>
-        <el-button type="danger" size="small" @click="cancle">取消</el-button>
-        <el-button type="primary" size="small" @click="change">确认</el-button>
-      </div>
       <div class="fade" v-if="cover"></div>
     </div>
 </template>
@@ -39,18 +28,8 @@
     name: 'treatment',
     components: { Page },
     methods: {
-      formatter(row, column) {
-        if (row.appointment_time == '' || row.appointment_time == null) {
-          return '未设置时间';
-        } else {
-          return row.appointment_time;
-        }
-      },
       goUser(row) {
         this.$router.push({ name: 'userDatile', params: { userID:row.userID } })
-      },
-      dateChange(date) {
-        this.changeDateValue = date;
       },
       cancel(index){
         let a = confirm('是否取消该预约');
@@ -73,41 +52,10 @@
           return false;
         }
       },
-      change() {
-        const data = {
-          status: 1,
-          id: this.cID,
-          appointment_time: this.changeDateValue,
-        };
-        this.$ajax({
-          method: 'post',
-          url: updateReservationStatus(),
-          data: data,
-          dataType: 'JSON',
-          contentType: 'application/json;charset=UTF-8',
-        }).then((res) => {
-          this.$message.success('安排成功');
-          this.tableData[this.index].appointment_time = this.changeDateValue;
-          this.cover = false;
-        }).catch((error) => {
-          console.log(error)
-          this.$message.error('服务器累了，歇会再试吧');
-        });
-      },
       cancle() {
         this.cover = false;
       },
-      changeDate(index, rows) {
-        this.index = index;
-        this.cID = rows[index].id;
-        this.changeDateValue = rows[index].date;
-        this.cover = true;
-      },
       sure(index, rows) {
-        if(rows[index].appointment_time == null || rows[index].appointment_time == ''){
-          this.$message.error('请先设置时间');
-          return false;
-        }
         const r = confirm("确认预约？")
         if (r === true) {
           const data = {
@@ -151,7 +99,6 @@
             return time.getTime() < Date.now() - 8.64e7;
           }
         },
-        changeDateValue: '',
         index: '',
         over: false,
         cover: false,
