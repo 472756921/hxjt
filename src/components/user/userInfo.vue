@@ -14,7 +14,7 @@
           <el-col :span="12">
             <div class="">
               <div class="round" @click="head" v-if="infoover">
-                <img :src="'http://www.schrtinfo.com/img/uHead/'+userInfo.customer.customer_icon.image_url" width="100%">
+                <img :src="'http://www.schrtinfo.com'+userInfo.customer.customer_icon.image_url" width="100%" height="100%">
               </div>
             </div>
           </el-col>

@@ -6,7 +6,7 @@
     <div class="bor">
       <el-upload
         class="avatar-uploader"
-        action="http://192.168.0.5:8080/hrt/userManager/uploadImg/"
+        action="http://www.schrtinfo.com/hrt/userManager/uploadImg/"
         :show-file-list="false"
         :on-success="handleAvatarSuccess"
         :data=data
