@@ -1,9 +1,9 @@
 <template>
     <div style="padding:.6rem .2rem">
-      <h3>团队列表</h3>
-      <el-row :gutter="10" v-if="!userF" style="margin: 0 0 .4rem 0; border-bottom: 1px solid #eee" v-for="(it, i) in data" key="i">
+      <h3 style="margin: .6rem .6rem 1rem">团队列表<span style="float:right;font-weight:400;font-size: .8rem;color: #ccc">（点击团队名称加入）</span></h3>
+      <el-row :gutter="10" v-if="!userF" style="margin: 0 0 .8rem 0; border-bottom: 1px solid #eee;padding-bottom: .4rem" v-for="(it, i) in data" key="i">
         <el-col :span="6">
-          <img src="http://iph.href.lu/120x160" width="100%"/>
+          <img src="http://iph.href.lu/120x140" width="100%" style="border-radius: 4px"/>
         </el-col>
         <el-col :span="18">
           <div @click="show(it.teamCode)">
@@ -11,7 +11,6 @@
             <div class="teamDatile">{{it.teamIntroduction}}</div>
             <div class="teamCount">当前人数：{{it.teamNumber}}</div>
             <div class="teamCreateDate">创建时间：{{it.teamCreateDate}}</div>
-            <span style="font-size: .8rem;color: #ccc">（点击团队名称加入）</span>
           </div>
         </el-col>
       </el-row>

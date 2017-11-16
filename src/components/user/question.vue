@@ -1,8 +1,7 @@
 <template>
   <div style="background-color: #F9FAFC;">
-    <img src="../../assets/wz.jpg" width="100%"/>
-    <h3 style="margin: .4rem 0;">网上问答<span style="color: #ff8746;font-size: 12px;">（剩余次数：{{times}}）</span></h3>
-    <div class="pointer" @click="hisqu">历史记录</div>
+    <img src="../../assets/ycyl.jpg" width="100%"/>
+    <h3 style="margin: .4rem 0;">网上问答<span style="color: #ff8746;font-size: 12px;">（剩余次数：{{times}}）</span>  <span class="pointer" @click="hisqu">历史记录</span></h3>
     <div style="margin: .6rem 0">输入问题描述</div>
     <el-input type="textarea" :rows="3" :maxlength="300" placeholder="请输入内容（最多输入300字）" v-model="textarea"></el-input>
     <div style="margin: .6rem 0">
@@ -17,7 +16,6 @@
         </el-col>
       </el-row>
     </div>
-    <br/>
     <el-button type="danger" style="margin: 10px auto;display: block;" @click="go">提交问题</el-button>
     <br/>
   </div>
@@ -118,5 +116,7 @@
   .pointer{
     color: #1D8CE0;
     font-size: .8rem;
+    float: right;
+    font-weight: 400;
   }
 </style>

@@ -4,9 +4,10 @@
       <el-tab-pane label="基础指标" name="first">
         <h3>生理指标<i class="iconfont icon-add" style="float:right;color: #1D8CE0;" @click="dialogVisible = true"></i></h3>
         <el-row class="card" v-for="(o, index) in data" key="index">
-          <el-col :span="24"><div>血压：(高){{o.blood_pressure.split('/')[0]}} mmhg / (低){{o.blood_pressure.split('/')[1]}} mmhg</div></el-col>
-          <el-col :span="24"> <div>血糖：{{o.blood_sugar}} mmol/L</div></el-col>
-          <el-col :span="24"><div>心率：{{o.heart_rate}} bpm</div></el-col>
+          <el-col :span="12"><div>血压(高)：{{o.blood_pressure.split('/')[0]}} mmhg</div></el-col>
+          <el-col :span="12"><div>血压(低)：{{o.blood_pressure.split('/')[1]}} mmhg</div></el-col>
+          <el-col :span="12"> <div>血糖：{{o.blood_sugar}} mmol/L</div></el-col>
+          <el-col :span="12"><div>心率：{{o.heart_rate}} bpm</div></el-col>
           <el-col :span="24"><div style="color: #bbb;text-align: right">{{o.create_date.split('.')[0]}}</div></el-col>
         </el-row>
         <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle"  @current-change="changPage1"></el-pagination>

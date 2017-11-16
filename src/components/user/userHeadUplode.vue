@@ -16,12 +16,6 @@
     </div>
     <br/>
     <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
     <div class="over" v-if="loading">
       <i class="el-icon-loading iconL"></i>
       <div class="loText">正在上传</div>

@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <h3 style="text-align: center;">检测指标</h3>
+    <h3 style="text-align: center;margin: .4rem">检测指标</h3>
     <div style="text-align: center;color: #cccccc;">{{repData.check_time.split(' ')[0]}}</div>
     <el-row style="line-height: 1.8rem;color:#8492A6">
       <el-col :span="24">
@@ -15,7 +15,7 @@
       <el-col :span="24">
         <span class="titleA">联系方式：</span>{{repData.customer.phone}}
       </el-col>
-      <el-col :span="24" style="background: #EFF2F7;padding: .2rem">
+      <el-col :span="24" style="background: #EFF2F7;padding: 1rem">
         <span class="titleA">首次病程记录/诊断意见：</span>
         <div> {{repData.diagnosis}}</div>
       </el-col>
@@ -139,15 +139,15 @@
       <el-col :span="24">
         <span class="titleA">心率：</span>{{repData.heart_rate}}</span>
       </el-col>
-      <el-col :span="24" style="background: #EFF2F7;padding: .2rem">
+      <el-col :span="24" style="background: #EFF2F7;padding: 1rem">
         <span class="titleA">冠脉造影结果：</span>
         <div> {{repData.coronary_angiography_results}}</div>
       </el-col>
-      <el-col :span="24" style="background: #EFF2F7;padding: .2rem; margin-top: .3rem">
+      <el-col :span="24" style="background: #EFF2F7;padding: 1rem; margin-top: .3rem">
         <span class="titleA">支架置入个数、部位：</span>
         <div> {{repData.support_count_position}}</div>
       </el-col>
-      <el-col :span="24" style="background: #EFF2F7;padding: .2rem; margin-top: .3rem">
+      <el-col :span="24" style="background: #EFF2F7;padding: 1rem; margin-top: .3rem">
         <span class="titleA">其他意见</span>
         <div> {{repData.others}}</div>
       </el-col>
@@ -237,7 +237,6 @@
           pro_bnp_values: '0-227',
           tn_t_values: '0-14',
         },
-
       };
     },
     methods:{
@@ -257,14 +256,13 @@
 
 <style scoped>
 .titleA{
-  font-weight: bold;
   color: #486B8A;
 }
 .titleC{
   font-weight: bold;
   color: #666;
-  line-height: 2rem;
-  font-size: .95rem;
+  line-height: 4rem;
+  font-size: 1.2rem;
 }
 .ckz{
   color: #13CE66;
