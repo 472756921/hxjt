@@ -4,6 +4,7 @@
       <el-table-column prop="service_name" label="商品名"></el-table-column>
       <el-table-column prop="shelf_price" label="现价格"></el-table-column>
       <el-table-column prop="price" label="指导价格" ></el-table-column>
+      <el-table-column prop="grade" label="等级"  :formatter = 'formatter2'></el-table-column>
       <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
@@ -17,7 +18,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { adminGetHealthPackageByPage } from '../../interface';
+  import { adminGetHealthPackageByPage, updateEnterprisePackageStatus } from '../../interface';
 
   export default {
     name: 'gl_serviceList',
@@ -40,7 +41,7 @@
         this.$ajax({
           method: 'POST',
           data: {id: this.tableData[index].id, status: type},
-          url:url,
+          url:updateEnterprisePackageStatus(),
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
@@ -59,6 +60,20 @@
         }
         if(r.status == '0') {
           return '失效';
+        }
+      },
+      formatter2(r,i) {
+        if(r.grade == 1) {
+          return '普通会员资格';
+        }
+        if(r.grade == 2) {
+          return '黄金会员资格';
+        }
+        if(r.grade == 3) {
+          return '至尊会员资格';
+        }
+        if(r.grade == 0) {
+          return '商品服务包';
         }
       },
       changPage(newPage){

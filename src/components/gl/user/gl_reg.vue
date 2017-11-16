@@ -82,7 +82,7 @@
 
 <style scoped>
   .itemA{
-    width: 4rem;
+    width: 5rem;
     display: block;
     float: left;
     padding-top: .2rem;
@@ -90,6 +90,7 @@
   .items{
     margin: .6rem auto;
     padding: 0 3rem;
+    width: 75%;
   }
   input{
     height: 1.4rem;

@@ -293,7 +293,7 @@
           ast: this.repData.ast,
           tp: this.repData.tp,
           alb: this.repData.alb,
-          glucose: this.repData.glucose_values,
+          glucose: this.repData.glucose,
           urea: this.repData.urea,
           cre: this.repData.cre,
           gfr: this.repData.gfr,
@@ -381,7 +381,7 @@
         this.repData.ast='';
         this.repData.v3='';
         this.repData.alb='';
-        this.repData.glucose_values='';
+        this.repData.glucose='';
         this.repData.urea='';
         this.repData.cre='';
         this.repData.gfr='';

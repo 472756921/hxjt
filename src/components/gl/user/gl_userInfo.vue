@@ -13,7 +13,7 @@
           </el-col>
           <el-col :span="12">
             <div class="">
-              <div class="round" >
+              <div class="round" @click="head">
                 <img src="" width="100%">
               </div>
             </div>
@@ -93,6 +93,9 @@
       this.getData();
     },
     methods: {
+      head() {
+        this.$router.push({ name: 'userHeadUplode', params: { src: 'benson' }})
+      },
       getData() {
         this.$ajax({
           method: 'GET',

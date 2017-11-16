@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import UserIndex from '@/components/user/userIndex'
 import checkUser from '@/components/user/checkUser'
+import join from '@/components/user/join'
 import Reservation from '@/components/user/reservation'
 import UserInfo from '@/components/user/userInfo'
 import buyHistor from '@/components/user/buyHistor'
@@ -187,6 +188,11 @@ export default new Router({
           path: 'checkUser',
           name: 'checkUser',
           component: checkUser,
+        },
+        {
+          path: 'join',
+          name: 'join',
+          component: join,
         },
         {
           path: 'reservation',

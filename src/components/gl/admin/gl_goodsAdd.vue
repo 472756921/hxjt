@@ -57,6 +57,14 @@
           </el-col>
         </el-row>
         <el-row>
+          <el-col :span="1" class="titla">等级：</el-col>
+          <el-col :span="12">
+            <el-select v-model="service.grade" placeholder="请选择">
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="1" class="titla">项目：</el-col>
           <el-col :span="23" :offset="1" class="titla" v-for="(it, i) in service.healthPackageDetailJsons" key="i">
             {{it.service_name}} - {{it.count}} 次
@@ -95,6 +103,12 @@
       return {
         activeName: 'first',
         dialogVisible: false,
+        options: [
+          {label: '普通服务包', value: '0'},
+          {label: '普通会员', value: '1'},
+          {label: '黄金会员', value: '2'},
+          {label: '至尊会员', value: '3'},
+        ],
         goods: {
           goods_name: '',
           describe: '',
@@ -103,6 +117,7 @@
           detail_image: [],
         },
         service: {
+          grade: '',
           package_name: '',
           package_describe: '',
           price: '',

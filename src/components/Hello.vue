@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <a href='http://www.schrtinfo.com:8080/testWx'>我日你先人1</a>
-    <a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdb31e03e8446be87&redirect_uri=http://www.schrtinfo.com/hrt/userManager/systemWxin&response_type=code&scope=snsapi_base&state=gl_userInfo#wechat_redirect'>我日你先人2</a>
+    <a href='http://www.schrtinfo.com:8080/testWx'>先人1</a>
+    <a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdb31e03e8446be87&redirect_uri=http://www.schrtinfo.com/hrt/userManager/systemWxin&response_type=code&scope=snsapi_base&state=gl_userInfo#wechat_redirect'>先人2</a>
     <h1>团队系统</h1>
     <br/>
     <a href="#/login">后台</a>
@@ -21,6 +21,7 @@
     </ul>
     会员服务
     <ul>
+      <li><a href="#/user/join">加入俱乐部</a></li>
       <li><a href="#/user/buyService">购买服务包</a></li>
       <li><a>联系我们</a></li>
       <li><a>更多服务</a></li>

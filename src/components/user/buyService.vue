@@ -33,7 +33,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getGroupBindPackageByPage, getGroupMedicalGoods, CustomerPayHealthServicePackage, customerPayMedicalGoods } from '../interface';
+  import { getGroupBindPackageByPage, getGroupMedicalGoods, CustomerPayHealthServicePackage, customerPayMedicalGoods, getCustomeLevel } from '../interface';
 
   export default {
     name: 'buyService',
@@ -49,8 +49,8 @@
       };
     },
     created() {
+      this.getCustomeLevel();
       this.getDocList(1);
-//      this.getDocList2(1);
     },
     watch: {
       radio (newData, oldData) {
@@ -63,6 +63,18 @@
       },
     },
     methods: {
+      getCustomeLevel(){
+        this.$ajax({
+          method: 'GET',
+          url: getCustomeLevel()+"?customer_id="+localStorage.getItem('customer_id'),
+        }).then((res) => {
+          if(res.data == 0) {
+            this.$router.push({path: 'join'});
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
       changPage(pageNew){
         if(this.radio == 1){
           this.getDocList(pageNew);
@@ -86,7 +98,7 @@
       getDocList(page) {
         this.$ajax({
           method: 'GET',
-          url: getGroupBindPackageByPage()+"?page="+page+'&status=1',
+          url: getGroupBindPackageByPage()+"?page="+page+'&status=1&grade=0',
         }).then((res) => {
           this.docList = res.data.packages;
           this.docListCop = res.data.packages;

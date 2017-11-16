@@ -14,7 +14,7 @@
           <el-col :span="12">
             <div class="">
               <div class="round" @click="head" v-if="infoover">
-                <!--<img :src="userInfo.customer.customer_icon.image_url" width="100%">-->
+                <img :src="'http://www.schrtinfo.com/img/uHead/'+userInfo.customer.customer_icon.image_url" width="100%">
               </div>
             </div>
           </el-col>
@@ -23,6 +23,7 @@
               <div>
                 {{userInfo.customer.real_name}}
                 <i class="iconfont icon-nan sex" v-if="userInfo.customer.gender == 1"></i><i class="iconfont icon-nv sex" v-if="userInfo.customer.gender == 0"></i>
+                <div class="liveGard">LV-{{userInfo.customer_level}}</div>
               </div>
             </div>
           </el-col>
@@ -240,6 +241,11 @@
 </script>
 
 <style scoped>
+  .liveGard{
+    color: #F6D600;
+    font-weight: 600;
+    font-style: italic;
+  }
   .userInfoHead{
     text-align: center;
     padding: 4rem 1rem;

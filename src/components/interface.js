@@ -3,9 +3,9 @@
  */
 
 
-const host = 'http://118.31.38.185/hrt';
+//const host = 'http://118.31.38.185/hrt';
 //const host = 'http://www.schrtinfo.com/hrt';
-//const host = 'http://192.168.0.5:8080/hrt';
+const host = 'http://192.168.0.5:8080/hrt';
 
 export const saveSession = function () {
   const URL = '/admin/saveSession?group_id=1';
@@ -15,6 +15,11 @@ export const saveSession = function () {
 
 export const jumpPage = function () {
   const URL = '/teamUser/jumpPage';
+  const API = host + URL;
+  return API;
+};
+export const getCustomeLevel = function () {
+  const URL = '/teamUser/getCustomeLevel';
   const API = host + URL;
   return API;
 };
@@ -123,6 +128,11 @@ export const getReservationList = function () {
   const API = host + URL;
   return API;
 };
+export const uploadImg = function () {
+  const URL = '/userManager/uploadImg';
+  const API = host + URL;
+  return API;
+};
 export const updateReservationStatus = function () {
   const URL = '/reservationService/updateReservationStatus';
   const API = host + URL;
@@ -205,7 +215,12 @@ export const updatetMedicalGoodsOrderStatus = function () {
 };
 //查询用户服务包订单
 export const getCustomerHealthServiceOrder  = function () {
-  const URL = '/medicalGoods/getCustomerHealthServiceOrder';
+  const URL = '/healthServiceManager/getCustomerHealthServiceOrder';
+  const API = host + URL;
+  return API;
+};
+export const getCusotmerMedicalOrder  = function () {
+  const URL = '/medicalGoods/getCusotmerMedicalOrder';
   const API = host + URL;
   return API;
 };
@@ -334,6 +349,11 @@ export const recharge = function () {
 };
 export const getRechargeByPage = function () {
   const URL = '/userManager/getRechargeByPage';
+  const API = host + URL;
+  return API;
+};
+export const updateEnterprisePackageStatus  = function () {
+  const URL = '/healthServiceManager/updateEnterprisePackageStatus';
   const API = host + URL;
   return API;
 };

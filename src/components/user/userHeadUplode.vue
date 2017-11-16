@@ -6,9 +6,10 @@
     <div class="bor">
       <el-upload
         class="avatar-uploader"
-        action="https://jsonplaceholder.typicode.com/posts/"
+        action="http://192.168.0.5:8080/hrt/userManager/uploadImg/"
         :show-file-list="false"
         :on-success="handleAvatarSuccess"
+        :data=data
         :before-upload="beforeAvatarUpload">
         <img v-if="imageUrl" :src="imageUrl" class="avatar">
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -32,7 +33,10 @@
       data() {
         return {
           imageUrl: '',
+          imageUrl2: '',
           loading: false,
+          data: {pathType: 'uHead'},
+//          pHead, dHead, cHead
         };
       },
       created() {
@@ -42,7 +46,7 @@
         save(){
           this.$ajax({
             method: 'POST',
-            data: {"icon_url": this.imageUrl},
+            data: {"icon_url": this.imageUrl2},
             url: updateCustomerIcon(),
           }).then((res) => {
             if(res.data == 1) {
@@ -54,6 +58,7 @@
         },
         handleAvatarSuccess(res, file) {
           this.imageUrl = URL.createObjectURL(file.raw);
+          this.imageUrl2 = res;
           this.loading = false;
         },
         beforeAvatarUpload(file) {

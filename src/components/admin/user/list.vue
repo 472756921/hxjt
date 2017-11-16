@@ -11,7 +11,7 @@
       <el-table-column prop="gender" label="性别" :formatter = 'formatter' ></el-table-column>
       <el-table-column prop="age" label="年龄"  ></el-table-column>
       <el-table-column prop="id_number" label="身份证号码" width="200"></el-table-column>
-      <el-table-column prop="ye" label="账户余额" ></el-table-column>
+      <el-table-column prop="money" label="账户余额" ></el-table-column>
       <el-table-column prop="join_group_time" label="加入团队时间"></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
