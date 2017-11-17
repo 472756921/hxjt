@@ -54,12 +54,18 @@ import gl_rechargeAdmin from '@/components/gl/admin/gl_recharge'
 
 import noPage from '@/components/noPage'
 import welcome from '@/components/welcome'
+import AD from '@/components/AD'
 
 Vue.use(Router)
 
 export default new Router({
   //mode: 'history',
   routes: [
+    {
+      path: '/AD',
+      name: 'AD',
+      component: AD,
+    },
     {
       path: '/welcome',
       name: 'welcome',

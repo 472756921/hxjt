@@ -6,7 +6,7 @@
     <div style="overflow:hidden;height:13rem;margin-top: .6rem">
       <el-row :gutter="10">
         <el-col :span="12" v-for="(it, i) in img" key="i">
-          <img :src=it width="100%" style="max-height: 12rem"/>
+          <img :src="'http://www.schrtinfo.com/'+it" width="100%" style="max-height: 12rem"/>
         </el-col>
       </el-row>
     </div>

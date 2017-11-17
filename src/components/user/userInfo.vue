@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="loding" v-loading.fullscreen.lock="over"></div>
-
     <div>
       <div class="userInfoHead">
         <el-row>
@@ -13,7 +12,7 @@
           </el-col>
           <el-col :span="12">
             <div class="">
-              <div class="round" @click="head" v-if="infoover">
+              <div class="round" v-if="infoover">
                 <img :src="'http://www.schrtinfo.com'+userInfo.customer.customer_icon.image_url" width="100%" height="100%">
               </div>
             </div>
@@ -92,6 +91,11 @@
           <el-button type="primary" @click="bangdings">绑 定</el-button>
         </span>
       </el-dialog>
+<!--集团二维码弹出-->
+      <el-dialog title="关注集团公众号" :visible.sync="jtecode" size="large">
+        <span>长按识别二维码</span>
+        <img src="http://www.schrtinfo.com/jtcode.jpg" width="100%"/>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -105,6 +109,7 @@
       return {
         over: true,
         infoover: false,
+        jtecode: false,
         group: '',
         idnumberB: '',
         userInfo: '',
@@ -138,9 +143,6 @@
       },
       check() {
         this.$router.push({ path: 'Physiological', params: { src: 'benson' }})
-      },
-      head() {
-        this.$router.push({ name: 'userHeadUplode', params: { src: 'benson' }})
       },
       change() {
         let data;
@@ -229,7 +231,8 @@
         }).catch((error) => {
           const code = error.response.data.errorCode;
           if (code == 1009) {
-            this.$message.error('用户不存在');
+            this.$message.error('用户不存在，请先关注集团公众号');
+            setTimeout(()=>{this.jtecode = true;},1500);
           }
           if(code == 1000){
             this.$message.error('网络服务错误');
@@ -253,7 +256,7 @@
     background: url("../../assets/userInfo.jpg");
   }
   .round{
-    border: 1px solid #000;
+    border: 3px solid #fff;
     width: 6rem;
     height: 6rem;
     border-radius: 50%;

@@ -27,11 +27,12 @@
             <br/>
             <el-upload
               class="avatar-uploader"
-              action="https://jsonplaceholder.typicode.com/posts/"
+              action="http://www.schrtinfo.com/hrt/userManager/uploadImg/"
               :show-file-list="false"
+              :data=data
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload">
-              <img v-if="goods.title_image" :src="goods.title_image" class="avatar">
+              <img v-if="showimage" :src="showimage" class="avatar">
               <i v-else class="el-icon-plus avatar-uploader-icon" style="border: 1px dashed #ccc"></i>
             </el-upload>
           </el-col>
@@ -103,6 +104,8 @@
       return {
         activeName: 'first',
         dialogVisible: false,
+        showimage: '',
+        data: {pathType: 'pHead'},
         options: [
           {label: '普通服务包', value: '0'},
           {label: '普通会员', value: '1'},
@@ -113,7 +116,7 @@
           goods_name: '',
           describe: '',
           price: '',
-          title_image: '1',
+          title_image: '',
           detail_image: [],
         },
         service: {
@@ -134,7 +137,8 @@
       handleClick(tab, event) {
       },
       handleAvatarSuccess(res, file) {
-        this.teamHeadImg = URL.createObjectURL(file.raw);
+        this.showimage = URL.createObjectURL(file.raw);
+        this.goods.title_image = res;
       },
       add(){
         if(this.count == '') {

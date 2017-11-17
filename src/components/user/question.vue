@@ -4,18 +4,34 @@
     <h3 style="margin: .4rem 0;">网上问答<span style="color: #ff8746;font-size: 12px;">（剩余次数：{{times}}）</span>  <span class="pointer" @click="hisqu">历史记录</span></h3>
     <div style="margin: .6rem 0">输入问题描述</div>
     <el-input type="textarea" :rows="3" :maxlength="300" placeholder="请输入内容（最多输入300字）" v-model="textarea"></el-input>
-    <div style="margin: .6rem 0">
-      <div style="margin: .4rem 0;font-size: .6rem;color: #FF4949">上传相关描述图片（支持jpg，png类型的文件上传，大小在2M以内）</div>
-      <input type=file value="添加图片" class="fileInput" @change="clickUp" ref="fileNow"/>
-      <button class="chooes">选择图片</button>
-    </div>
-    <div style="height:170px">
-      <el-row>
-        <el-col :span="12" v-for="(it, i) in img" key="i">
-          <img :src=it width="100%" style="max-height: 160px"/>
-        </el-col>
-      </el-row>
-    </div>
+    <br/>
+    <br/>
+    <el-row>
+      <el-col :span="12">
+        <el-upload
+          class="avatar-uploader"
+          action="http://www.schrtinfo.com/hrt/userManager/uploadImg/"
+          :show-file-list="false"
+          :data=dData
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload">
+          <img v-if="img1" :src="img1" class="avatar">
+          <i v-else class="el-icon-plus avatar-uploader-icon" style="border: 1px dashed #ccc"></i>
+        </el-upload>
+      </el-col>
+      <el-col :span="12">
+        <el-upload
+          class="avatar-uploader"
+          action="http://www.schrtinfo.com/hrt/userManager/uploadImg/"
+          :show-file-list="false"
+          :data=dData
+          :on-success="handleAvatarSuccess2"
+          :before-upload="beforeAvatarUpload">
+          <img v-if="img2" :src="img2" class="avatar" width="100%">
+          <i v-else class="el-icon-plus avatar-uploader-icon" style="border: 1px dashed #ccc"></i>
+        </el-upload>
+      </el-col>
+    </el-row>
     <el-button type="danger" style="margin: 10px auto;display: block;" @click="go">提交问题</el-button>
     <br/>
   </div>
@@ -29,16 +45,39 @@
     name: 'question',
     data() {
       return {
+        dData: {pathType: 'qHead'},
         textarea: '',
         times: '',
         dialogVisible: true,
         img: [],
+        img1: '',
+        img2: '',
       }
     },
     created(){
       this.getTimes()
     },
     methods: {
+      handleAvatarSuccess(res, file) {
+        this.img = [...this.img, res];
+        this.img1 = URL.createObjectURL(file.raw);
+      },
+      handleAvatarSuccess2(res, file) {
+        this.img = [...this.img, res];
+        this.img2 = URL.createObjectURL(file.raw);
+      },
+      beforeAvatarUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
+      },
       go() {
         if(this.textarea == '') {
           this.$message.error('请输入问题描述');
@@ -98,25 +137,33 @@
 </script>
 
 <style scoped>
-  .fileInput{
-    width: 70px;
-    opacity: 0;
-    position: absolute;
-  }
-  .chooes{
-    left: 7px;
-    width: 70px;
-    margin-top: 1px;
-    background: #1D8CE0;
-    color: #fff;
-    border: 1px solid #1D8CE0;
-    padding: .3rem;
-    border-radius: 4px;
-  }
   .pointer{
     color: #1D8CE0;
     font-size: .8rem;
     float: right;
     font-weight: 400;
+  }
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    height: 150px;
+    width: 150px;
+    line-height: 150px;
+    text-align: center;
+  }
+  .avatar {
+    width: 150px;
+    height: 150px;
+    display: block;
   }
 </style>

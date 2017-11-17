@@ -4,7 +4,7 @@
       <el-table-column prop="service_name" label="商品名"></el-table-column>
       <el-table-column label="图片">
         <template scope="scope">
-          <img :src="123"/>
+          <img :src="'http://www.schrtinfo.com'+tableData[scope.$index].title_img" width="100px"/>
         </template>
       </el-table-column>
       <el-table-column prop="price" label="指导价格"></el-table-column>

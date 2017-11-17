@@ -14,7 +14,7 @@
           <el-col :span="12">
             <div class="">
               <div class="round" @click="head">
-                <img src="" width="100%">
+                <img :src="customer.userHeadImg" width="100%">
               </div>
             </div>
           </el-col>

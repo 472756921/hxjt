@@ -1,24 +1,30 @@
 <template>
   <div style="padding: 10px;overflow:auto;">
-    <UD :userIDt="3"/>
-    <br/>
-    <el-row>
-      <el-col :span="24"  class="userAsk">
-        <h4 style="margin:0;">用户提问</h4>
-        <br/>
-        <div>{{data.describe}}</div>
-        <br/>
-        <div>
-          <img :src="it" width="100px" @click="showImg(it)" title="点击查看大图" v-for="(it, i) in data.imgs"/>
-        </div>
-        <div class="docWri">
-          <h4 style="margin:12px 0;">医生回复</h4>
-          <el-input type="textarea" autosize placeholder="请输入内容" v-model="textarea" :autosize="{ minRows: 4, maxRows: 4}"></el-input>
-        </div>
-        <br/>
-        <el-button type="primary" @click="back">提交</el-button>
-      </el-col>
-    </el-row>
+
+    <el-collapse v-model="activeNames" @change="handleChange">
+      <el-collapse-item title="用户问答详情" name="1">
+        <el-row>
+          <el-col :span="24"  class="userAsk">
+            <h4 style="margin:0;">用户提问</h4>
+            <br/>
+            <div>{{data.describe}}</div>
+            <br/>
+            <div>
+              <img :src="'http://www.schrtinfo.com'+it" width="100px" @click="showImg(it)" title="点击查看大图" v-for="(it, i) in data.imgs"/>
+            </div>
+            <div class="docWri">
+              <h4 style="margin:12px 0;">医生回复</h4>
+              <el-input type="textarea" autosize placeholder="请输入内容" v-model="textarea" :autosize="{ minRows: 4, maxRows: 4}"></el-input>
+            </div>
+            <br/>
+            <el-button type="primary" @click="back">提交</el-button>
+          </el-col>
+        </el-row>
+      </el-collapse-item>
+      <el-collapse-item title="用户生理数据" name="2">
+        <UD :userIDt="3"/>
+      </el-collapse-item>
+    </el-collapse>
 
     <el-dialog title="查看详细" :visible.sync="dialogVisible" size="lage">
       <img width="100%" :src="daImg"/>
@@ -42,6 +48,7 @@
     },
     data() {
       return {
+        activeNames: ['1'],
         user: '',
         dialogVisible: false,
         textarea: '',
@@ -79,7 +86,7 @@
       },
       showImg(src){
         this.dialogVisible = true;
-        this.daImg = src;
+        this.daImg = 'http://www.schrtinfo.com'+src;
       },
     },
   };

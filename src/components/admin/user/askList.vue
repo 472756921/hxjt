@@ -29,7 +29,7 @@
         this.getInfo(pageNew);
       },
       tableRowClassName(row, index) {
-        if (row.status === 0) {
+        if (row.doctor_send == '未回答') {
           return 'info-row';
         }
         return '';
@@ -64,6 +64,6 @@
 
 <style>
   .el-table .info-row {
-    background: #ffece3;
+    background: #F6F5F3;
   }
 </style>

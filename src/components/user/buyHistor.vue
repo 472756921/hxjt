@@ -5,7 +5,7 @@
     <el-radio v-model="radio" label="2">商品</el-radio>
     <el-row :gutter="10" class="bo" v-for="(it, i) in data">
       <el-col :xs="8">
-        <img src="http://iph.href.lu/120x120?text=%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87" width="100%"/>
+        <img v-if="radio==2" :src="'http://www.schrtinfo.com'+it.img" width="100%" height="100%"/>
       </el-col>
       <el-col :span="16" style="color: #409EFF;font-weight: 600" >{{it.goods_name}}</el-col>
       <el-col :span="16" style="font-size: 1.2rem; color: #FA5555;margin-top: .5rem">{{it.price}}健康豆</el-col>

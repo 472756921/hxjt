@@ -34,11 +34,12 @@
         <br/>
         <el-upload
           class="avatar-uploader"
-          action="https://jsonplaceholder.typicode.com/posts/"
+          action="http://www.schrtinfo.com/hrt/userManager/uploadImg/"
           :show-file-list="false"
+          :data=dData
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload">
-          <img v-if="data.doctor.doctor_icon" :src="data.doctor.doctor_icon" class="avatar">
+          <img v-if="doctor_icon" :src="doctor_icon" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon" style="border: 1px dashed #ccc"></i>
         </el-upload>
       </el-col>
@@ -48,11 +49,12 @@
         <br/>
         <el-upload
           class="avatar-uploader"
-          action="https://jsonplaceholder.typicode.com/posts/"
+          action="http://www.schrtinfo.com/hrt/userManager/uploadImg/"
           :show-file-list="false"
-          :on-success="handleAvatarSuccess"
+          :data=cData
+          :on-success="handleAvatarSuccess2"
           :before-upload="beforeAvatarUpload">
-          <img v-if="data.group.group_code" :src="data.group.group_code" class="avatar">
+          <img v-if="group_code" :src="group_code" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon" style="border: 1px dashed #ccc"></i>
         </el-upload>
       </el-col>
@@ -70,15 +72,19 @@
     name: 'gl_teamAdd',
     data() {
       return {
+        dData: {pathType: 'dHead'},
+        cData: {pathType: 'cHead'},
+        doctor_icon: '',
+        group_code: '',
         data:{
           group:{
             group_name: '',
             group_describe: '',
-            group_code: '1',
+            group_code: '',
           },
           doctor: {
             doctor_name: '',
-            doctor_icon: '1',
+            doctor_icon: '',
             doctor_account: '',
             doctor_password: '',
             doctor_position: 'none',
@@ -89,7 +95,12 @@
     },
     methods: {
       handleAvatarSuccess(res, file) {
-        this.teamHeadImg = URL.createObjectURL(file.raw);
+        this.data.doctor.doctor_icon = res;
+        this.doctor_icon = URL.createObjectURL(file.raw);
+      },
+      handleAvatarSuccess2(res, file) {
+        this.data.group.group_code = res;
+        this.group_code = URL.createObjectURL(file.raw);
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';

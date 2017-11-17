@@ -12,21 +12,28 @@ export default {
     }
   },
   created(){
-    this.$ajax({
-      method: 'POST',
-      url: 'http://www.schrtinfo.com/hrt/userManager/one',
-    }).then((res) => {
-    })
 
-    setTimeout(()=>{
+    if(sessionStorage.getItem('fi') == '') {
+      //首次进入
+      sessionStorage.setItem('fi',1);
       this.$ajax({
         method: 'POST',
-        url: 'http://www.schrtinfo.com/hrt/userManager/saveOpenId',
+        url: 'http://www.schrtinfo.com/hrt/userManager/one',
       }).then((res) => {
-        this.$router.push({name: res.data});
-      }).catch((error) => {
-      });
-    }, 500);
+      })
+
+      setTimeout(()=>{
+        this.$ajax({
+          method: 'POST',
+          url: 'http://www.schrtinfo.com/hrt/userManager/saveOpenId',
+        }).then((res) => {
+          this.$router.push({name: res.data});
+        }).catch((error) => {
+        });
+      }, 500);
+    } else {
+      this.$router.push({path: "AD"});
+    }
   },
 }
 </script>

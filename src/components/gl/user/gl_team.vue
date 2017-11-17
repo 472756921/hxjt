@@ -3,7 +3,7 @@
       <h3 style="margin: .6rem .6rem 1rem">团队列表<span style="float:right;font-weight:400;font-size: .8rem;color: #ccc">（点击团队名称加入）</span></h3>
       <el-row :gutter="10" v-if="!userF" style="margin: 0 0 .8rem 0; border-bottom: 1px solid #eee;padding-bottom: .4rem" v-for="(it, i) in data" key="i">
         <el-col :span="6">
-          <img :src="it.teamImg" width="100%" style="border-radius: 4px"/>
+          <img :src="'http://www.schrtinfo.com/'+it.teamImg" width="100%" style="border-radius: 4px"/>
         </el-col>
         <el-col :span="18">
           <div @click="show(it.teamCode)">
@@ -62,7 +62,7 @@
         this.getInfo(newPage);
       },
       show(code){
-        this.codeImg = code;
+        this.codeImg = 'http://www.schrtinfo.com/'+code;
         this.dialogVisible = true
       },
       getInfo(page){

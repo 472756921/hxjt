@@ -3,12 +3,12 @@
     <el-row :gutter="20" style="line-height: 30px">
       <el-col :span="3">
         <div class="">
-          <img src="http://iph.href.lu/180x250?text=团队图片" width="100%"/>
+          <img :src="'http://www.schrtinfo.com'+data.teamImg" width="100%"/>
         </div>
       </el-col>
       <el-col :span="3">
         <div class="">
-          <img src="http://iph.href.lu/180x250?text=二维码图片" width="100%"/>
+          <img :src="'http://www.schrtinfo.com'+data.teamCode" width="100%"/>
         </div>
       </el-col>
       <el-col :span="4">
