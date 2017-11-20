@@ -12,8 +12,7 @@ export default {
     }
   },
   created(){
-
-    if(sessionStorage.getItem('fi') == '') {
+    if(sessionStorage.getItem('fi') == null) {
       //首次进入
       sessionStorage.setItem('fi',1);
       this.$ajax({

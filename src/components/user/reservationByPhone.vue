@@ -10,7 +10,7 @@
     <br/>
     <el-button type="primary" class="center_block" @click="yy">我要预约</el-button>
     <br/>
-    <div style="text-align:center;color: #ff8746;font-size: 12px;">（预约成功后，将会有专家亲自致电与您沟通）</div>
+    <div style="text-align:center;color: #ff8746;font-size: 12px;">（预约成功后，24小时内专家将会亲自致电与您沟通）</div>
   </div>
 </template>
 
@@ -49,7 +49,7 @@
           this.times -= 1;
         }).catch((error) => {
           if (error.response.data.errorCode == '1010') {
-            this.$message.error('对不起您的余额不足请先充值');
+            this.$message.error('对不起您的次数不足，请前往商城购买');
             return false
           }
           this.$message.error('网络异常，请稍候');

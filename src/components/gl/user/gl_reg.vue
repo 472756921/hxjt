@@ -90,7 +90,7 @@
   .items{
     margin: .6rem auto;
     padding: 0 3rem;
-    width: 75%;
+    width: 80%;
   }
   input{
     height: 1.4rem;

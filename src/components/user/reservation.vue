@@ -71,7 +71,7 @@
             this.$message.success('预约成功，客服将会尽快联系您');
           }
         }).catch((error) => {
-          this.$message.error(error.message);
+          this.$message.error('对不起您的次数不足，请先行购买次数');
         });
       },
     }
