@@ -32,7 +32,7 @@
         </el-upload>
       </el-col>
     </el-row>
-    <el-button type="danger" style="margin: 10px auto;display: block;" @click="go" disabled="false">提交问题</el-button>
+    <el-button type="danger" style="margin: 10px auto;display: block;" @click="go" :disabled='dis' >提交问题</el-button>
     <br/>
   </div>
 </template>
@@ -45,6 +45,7 @@
     name: 'question',
     data() {
       return {
+        dis: false,
         dData: {pathType: 'qHead'},
         textarea: '',
         times: '',
@@ -58,8 +59,9 @@
       let user = localStorage.getItem('customer_id');
       if (user == '' || user == null) {
         this.$router.push({path:'userInfo'});
+      } else {
+        this.getTimes()
       }
-      this.getTimes()
     },
     methods: {
       handleAvatarSuccess(res, file) {
@@ -98,6 +100,7 @@
           if(res.data == 1) {
             this.$message.success('提交成功');
             this.times -= 1;
+            this.dis = true;
           }
         }).catch((error) => {
           this.$message.error(error.message);

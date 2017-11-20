@@ -14,7 +14,7 @@
     </div>
     <br/>
     <br/>
-    <el-button type="primary" class="center_block" @click="yy" >我要预约</el-button>
+    <el-button type="primary" class="center_block" @click="yy" :disabled='dis'>我要预约</el-button>
     <br/>
     <div class="textCenter"><span @click="hist">预约历史</span></div>
   </div>
@@ -28,6 +28,7 @@
     data() {
       return {
         radio: '',
+        dis: false,
         times: '',
         date: '',
       };
@@ -74,6 +75,7 @@
         }).then((res) => {
           if(res.data==1) {
             this.$message.success('预约成功，客服将会尽快联系您');
+            this.dis = true;
           }
         }).catch((error) => {
           this.$message.error('对不起您的次数不足，请先行购买次数');

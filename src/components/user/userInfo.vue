@@ -13,7 +13,7 @@
           <el-col :span="12">
             <div class="">
               <div class="round" v-if="infoover">
-                <img :src="'http://www.schrtinfo.com'+userInfo.customer.customer_icon.image_url" width="100%" height="100%">
+                <img :src="'http://www.schrtinfo.com'+userInfo.customer.customer_icon.image_url" v-if="userInfo.customer.customer_icon.image_url!=null" width="100%" height="100%">
               </div>
             </div>
           </el-col>

@@ -8,7 +8,7 @@
     <br/>
     <br/>
     <br/>
-    <el-button type="primary" class="center_block" @click="yy">我要预约</el-button>
+    <el-button type="primary" class="center_block" @click="yy" :disabled='dis'>我要预约</el-button>
     <br/>
     <div style="text-align:center;color: #ff8746;font-size: 12px;">（预约成功后，24小时内专家将会亲自致电与您沟通）</div>
   </div>
@@ -22,6 +22,7 @@
     data() {
       return {
         times: '',
+        dis: false,
       };
     },
     created(){
@@ -50,7 +51,8 @@
           data: {customer_id: localStorage.getItem('customer_id')},
           url: createPhoneConsultation(),
         }).then((res) => {
-            this.$message.success('预约成功，我们将会尽快致电');
+          this.$message.success('预约成功，我们将会尽快致电');
+          this.dis = true;
           this.times -= 1;
         }).catch((error) => {
           if (error.response.data.errorCode == '1010') {

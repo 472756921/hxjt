@@ -12,8 +12,8 @@
       <el-table-column prop="is_shelf" label="上下架状态" :formatter = 'formatter2'></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
-          <span class="Success" @click="pushChange(scope.$index, 1)" v-if="tableData[scope.$index].status==0">激活</span>
-          <span class="danger pointer" @click="pushChange(scope.$index, 0)" v-if="tableData[scope.$index].status==1">注销</span>
+          <span class="Success" @click="pushChange2(scope.$index, 1)" v-if="tableData[scope.$index].status==0">激活</span>
+          <span class="danger pointer" @click="pushChange2(scope.$index, 0)" v-if="tableData[scope.$index].status==1">注销</span>
           <span class="Success" @click="pushChange(scope.$index, 1)" v-if="tableData[scope.$index].is_shelf==0">上架</span>
           <span class="danger pointer" @click="pushChange(scope.$index, 0)" v-if="tableData[scope.$index].is_shelf==1">下架</span>
         </template>
@@ -30,6 +30,22 @@
   export default {
     name: 'gl_goodList',
     methods: {
+      pushChange2(index, type){
+        this.$ajax({
+          method: 'POST',
+          data: {id: this.tableData[index].id, status: type},
+          url:updateMedicalGoodsStatus(),
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if(res.data == 1) {
+            this.$message.success('操作成功');
+            setTimeout(()=>{window.location.reload();},1000)
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      }      ,
       pushChange(index, type){
         this.$ajax({
           method: 'POST',
