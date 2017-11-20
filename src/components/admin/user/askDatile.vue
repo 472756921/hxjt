@@ -14,10 +14,10 @@
             </div>
             <div class="docWri">
               <h4 style="margin:12px 0;">医生回复</h4>
-              <el-input type="textarea" autosize placeholder="请输入内容" v-model="textarea" :autosize="{ minRows: 4, maxRows: 4}"></el-input>
+              <el-input type="textarea" autosize placeholder="请输入内容" :disabled='pback' v-model="textarea" :autosize="{ minRows: 4, maxRows: 4}"></el-input>
             </div>
             <br/>
-            <el-button type="primary" @click="back">提交</el-button>
+            <el-button type="primary" :disabled='pback' @click="back">提交</el-button>
           </el-col>
         </el-row>
       </el-collapse-item>
@@ -54,6 +54,13 @@
         textarea: '',
         data: '',
         daImg: '',
+        status: '',
+        reply:'',
+        create_date:'',
+        customer_name: '',
+        age: '',
+        gender: '',
+        pback: false,
       };
     },
     methods: {
@@ -80,6 +87,10 @@
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
           this.data = res.data.detail
+          if(res.data.detail.status == '已回答') {
+            this.textarea = res.data.detail.reply;
+            this.pback = true
+          }
         }).catch((error) => {
           this.$message.error(error.message);
         });
