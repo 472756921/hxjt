@@ -59,8 +59,8 @@
           },
           (res) => {
             if (res.err_msg === 'get_brand_wcpay_request:ok') {
-              location.reload();
               this.$message.success('充值成功');
+              setTimeout(()=>{this.$router.push({path:'gl_recharge'});},1000)
             }
           }
         );

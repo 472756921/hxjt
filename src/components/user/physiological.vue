@@ -2,7 +2,6 @@
   <div class="content">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="基础指标" name="first">
-        <h3>生理指标<i class="iconfont icon-add" style="float:right;color: #1D8CE0;" @click="dialogVisible = true"></i></h3>
         <el-row class="card" v-for="(o, index) in data" key="index">
           <el-col :span="12"><div>血压(高)：{{o.blood_pressure.split('/')[0]}} mmhg</div></el-col>
           <el-col :span="12"><div>血压(低)：{{o.blood_pressure.split('/')[1]}} mmhg</div></el-col>
@@ -30,7 +29,7 @@
           </span>
         </el-dialog>
       </el-tab-pane>
-      <el-tab-pane label="检查指标" name="second">
+      <el-tab-pane label="出院报告" name="second">
         <el-row class="card" v-for="(o, index) in data2" key="index">
           <el-col :span="12"><div>日期：{{o.upload_time}}</div></el-col>
           <el-col :span="12" style="text-align: right"><el-button type="text" size="small" @click="datile(o.id)">查看详情</el-button></el-col>

@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <h3 style="text-align: center;margin: .4rem">检测指标</h3>
+    <h3 style="text-align: center;margin: .4rem">出院报告</h3>
     <div style="text-align: center;color: #cccccc;">{{repData.check_time.split(' ')[0]}}</div>
     <el-row style="line-height: 1.8rem;color:#8492A6">
       <el-col :span="24">

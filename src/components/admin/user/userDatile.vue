@@ -16,7 +16,7 @@
         <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle"  @current-change="changPage1"></el-pagination>
       </el-col>
       <el-col :span="24">
-        <h4>检测报告</h4>
+        <h4>出院报告</h4>
         <el-table :data="tableData2" style="width: 100%">
           <el-table-column prop="upload_time" label="生成时间"></el-table-column>
           <el-table-column prop="id" label="登记号"></el-table-column>
