@@ -6,8 +6,8 @@
           <img :src="'http://www.schrtinfo.com/'+it.teamImg" width="100%" style="border-radius: 4px"/>
         </el-col>
         <el-col :span="18">
-          <div @click="show(it.teamCode)">
-            <div class="teamTitle">{{it.teamName}}</div>
+          <div>
+            <div class="teamTitle"  @click="show(it.teamCode, it.teamIntroduction)">{{it.teamName}}</div>
             <div class="teamDatile">{{it.teamIntroduction}}</div>
             <div class="teamCount">当前人数：{{it.teamNumber}}</div>
             <div class="teamCreateDate">创建时间：{{it.teamCreateDate}}</div>
@@ -28,8 +28,9 @@
         title="加入团队"
         :visible.sync="dialogVisible"
         size="large">
-        <span>长按识别下方二维码</span>
+        <div class="danger">长按识别下方二维码</div>
         <img width="100%" :src="codeImg"/>
+        <span>{{datile}}</span>
       </el-dialog>
 
     </div>
@@ -47,6 +48,7 @@
         codeImg: '',
         pageNow: 1,
         pageTotle: 1,
+        datile: '',
         userF: false,
       };
     },
@@ -61,9 +63,10 @@
       changPage(newPage){
         this.getInfo(newPage);
       },
-      show(code){
+      show(code, teamIntroduction){
         this.codeImg = 'http://www.schrtinfo.com/'+code;
         this.dialogVisible = true
+        this.datile = teamIntroduction;
       },
       getInfo(page){
         let url = getGroups()+"?status=1&page="+page;
@@ -93,15 +96,24 @@
 <style scoped>
   .teamTitle{
     font-size: 1.2rem;
+    font-weight: 600;
     color: #409EFF;
+    padding: .2rem 0 .6rem 0;
   }
   .teamDatile{
-    max-height: 40px;
+    font-size: 1rem;
+    max-height: 36px;
+    overflow: hidden;
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+    white-space:nowrap; /*不换行 */
+    padding:  0 0 .8rem 0;
   }
   .teamCount{
     color: #409EFF;
+    font-size: 1rem;
   }
   .teamCreateDate{
+    font-size: 1rem;
     color: #409EFF;
   }
 </style>

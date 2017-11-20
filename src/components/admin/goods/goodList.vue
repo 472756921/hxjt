@@ -159,7 +159,6 @@
             })
           }
         }).catch((error) => {
-          console.log(error)
           this.$message.error('网络有问题，请稍后再试');
         });
       },

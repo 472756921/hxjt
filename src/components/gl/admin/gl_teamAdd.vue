@@ -118,7 +118,6 @@
         let of = true;
         Object.entries(this.data).map((i) => {
           Object.entries(i[1]).map((j) => {
-            console.log(j)
             if(j[1] == '') {
               this.$message.error('请填写用户信息并上传团队图片');
               of = false;
