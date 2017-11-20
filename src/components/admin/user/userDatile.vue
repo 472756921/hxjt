@@ -1,8 +1,8 @@
 <template>
   <div style="padding: 10px;overflow:auto;">
     <br/>
-    <report ref="report" style="float: left;margin-right: 10px" :userID=this.userID :userID2=this.userIDt></report>
-    <addpr style="float: left" :userID=this.userID :userID2=this.userIDt></addpr>
+    <addpr style="float: left;margin-right: 10px" :userID=this.userID :userID2=this.userIDt></addpr>
+    <report ref="report" style="float: left" :userID=this.userID :userID2=this.userIDt></report>
     <br/>
     <el-row>
       <el-col :span="24">

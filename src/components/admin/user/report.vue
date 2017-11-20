@@ -1,7 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" size="small" @click="inpure">录入检测报告</el-button>
-
+    <el-button type="primary" size="small" @click="inpure">录入出院报告</el-button>
     <el-dialog title="生理指标" class="mod" :visible.sync="dialogVisible">
       检测时间：<el-date-picker v-model="changeDateValue" type="datetime" placeholder="选择日期" size="small" @change="dateChange"></el-date-picker>
       <el-row style="line-height: 1.8rem;color:#8492A6">

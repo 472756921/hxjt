@@ -1,10 +1,10 @@
 <template>
   <div style="padding: 10px;overflow:auto;">
-
     <el-collapse v-model="activeNames" @change="handleChange">
       <el-collapse-item title="用户问答详情" name="1">
         <el-row>
           <el-col :span="24"  class="userAsk">
+            {{data.customer_name}} - {{data.gender}} - {{data.age}}
             <h4 style="margin:0;">用户提问</h4>
             <br/>
             <div>{{data.describe}}</div>
@@ -13,7 +13,7 @@
               <img :src="'http://www.schrtinfo.com'+it" width="100px" @click="showImg(it)" title="点击查看大图" v-for="(it, i) in data.imgs"/>
             </div>
             <div class="docWri">
-              <h4 style="margin:12px 0;">医生回复</h4>
+              <h4 style="margin:12px 0;">医生回复 {{reply_time}}</h4>
               <el-input type="textarea" autosize placeholder="请输入内容" :disabled='pback' v-model="textarea" :autosize="{ minRows: 4, maxRows: 4}"></el-input>
             </div>
             <br/>
@@ -22,7 +22,7 @@
         </el-row>
       </el-collapse-item>
       <el-collapse-item title="用户生理数据" name="2">
-        <UD :userIDt="3"/>
+        <UD :userIDt="user.customer_id"/>
       </el-collapse-item>
     </el-collapse>
 
@@ -60,6 +60,7 @@
         customer_name: '',
         age: '',
         gender: '',
+        reply_time: '',
         pback: false,
       };
     },
@@ -89,6 +90,7 @@
           this.data = res.data.detail
           if(res.data.detail.status == '已回答') {
             this.textarea = res.data.detail.reply;
+            this.reply_time = res.data.detail.reply_time;
             this.pback = true
           }
         }).catch((error) => {
