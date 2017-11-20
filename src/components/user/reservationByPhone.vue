@@ -25,14 +25,19 @@
       };
     },
     created(){
-      this.$ajax({
-        method: 'get',
-        url: getCustomerServiceDetailCount() + '?customer_id='+localStorage.getItem('customer_id')+'&health_service_id=6',
-        dataType: 'JSON',
-        contentType: 'application/json;charset=UTF-8',
-      }).then((res) => {
-        this.times = res.data;
-      })
+      let user = localStorage.getItem('customer_id');
+      if (user == '' || user == null) {
+        this.$router.push({path:'userInfo'});
+      } else {
+        this.$ajax({
+          method: 'get',
+          url: getCustomerServiceDetailCount() + '?customer_id=' + localStorage.getItem('customer_id') + '&health_service_id=6',
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          this.times = res.data;
+        })
+      }
     },
     methods: {
       yy() {

@@ -66,8 +66,13 @@
       };
     },
     created() {
-      this.getData(1);
-      this.getData2(1);
+      let user = localStorage.getItem('customer_id');
+      if (user == '' || user == null) {
+        this.$router.push({path:'userInfo'});
+      } else {
+        this.getData(1);
+        this.getData2(1);
+      }
     },
     methods: {
       changPage1(pageNew){

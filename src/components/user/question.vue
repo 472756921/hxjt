@@ -32,7 +32,7 @@
         </el-upload>
       </el-col>
     </el-row>
-    <el-button type="danger" style="margin: 10px auto;display: block;" @click="go">提交问题</el-button>
+    <el-button type="danger" style="margin: 10px auto;display: block;" @click="go" disabled="false">提交问题</el-button>
     <br/>
   </div>
 </template>
@@ -55,6 +55,10 @@
       }
     },
     created(){
+      let user = localStorage.getItem('customer_id');
+      if (user == '' || user == null) {
+        this.$router.push({path:'userInfo'});
+      }
       this.getTimes()
     },
     methods: {
@@ -68,13 +72,13 @@
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
+        const isLt2M = file.size / 1024 / 1024 < 5;
 
         if (!isJPG) {
           this.$message.error('上传头像图片只能是 JPG 格式!');
         }
         if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
+          this.$message.error('上传头像图片大小不能超过 5MB!');
         }
         return isJPG && isLt2M;
       },

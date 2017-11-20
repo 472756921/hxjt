@@ -21,7 +21,12 @@
       }
     },
     created(){
-      this.getList(1);
+      let user = localStorage.getItem('customer_id');
+      if (user == '' || user == null) {
+        this.$router.push({path:'userInfo'});
+      } else {
+        this.getList(1);
+      }
     },
     methods:{
       getList(page) {

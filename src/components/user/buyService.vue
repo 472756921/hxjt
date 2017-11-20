@@ -49,8 +49,13 @@
       };
     },
     created() {
-      this.getCustomeLevel();
-      this.getDocList(1);
+      let user = localStorage.getItem('customer_id');
+      if (user == '' || user == null) {
+        this.$router.push({path:'userInfo'});
+      } else {
+        this.getCustomeLevel();
+        this.getDocList(1);
+      }
     },
     watch: {
       radio (newData, oldData) {
@@ -150,7 +155,7 @@
           }).then((res) => {
             this.$message.success('购买成功');
           }).catch((error) => {
-            this.$message.error(error.message);
+            this.$message.error('对不起，您的健康豆不足，请前往集团公众号进行充值');
           });
         }
       }
