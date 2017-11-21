@@ -51,7 +51,7 @@
           }).then((res) => {
             this.$message.success('购买成功');
           }).catch((error) => {
-            this.$message.error('对不起，您的健康豆不足，请前往哈瑞特健康充值');
+            this.$message.error('您的健康豆不足，请前往哈瑞特健康充值');
           });
         }
       }
