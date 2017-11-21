@@ -80,7 +80,7 @@
       getList(page) {
         this.$ajax({
           method: 'GET',
-          url: getReservationList() + "?doctor_id=1&page="+page+"&status=1",
+          url: getReservationList() + "?doctor_id="+sessionStorage.getItem('docID')+"&page="+page+"&status=1",
         }).then((res) => {
           this.tableData = res.data.reservations;
           this.page = { totalPage: res.data.totalPage, page:  res.data.page,  };
