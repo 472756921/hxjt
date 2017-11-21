@@ -5,6 +5,7 @@
       <div class="title">{{it.service_name}}</div>
       <div class="titleB">专属服务：</div>
       <div>{{it.describe}}</div>
+      <div><a href="http://v2.rabbitpre.com/m/RFfiQbH">介绍连接</a></div>
       <div class="price">尊享价格：<span class="priceNumber">¥{{it.price}}</span><span class="joinbtn"><el-button type="danger" size="small" @click="yy(it)">立即加入</el-button></span></div>
     </div>
   </div>

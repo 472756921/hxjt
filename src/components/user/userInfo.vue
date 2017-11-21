@@ -13,7 +13,8 @@
           <el-col :span="12">
             <div class="">
               <div class="round" v-if="infoover">
-                <img :src="'http://www.schrtinfo.com'+userInfo.customer.customer_icon.image_url" v-if="userInfo.customer.customer_icon.image_url!=null" width="100%" height="100%">
+                <img :src="'http://www.schrtinfo.com'+userInfo.customer.customer_icon.image_url" v-if="userInfo.customer.customer_icon.image_url!=null&&userInfo.customer.customer_icon.image_url!='http://www.schrtinfo.com/userHead.jpg'" width="100%" height="100%">
+                <img :src="userInfo.customer.customer_icon.image_url" v-if="userInfo.customer.customer_icon.image_url=='http://www.schrtinfo.com/userHead.jpg'" width="100%" height="100%">
               </div>
             </div>
           </el-col>
@@ -197,6 +198,7 @@
           this.over = false;
           this.infoover = true;
         }).catch((error) => {
+          localStorage.removeItem('customer_id');
           if(error.response.status == 400 || error.response.status == 1000) {
             this.$message.error('服务器开小差了，请稍后再试');
           }
