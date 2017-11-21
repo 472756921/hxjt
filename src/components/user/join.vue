@@ -5,7 +5,6 @@
       <div class="title">{{it.service_name}}</div>
       <div class="titleB">专属服务：</div>
       <div>{{it.describe}}</div>
-      <div><a href="http://v2.rabbitpre.com/m/RFfiQbH">介绍连接</a></div>
       <div class="price">尊享价格：<span class="priceNumber">¥{{it.price}}</span><span class="joinbtn"><el-button type="danger" size="small" @click="yy(it)">立即加入</el-button></span></div>
     </div>
   </div>
@@ -52,7 +51,7 @@
           }).then((res) => {
             this.$message.success('购买成功');
           }).catch((error) => {
-            this.$message.error(error.message);
+            this.$message.error('对不起，您的健康豆不足，请前往哈瑞特健康充值');
           });
         }
       }
