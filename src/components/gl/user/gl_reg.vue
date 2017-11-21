@@ -19,7 +19,7 @@
       <span class="itemA">住址：</span>
       <input type="text" v-model="data.address"/>
     </div>
-    <el-checkbox v-model="checked" class="items">我已阅读并同意<a href="gl_reg.vue" class="xieyi">《用户注册协议》</a></el-checkbox>
+    <el-checkbox v-model="checked" class="items">我已阅读并同意<a href="#/user/gl_ag" class="xieyi">《用户注册协议》</a></el-checkbox>
     <br/>
     <br/>
     <button class="regBtn" @click="reg">注册</button>
@@ -45,7 +45,7 @@
     methods:{
       reg(){
         if(!this.checked) {
-          this.$message.error('请阅读并同意《用户注册协议》');
+          this.$message.error('请阅读并同意《服务协议》');
           return;
         }
         let of = true;

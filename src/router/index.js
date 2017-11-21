@@ -35,6 +35,7 @@ import orderList from '@/components/admin/goods/orderList'
 //gl集团平台
 import gl_team from '@/components/gl/user/gl_team'
 import gl_reg from '@/components/gl/user/gl_reg'
+import gl_ag from '@/components/gl/user/gl_ag'
 import gl_userInfo from '@/components/gl/user/gl_userInfo'
 import gl_recharge from '@/components/gl/user/gl_recharge'
 import gl_rechargeList from '@/components/gl/user/gl_rechargeList'
@@ -194,6 +195,11 @@ export default new Router({
           path: 'checkUser',
           name: 'checkUser',
           component: checkUser,
+        },
+        {
+          path: 'gl_ag',
+          name: 'gl_ag',
+          component: gl_ag,
         },
         {
           path: 'join',
