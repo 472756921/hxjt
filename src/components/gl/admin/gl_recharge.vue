@@ -1,8 +1,14 @@
 <template>
   <div>
+    <div>
+      <el-input placeholder="请输入用户身份证" v-model="search">
+        <el-button slot="append" icon="search" @click="searches"></el-button>
+      </el-input>
+    </div>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="customer_name" label="姓名" ></el-table-column>
       <el-table-column prop="phone" label="电话" ></el-table-column>
+      <el-table-column prop="id_number" label="身份证号码" ></el-table-column>
       <el-table-column prop="price" label="充值金额" ></el-table-column>
       <el-table-column prop="create_date" label="充值时间"></el-table-column>
     </el-table>
@@ -20,12 +26,27 @@
         pageNow: 1,
         pageTotle: 1,
         tableData: [],
+        tableData2: [],
+        search: '',
       }
     },
     created(){
       this.getInfo(1);
     },
     methods: {
+      searches(){
+        if (this.search == '' || this.search == null) {
+          this.tableData = this.tableData2;
+        } else {
+          this.tableData = [];
+          this.tableData2.map((k,i) => {
+            if (k.id_number.indexOf(this.search) != -1) {
+              this.tableData.push(k);
+            }
+          })
+        }
+        this.search == '';
+      },
       changPage(newPage){
         this.getInfo(newPage);
       },
@@ -35,6 +56,7 @@
           url: getRechargeByPage()+"?page="+page,
         }).then((res) => {
           this.tableData = res.data.orders;
+          this.tableData2 = res.data.orders;
           this.pageNow = res.data.page;
           this.pageTotle = res.data.totalPage;
         }).catch((error) => {

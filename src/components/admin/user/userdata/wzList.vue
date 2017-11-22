@@ -3,6 +3,7 @@
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="create_date" label="日期"></el-table-column>
       <el-table-column prop="doctor_send" label="状态"></el-table-column>
+      <el-table-column prop="reply_time" label="回复日期"></el-table-column>
     </el-table>
     <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle" @current-change="changPage"></el-pagination>
   </div>

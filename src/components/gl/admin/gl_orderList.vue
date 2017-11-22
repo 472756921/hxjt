@@ -1,5 +1,10 @@
 <template>
-  <div style="padding: 10px 2px; overflow:auto;">
+  <div>
+    <div>
+      <el-input placeholder="请输入身份证" v-model="search">
+        <el-button slot="append" icon="search"></el-button>
+      </el-input>
+    </div>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="order_on" label="订单号"></el-table-column>
       <el-table-column prop="goods_name" label="商品名"></el-table-column>
@@ -30,6 +35,19 @@
       this.getList(1,1);
     },
     methods: {
+      searches(){
+        if (this.search == '' || this.search == null) {
+          this.tableData = this.tableData2;
+        } else {
+          this.tableData = [];
+          this.tableData2.map((k,i) => {
+            if (k.id_number.indexOf(this.search) != -1) {
+              this.tableData.push(k);
+            }
+          })
+        }
+        this.search == '';
+      },
       fahuo(id) {
         let confim = confirm('确认已发货？');
         if(confim){
@@ -56,6 +74,7 @@
           url: customerGetEnterpriseMedicalOrder()+"?page=" + page,
         }).then((res) => {
           this.tableData = res.data.orderList;
+          this.tableData2 = res.data.orderList;
           this.pageTotle = res.data.totalPage;
           this.pageNow = res.data.page;
         }).catch((error) => {
@@ -66,8 +85,10 @@
     data() {
       return {
         tableData: [],
+        tableData2: [],
         pageNow: 1,
         pageTotle: 1,
+        search: '',
       }
     }
   };
