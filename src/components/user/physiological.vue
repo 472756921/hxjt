@@ -2,6 +2,7 @@
   <div class="content">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="基础指标" name="first">
+        <h4>添加<i class="iconfont icon-add" style="float:right;color: #1D8CE0;" @click="dialogVisible = true"></i></h4>
         <el-row class="card" v-for="(o, index) in data" key="index">
           <el-col :span="12"><div>血压(高)：{{o.blood_pressure.split('/')[0]}} mmhg</div></el-col>
           <el-col :span="12"><div>血压(低)：{{o.blood_pressure.split('/')[1]}} mmhg</div></el-col>

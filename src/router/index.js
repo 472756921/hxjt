@@ -27,6 +27,7 @@ import askDatile from '@/components/admin/user/askDatile'
 import treatment from '@/components/admin/user/treatment'
 import treatmentS from '@/components/admin/user/treatmentS'
 import treatmentPhone from '@/components/admin/user/treatmentPhone'
+import xiaofei from '@/components/admin/user/xiaofei'
 import treatmentSet from '@/components/admin/user/treatmentSet'
 
 import goodList from '@/components/admin/goods/goodList'
@@ -92,6 +93,11 @@ export default new Router({
           path: 'treatmentPhone',
           name: 'treatmentPhone',
           component: treatmentPhone,
+        },
+        {
+          path: 'xiaofei',
+          name: 'xiaofei',
+          component: xiaofei,
         },
         {
           path: 'treatmentSet',

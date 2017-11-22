@@ -16,6 +16,7 @@
       <el-table-column label="操作">
         <template scope="scope">
           <span class="Blue cursor" @click="chang(scope.$index)">生理监控</span>
+          <span class="Blue cursor" @click="xiaofei(scope.$index)">消费记录</span>
         </template>
       </el-table-column>
     </el-table>
@@ -57,6 +58,9 @@
       },
       chang(index) {
         this.$router.push({ name: 'userDatile', params: { userID: this.tableData[index].id } })
+      },
+      xiaofei(index) {
+        this.$router.push({ name: 'xiaofei', params: { userID: this.tableData[index].id } })
       },
       formatter(row, column) {
         if (row.gender === 1) {
