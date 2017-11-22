@@ -11,7 +11,7 @@
     <el-row :gutter="10">
       <el-col :xs="24" :sm="6" v-for="(doc, i) in docList" :key="i" style="padding: 12px">
         <el-card :body-style="{ padding: '0px' }">
-          <img :src="'http://www.schrtinfo.com'+doc.title_img" class="image" height="120px">
+          <img :src="'http://www.schrtinfo.com'+doc.title_img" class="image" height="130px">
           <div style="padding: 6px;">
             <div class="center" style="font-size: 1.2rem">{{doc.service_name}}</div>
             <div>{{doc.describe}}</div>
@@ -111,8 +111,9 @@
   }
 
   .image {
-    width: 100%;
     display: block;
+    margin: 0 auto;
+    max-width: 100%;
   }
 
   .clearfix:before,
