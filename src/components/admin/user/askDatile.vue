@@ -68,8 +68,8 @@
       back(){
         this.$ajax({
           method: 'POST',
-          data: {id: this.user.id, reply: this.textarea, doctor_id: 1},
-          url: replyConsultation()+"?id="+this.user.id+"&doctor_id="+sessionStorage.getItem('docID'),
+          data: {id: this.user.id, reply: this.textarea, doctor_id: sessionStorage.getItem('docID')},
+          url: replyConsultation(),
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
