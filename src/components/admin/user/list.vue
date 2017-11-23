@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>
-      <el-input placeholder="请输入用户姓名/电话/身份证" v-model="search">
-        <el-button slot="append" icon="search"></el-button>
+      <el-input placeholder="请输入用户身份证号码" v-model="search">
+        <el-button slot="append" icon="search" @click="searches"></el-button>
       </el-input>
     </div>
     <el-table :data="tableData" style="width: 100%">
@@ -35,12 +35,26 @@
         pageTotle: 1,
         search: '',
         tableData: [],
+        tableData2: [],
       }
     },
     created(){
       this.getInfo(1);
     },
     methods: {
+      searches(){
+        if (this.search == '' || this.search == null) {
+          this.tableData = this.tableData2;
+        } else {
+          this.tableData = [];
+          this.tableData2.map((k,i) => {
+            if (k.id_number.indexOf(this.search) != -1) {
+              this.tableData.push(k);
+            }
+          })
+        }
+        this.search == '';
+      },
       changPage(newPage){
         this.getInfo(newPage);
       },
@@ -50,6 +64,7 @@
           url: getGroupCustomers()+"?page="+page,
         }).then((res) => {
           this.tableData = res.data.customers;
+          this.tableData2 = res.data.customers;
           this.pageNow = res.data.page;
           this.pageTotle = res.data.totalPage;
         }).catch((error) => {

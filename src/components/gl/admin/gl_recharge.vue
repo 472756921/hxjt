@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <el-input placeholder="请输入用户身份证" v-model="search">
+      <el-input placeholder="请输入用户身份证号码" v-model="search">
         <el-button slot="append" icon="search" @click="searches"></el-button>
       </el-input>
     </div>

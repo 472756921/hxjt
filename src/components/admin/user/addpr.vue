@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" size="small" @click="inpure">录入生理指标</el-button>
+    <el-button type="primary" size="small" @click="inpure">录入基础指标</el-button>
 
     <el-dialog title="录入生理指标" :visible.sync="dialogVisible" size="samll">
       <el-date-picker value-format="yyyy-MM-dd HH:mm" v-model="datetime" size="small" format="yyyy-MM-dd HH:mm" style="width: 100%" type="datetime" placeholder="选择测量时间"  @change="shureDate"></el-date-picker>
