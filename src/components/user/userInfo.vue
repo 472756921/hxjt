@@ -209,6 +209,7 @@
             this.$message.error('用户不存在');
           }
           this.bangding = true;
+          window.location.reload();
         });
       },
       updataLive() {

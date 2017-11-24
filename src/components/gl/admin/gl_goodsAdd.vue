@@ -108,9 +108,9 @@
         data: {pathType: 'pHead'},
         options: [
           {label: '普通服务包', value: '0'},
-          {label: '普通会员', value: '1'},
-          {label: '黄金会员', value: '2'},
-          {label: '至尊会员', value: '3'},
+          {label: '金卡会员', value: '1'},
+          {label: '白金会员', value: '2'},
+          {label: '钻石会员', value: '3'},
         ],
         goods: {
           goods_name: '',

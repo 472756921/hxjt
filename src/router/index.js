@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import UserIndex from '@/components/user/userIndex'
 import checkUser from '@/components/user/checkUser'
+import xieyi from '@/components/user/xieyi'
 import join from '@/components/user/join'
 import Reservation from '@/components/user/reservation'
 import UserInfo from '@/components/user/userInfo'
@@ -201,6 +202,11 @@ export default new Router({
           path: 'checkUser',
           name: 'checkUser',
           component: checkUser,
+        },
+        {
+          path: '/xieyi',
+          name: 'xieyi',
+          component: xieyi,
         },
         {
           path: 'gl_ag',

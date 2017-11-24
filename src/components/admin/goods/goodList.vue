@@ -17,6 +17,7 @@
         <template scope="scope">
           <span class="Success" @click="chang(scope.$index, 1)" v-if="tableData[scope.$index].is_shelf==0">上架</span>
           <span class="danger pointer" @click="chang(scope.$index, 0)" v-if="tableData[scope.$index].is_shelf==1">下架</span>
+          <span class="pointer" @click="datile(scope.$index)">详情</span>
         </template>
       </el-table-column>
     </el-table>
@@ -44,6 +45,13 @@
       },
     },
     methods: {
+      datile(index) {
+        const h = this.$createElement;
+        this.$notify({
+          title: this.tableData[index].service_name + ' 简介',
+          message: h('i', { style: 'color: teal'}, this.tableData[index].describe)
+        });
+      },
       priceSho(){
         if(this.price == '') {
           this.$message.warning('请输入售价');
