@@ -1,6 +1,7 @@
 <template>
   <div>
     <img src="../../assets/20091210172726656.jpg" width="100%"/>
+    <el-checkbox v-model="checked" class="items">我已阅读并同意<a href="#/xieyi" class="xieyi">《服务协议》</a></el-checkbox>
     <div class="content" v-for="(it, i) in list" key="i">
       <div class="title">{{it.service_name}}</div>
       <div class="titleB">专属服务：</div>
@@ -18,6 +19,7 @@
     data(){
       return{
         list: [],
+        checked: false,
       }
     },
     created(){
@@ -40,7 +42,11 @@
         });
       },
       yy(doc) {
-        const r = confirm("该商品需要花费"+ doc.price +"点健康豆，是否确认购买？")
+        if(!this.checked) {
+          this.$message.error('阅读并同意《协议》后才能加入俱乐部');
+          return;
+        }
+        const r = confirm("该商品需要花费"+ doc.price +"点健康豆，是否加入该俱乐部？")
         if (r) {
           this.$ajax({
             method: 'POST',
@@ -49,7 +55,7 @@
             dataType: 'JSON',
             contentType: 'application/json;charset=UTF-8',
           }).then((res) => {
-            this.$message.success('购买成功');
+            this.$message.success('购买成功，稍后将会由客服直接联系');
           }).catch((error) => {
             this.$message.error('您的健康豆不足，请前往哈瑞特健康充值');
           });
@@ -70,6 +76,10 @@
   .title{
     font-size: 1.4rem;
     font-weight: 600;
+  }
+  .xieyi{
+    text-decoration: none;
+    color: #409EFF;
   }
   .titleB{
     font-weight: 400;

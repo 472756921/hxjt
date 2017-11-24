@@ -15,11 +15,6 @@
     <el-button type="primary" style="margin: 1rem; float: left" size="medium" @click="addDate">添加时间</el-button>
     <el-table :data="tableData">
       <el-table-column prop="visit_time" label="日期" :formatter="formatter"></el-table-column>
-      <el-table-column label="操作">
-        <template scope="scope">
-          <el-button @click.native.prevent="sure(scope.$index, tableData)" type="text" size="small">修改</el-button>
-        </template>
-      </el-table-column>
     </el-table>
   </div>
 </template>
