@@ -54,6 +54,7 @@ import gl_teamAdd from '@/components/gl/admin/gl_teamAdd'
 import gl_orderList from '@/components/gl/admin/gl_orderList'
 import gl_adminLogin from '@/components/gl/admin/gl_adminLogin'
 import gl_rechargeAdmin from '@/components/gl/admin/gl_recharge'
+import gl_xiaofei from '@/components/gl/admin/gl_xiaofei'
 
 import noPage from '@/components/noPage'
 import welcome from '@/components/welcome'
@@ -190,6 +191,11 @@ export default new Router({
           path: '/gl_rechargeAdmin',
           name: 'gl_rechargeAdmin',
           component: gl_rechargeAdmin,
+        },
+        {
+          path: '/gl_xiaofei',
+          name: 'gl_xiaofei',
+          component: gl_xiaofei,
         },
       ],
     },

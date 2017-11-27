@@ -15,7 +15,7 @@
       <el-table-column prop="system_time" label="注册时间"></el-table-column>
       <el-table-column label="操作">
         <template scope="scope">
-          <el-button type="primary" size="mini" @click="bod(scope.$index)" v-if="tableData[scope.$index].status==1">已拨打</el-button>
+          <el-button type="primary" size="mini" @click="bod(scope.row.id)">充值 / 消费记录</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -41,6 +41,9 @@
       this.getInfo(1);
     },
     methods: {
+      bod(id) {
+        this.$router.push({name:'gl_xiaofei', params: { userID: id } });
+      },
       searches(){
         if(this.search == '') {
           return

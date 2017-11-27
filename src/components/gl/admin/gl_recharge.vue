@@ -1,10 +1,5 @@
 <template>
   <div>
-    <div>
-      <el-input placeholder="请输入用户身份证号码" v-model="search">
-        <el-button slot="append" icon="search" @click="searches"></el-button>
-      </el-input>
-    </div>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="customer_name" label="姓名" ></el-table-column>
       <el-table-column prop="phone" label="电话" ></el-table-column>
@@ -26,29 +21,12 @@
         pageNow: 1,
         pageTotle: 1,
         tableData: [],
-        tableData2: [],
-        search: '',
       }
     },
     created(){
       this.getInfo(1);
     },
     methods: {
-      searches(){
-        if(this.search == '') {
-          return
-        }
-        this.$ajax({
-          method: 'GET',
-          url: personalCredit()+"?customer_id="+this.search,
-        }).then((res) => {
-          this.tableData = [];
-          this.tableData.push(res.data)
-        }).catch((error) => {
-          this.$message.error(error.message);
-        });
-        this.search == '';
-      },
       changPage(newPage){
         this.getInfo(newPage);
       },
@@ -58,7 +36,6 @@
           url: getRechargeByPage()+"?page="+page,
         }).then((res) => {
           this.tableData = res.data.orders;
-          this.tableData2 = res.data.orders;
           this.pageNow = res.data.page;
           this.pageTotle = res.data.totalPage;
         }).catch((error) => {
