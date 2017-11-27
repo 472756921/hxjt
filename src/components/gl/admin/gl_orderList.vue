@@ -2,7 +2,7 @@
   <div>
     <div>
       <el-input placeholder="请输入用户身份证号码" v-model="search">
-        <el-button slot="append" icon="search"></el-button>
+        <el-button slot="append" icon="search" @click="searches"></el-button>
       </el-input>
     </div>
     <el-table :data="tableData" style="width: 100%">
@@ -27,7 +27,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { customerGetEnterpriseMedicalOrder, updatetMedicalGoodsOrderStatus } from '../../interface';
+  import { customerGetEnterpriseMedicalOrder, updatetMedicalGoodsOrderStatus, personalPurchase } from '../../interface';
 
   export default {
     name: 'gl_orderList',
@@ -36,16 +36,18 @@
     },
     methods: {
       searches(){
-        if (this.search == '' || this.search == null) {
-          this.tableData = this.tableData2;
-        } else {
-          this.tableData = [];
-          this.tableData2.map((k,i) => {
-            if (k.id_number.indexOf(this.search) != -1) {
-              this.tableData.push(k);
-            }
-          })
+        if(this.search == '') {
+          return
         }
+        this.$ajax({
+          method: 'GET',
+          url: personalPurchase()+"?customer_id="+this.search,
+        }).then((res) => {
+          this.tableData = [];
+          this.tableData.push(res.data)
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
         this.search == '';
       },
       fahuo(id) {

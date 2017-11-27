@@ -63,6 +63,21 @@ export const getCustomerByIdNumber = function () {
   const API = host + URL;
   return API;
 };
+export const personalCredit = function () {
+  const URL = '/userManager/personalCredit';
+  const API = host + URL;
+  return API;
+};
+export const getPhoneConsultationsByCustomerId = function () {
+  const URL = '/telephoneConsultation/getPhoneConsultationsByCustomerId';
+  const API = host + URL;
+  return API;
+};
+export const personalPurchase = function () {
+  const URL = '/userManager/personalPurchase';
+  const API = host + URL;
+  return API;
+};
 export const customerGetReservationList = function () {
   const URL = '/reservationService/customerGetReservationList';
   const API = host + URL;

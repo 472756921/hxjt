@@ -43,7 +43,7 @@
     methods: {
       yy() {
         if(this.times <= 0) {
-          this.$message.error('对不起您的余额不足请先充值');
+          this.$message.error('对不起您的次数不足，请前往商城购买');
           return false
         }
         this.$ajax({

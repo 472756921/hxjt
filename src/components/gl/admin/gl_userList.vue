@@ -13,13 +13,18 @@
       <el-table-column prop="id_number" label="身份证号码" width="200"></el-table-column>
       <el-table-column prop="money" label="账户余额" ></el-table-column>
       <el-table-column prop="system_time" label="注册时间"></el-table-column>
+      <el-table-column label="操作">
+        <template scope="scope">
+          <el-button type="primary" size="mini" @click="bod(scope.$index)" v-if="tableData[scope.$index].status==1">已拨打</el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <el-pagination layout="prev, pager, next" class="center" :page-size="20" :current-page="pageNow" :page-count="pageTotle" @current-change="changPage" ></el-pagination>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import {admingetCustomers} from '../../interface'
+  import {admingetCustomers, getCustomerByIdNumber} from '../../interface'
 
   export default {
     name: 'gl_userList',
@@ -37,16 +42,18 @@
     },
     methods: {
       searches(){
-        if (this.search == '' || this.search == null) {
-          this.tableData = this.tableData2;
-        } else {
-          this.tableData = [];
-          this.tableData2.map((k,i) => {
-            if (k.id_number.indexOf(this.search) != -1) {
-              this.tableData.push(k);
-            }
-          })
+        if(this.search == '') {
+          return
         }
+        this.$ajax({
+          method: 'GET',
+          url: getCustomerByIdNumber()+"?id_number="+this.search,
+        }).then((res) => {
+          this.tableData = [];
+          this.tableData.push(res.data)
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
         this.search == '';
       },
       changPage(newPage){

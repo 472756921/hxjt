@@ -103,7 +103,7 @@
             this.dis = true;
           }
         }).catch((error) => {
-          this.$message.error('请购买服务次数');
+          this.$message.error('对不起您的次数不足，请购买服务次数');
         });
       },
       getTimes() {

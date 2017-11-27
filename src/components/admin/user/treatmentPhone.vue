@@ -8,7 +8,7 @@
         <el-table-column label="状态" :formatter="formatter"></el-table-column>
         <el-table-column label="操作">
           <template scope="scope">
-            <el-button type="primary" size="mini" @click="bod(scope.$index)" v-if="tableData[scope.$index].status==1">已拨打</el-button>
+            <el-button type="primary" size="mini" @click="bod(scope.$index)" v-if="tableData[scope.$index].status==1">标记为已拨打</el-button>
           </template>
         </el-table-column>
       </el-table>

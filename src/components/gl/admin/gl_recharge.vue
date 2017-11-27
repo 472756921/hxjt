@@ -17,7 +17,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {getRechargeByPage} from '../../interface'
+  import {getRechargeByPage, personalCredit} from '../../interface'
 
   export default {
     name: 'gl_userList',
@@ -35,16 +35,18 @@
     },
     methods: {
       searches(){
-        if (this.search == '' || this.search == null) {
-          this.tableData = this.tableData2;
-        } else {
-          this.tableData = [];
-          this.tableData2.map((k,i) => {
-            if (k.id_number.indexOf(this.search) != -1) {
-              this.tableData.push(k);
-            }
-          })
+        if(this.search == '') {
+          return
         }
+        this.$ajax({
+          method: 'GET',
+          url: personalCredit()+"?customer_id="+this.search,
+        }).then((res) => {
+          this.tableData = [];
+          this.tableData.push(res.data)
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
         this.search == '';
       },
       changPage(newPage){

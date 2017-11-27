@@ -3,7 +3,7 @@
     <el-table-column prop="order_on" label="订单号"></el-table-column>
     <el-table-column prop="goods_name" label="名称"></el-table-column>
     <el-table-column prop="price" label="金额"></el-table-column>
-    <el-table-column prop="status" label="状态"></el-table-column>
+    <el-table-column prop="status" label="状态" :formatter="formatter"></el-table-column>
     <el-table-column prop="pay_time" label="购买时间"></el-table-column>
   </el-table>
 </template>
@@ -25,6 +25,14 @@
       this.getList();
     },
     methods:{
+      formatter(row, c, cell){
+        if(row.status == 'NOT_DELIVER_GOODS') {
+          return '未发货'
+        }
+        if(row.status == 'DELIVER_GOODS') {
+          return '已发货'
+        }
+      },
       getList(){
         this.$ajax({
           url:getCusotmerMedicalOrder()+"?customer_id="+this.userID,
