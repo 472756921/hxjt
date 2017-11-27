@@ -46,6 +46,7 @@
       },
       searches(){
         if(this.search == '') {
+          this.getInfo(1);
           return
         }
         this.$ajax({
@@ -53,7 +54,7 @@
           url: getCustomerByIdNumber()+"?id_number="+this.search,
         }).then((res) => {
           this.tableData = [];
-          this.tableData.push(res.data)
+          this.tableData.push(res.data.customer)
         }).catch((error) => {
           this.$message.error(error.message);
         });
