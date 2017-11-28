@@ -62,6 +62,24 @@
         <span>剩余服务次数</span>
       </div>
       <div class="line2"></div>
+      <div class="text" @click="bingd">
+        <span>绑定智能云血压计</span>
+      </div>
+      <div class="line2"></div>
+
+
+      <!--绑定云设备-->
+      <el-dialog title="绑定云设备" :visible.sync="bingdF" size="large" :show-close="false" :close-on-click-modal="false" :close-on-press-escape	='false'>
+        <div>请输入云设备编号进行绑定</div>
+        <br/>
+        <el-input  v-model="prID" size="small">
+          <template slot="prepend">编号</template>
+        </el-input>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="bangdPr">绑 定</el-button>
+        </span>
+      </el-dialog>
+
       <!--查看服务次数-->
       <el-dialog title="服务剩余次数" :visible.sync="dialogVisible2" size="large">
         <div v-for="(it, i) in serviceTime">
@@ -92,7 +110,7 @@
           <el-button type="primary" @click="bangdings">绑 定</el-button>
         </span>
       </el-dialog>
-<!--集团二维码弹出-->
+      <!--集团二维码弹出-->
       <el-dialog title="关注集团公众号" :visible.sync="jtecode" size="large">
         <span>长按识别二维码</span>
         <img src="http://www.schrtinfo.com/jtcode.jpg" width="100%"/>
@@ -108,6 +126,8 @@
     name: 'userInfo',
     data() {
       return {
+        bingdF: false,
+        prID: '',
         over: true,
         infoover: false,
         jtecode: false,
@@ -136,6 +156,13 @@
       }
     },
     methods: {
+      bingd() {
+        this.bingdF = true;
+      },
+      bangdPr() {
+        this.bingdF = false;
+        this.prID;
+      },
       service(){
         this.dialogVisible2 = true;
       },
