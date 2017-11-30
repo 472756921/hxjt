@@ -218,8 +218,7 @@
           method: 'GET',
           url: lookDevice()+"?customer_id="+localStorage.getItem('customer_id'),
         }).then( (res) =>{
-          this.CustomerDevice = res.data.List;
-//          console.log(res.data);
+          this.CustomerDevice = res.data;
         }).catch( (error) =>{
           this.$message.error('网络异常请稍候');
         });
@@ -229,7 +228,6 @@
         this.bingdF = true;
       },
       bangdPr() {
-//        console.log(this.machine_type);
         if( this.machine_type == ''|| this.prID == ''){
           this.$message.error("请填写全部信息");
           return;
@@ -243,8 +241,6 @@
           device_on: this.prID,
 
         }
-//        console.log(data);
-
         this.$ajax({
           method: 'POST',
           data: data,

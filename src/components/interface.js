@@ -9,14 +9,14 @@ const host = 'http://www.schrtinfo.com/hrt';
 
 //绑定设备
 export const bindDevice = function(){
-  const URL = '/hrt/userManager/bindCustomerDevice';
+  const URL = '/customerDevice/bindCustomerDevice';
   const API = host + URL;
   return API;
 }
 
 //查看设备
 export const lookDevice = function() {
-  const URL = '/hrt/userManager/getCustomerDevices';
+  const URL = '/customerDevice/getCustomerDevices';
   const API = host +URL;
   return API;
 }

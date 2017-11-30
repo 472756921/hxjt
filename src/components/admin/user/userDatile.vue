@@ -66,24 +66,7 @@
         dialogVisible: false,
         tableData1: [],
         tableData2: [],
-        customerDevice: [
-          /*{
-           customer_id: localStorage.getItem('customer_id'),
-           equipment_type: 2,
-           type: 1,
-           machine_type: 1,
-           device_on: '122453453525565656',
-           bind_time: '2017-12-12',
-           },
-           {
-           customer_id: localStorage.getItem('customer_id'),
-           equipment_type: 2,
-           type: 1,
-           machine_type: 1,
-           device_on: '122453453525565656',
-           bind_time: '2017-12-12',
-           }*/
-        ],
+        customerDevice: [],
       };
     },
     methods: {
@@ -140,8 +123,7 @@
           method: 'GET',
           url: lookDevice()+"?customer_id="+this.userID,
         }).then( (res) =>{
-          this.customerDevice = res.data.List;
-//          console.log(res.data);
+          this.customerDevice = res.data;
         }).catch( (error) =>{
           this.$message.error('网络异常请稍候');
         });
