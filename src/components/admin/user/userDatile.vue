@@ -1,5 +1,11 @@
 <template>
   <div style="padding: 10px;overflow:auto;">
+    <h4 v-if="customerDevice != ''">绑定的云设备</h4>
+    <el-row v-for="item in customerDevice">
+      <el-col :span="24">
+        {{item.device_type ==1 ? "血压计" : "血糖仪" }} -- {{ item.device_on }} -- {{ item.bind_time}}
+      </el-col>
+    </el-row>
     <br/>
     <addpr style="float: left;margin-right: 10px" :userID=this.userID :userID2=this.userIDt></addpr>
     <report ref="report" style="float: left" :userID=this.userID :userID2=this.userIDt></report>
@@ -33,7 +39,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {getslzb, getCheckReportListByPage} from '../../interface';
+  import {getslzb, getCheckReportListByPage, lookDevice} from '../../interface';
   import report from './report.vue';
   import addpr from './addpr.vue';
 
@@ -47,6 +53,7 @@
       this.userID = this.$route.params.userID;
       this.getData(1);
       this.getData2(1);
+      this.getDevice();
     },
     data() {
       return {
@@ -59,6 +66,24 @@
         dialogVisible: false,
         tableData1: [],
         tableData2: [],
+        customerDevice: [
+          /*{
+           customer_id: localStorage.getItem('customer_id'),
+           equipment_type: 2,
+           type: 1,
+           machine_type: 1,
+           device_on: '122453453525565656',
+           bind_time: '2017-12-12',
+           },
+           {
+           customer_id: localStorage.getItem('customer_id'),
+           equipment_type: 2,
+           type: 1,
+           machine_type: 1,
+           device_on: '122453453525565656',
+           bind_time: '2017-12-12',
+           }*/
+        ],
       };
     },
     methods: {
@@ -110,6 +135,17 @@
           this.$message.error('网络异常请稍候');
         });
       },
+      getDevice(){
+        this.$ajax({
+          method: 'GET',
+          url: lookDevice()+"?customer_id="+this.userID,
+        }).then( (res) =>{
+          this.customerDevice = res.data.List;
+//          console.log(res.data);
+        }).catch( (error) =>{
+          this.$message.error('网络异常请稍候');
+        });
+      }
     },
   };
 </script>

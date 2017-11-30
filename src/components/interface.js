@@ -7,6 +7,20 @@
 const host = 'http://www.schrtinfo.com/hrt';
 //const host = 'http://192.168.1.105:8080/hrt';
 
+//绑定设备
+export const bindDevice = function(){
+  const URL = '/hrt/userManager/bindCustomerDevice';
+  const API = host + URL;
+  return API;
+}
+
+//查看设备
+export const lookDevice = function() {
+  const URL = '/hrt/userManager/getCustomerDevices';
+  const API = host +URL;
+  return API;
+}
+
 export const saveSession = function () {
   const URL = '/admin/saveSession?group_id=1';
   const API = host + URL;

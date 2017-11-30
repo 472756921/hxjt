@@ -63,18 +63,48 @@
       </div>
       <div class="line2"></div>
       <div class="text" @click="bingd">
-        <span>绑定智能云血压计</span>
+        <span>绑定智能云设备</span>
+      </div>
+      <div class="line2"></div>
+      <div class="text" @click="look">
+        <span>查看云设备</span>
       </div>
       <div class="line2"></div>
 
 
+      <!--查看云设备-->
+      <el-dialog title="查看云设备" :visible.sync="lookF" size="large" >
+        <div v-for=" item in CustomerDevice">
+          <el-row>
+            <el-col :span="24" style="margin:10px 0; font-weight:bold;">编号：{{ item.device_on }}</el-col>
+            <el-col :span="12">类型：{{item.device_type ==1 ? "血压计" : "血糖仪" }}</el-col>
+            <el-col :span="12">绑定时间：{{ item.bind_time }}</el-col>
+          </el-row>
+          <div class="line2"></div>
+        </div>
+        <br/>
+
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="lookF = false">确 定</el-button>
+        </span>
+      </el-dialog>
+
+
       <!--绑定云设备-->
-      <el-dialog title="绑定云设备" :visible.sync="bingdF" size="large" :show-close="false" :close-on-click-modal="false" :close-on-press-escape	='false'>
+      <el-dialog title="绑定云设备" :visible.sync="bingdF" size="large" >
         <div>请输入云设备编号进行绑定</div>
         <br/>
         <el-input  v-model="prID" size="small">
           <template slot="prepend">编号</template>
         </el-input>
+        <br>
+        <div style="margin-top:10px;">请选择机种类型</div>
+        <br>
+        <el-radio-group v-model="machine_type" size="small">
+          <el-radio-button label="1">血压计</el-radio-button>
+          <el-radio-button label="2" >血糖仪</el-radio-button>
+        </el-radio-group>
+        <br>
         <span slot="footer" class="dialog-footer">
           <el-button type="primary" @click="bangdPr">绑 定</el-button>
         </span>
@@ -90,6 +120,7 @@
         </span>
       </el-dialog>
       <!--修改信息弹窗-->
+
       <el-dialog title="提示" :visible.sync="dialogVisible" size="large">
         <el-input  v-model="val" size="small">
           <template slot="prepend">{{text}}</template>
@@ -99,28 +130,33 @@
           <el-button type="primary" @click="change">确 定</el-button>
         </span>
       </el-dialog>
+
       <!--绑定用户弹窗-->
-      <el-dialog title="绑定账号" :visible.sync="bangding" size="large" :show-close="false" :close-on-click-modal="false" :close-on-press-escape	='false'>
-        <div>您还未绑定账号，请输入您的身份证进行绑定</div>
-        <br/>
-        <el-input  v-model="idnumberB" size="small">
-          <template slot="prepend">身份证号</template>
-        </el-input>
-        <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="bangdings">绑 定</el-button>
-        </span>
-      </el-dialog>
+      <!--
+            <el-dialog title="绑定账号" :visible.sync="bangding" size="large" :show-close="false" :close-on-click-modal="false" :close-on-press-escape	='false'>
+              <div>您还未绑定账号，请输入您的身份证进行绑定</div>
+              <br/>
+              <el-input  v-model="idnumberB" size="small">
+                <template slot="prepend">身份证号</template>
+              </el-input>
+              <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="bangdings">绑 定</el-button>
+              </span>
+            </el-dialog>
+      -->
       <!--集团二维码弹出-->
+
       <el-dialog title="关注集团公众号" :visible.sync="jtecode" size="large">
         <span>长按识别二维码</span>
         <img src="http://www.schrtinfo.com/jtcode.jpg" width="100%"/>
       </el-dialog>
+
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import { getGroupCustomerMessage, updateUserMessage, customerBindGroup } from '../interface';
+  import { getGroupCustomerMessage, updateUserMessage, customerBindGroup, bindDevice, lookDevice } from '../interface';
 
   export default {
     name: 'userInfo',
@@ -137,11 +173,31 @@
         dialogVisible: false,
         dialogVisible2: false,
         bangding: true,
+        lookF: false,
         text: '',
         phone: '',
         address: '',
         val: '',
         serviceTime: [],
+        CustomerDevice:[
+          /*  {
+           customer_id: localStorage.getItem('customer_id'),
+           equipment_type: 2,
+           type: 1,
+           machine_type: 1,
+           device_on: '122453453525565656',
+           bind_time: '2017-12-12',
+           },
+           {
+           customer_id: localStorage.getItem('customer_id'),
+           equipment_type: 2,
+           type: 1,
+           machine_type: 1,
+           device_on: '122453453525565656',
+           bind_time: '2017-12-12',
+           }*/
+        ],
+        machine_type: '',
       };
     },
     created() {
@@ -156,12 +212,59 @@
       }
     },
     methods: {
+      look(){
+        this.lookF = true;
+        this.$ajax({
+          method: 'GET',
+          url: lookDevice()+"?customer_id="+localStorage.getItem('customer_id'),
+        }).then( (res) =>{
+          this.CustomerDevice = res.data.List;
+//          console.log(res.data);
+        }).catch( (error) =>{
+          this.$message.error('网络异常请稍候');
+        });
+
+      },
       bingd() {
         this.bingdF = true;
       },
       bangdPr() {
+//        console.log(this.machine_type);
+        if( this.machine_type == ''|| this.prID == ''){
+          this.$message.error("请填写全部信息");
+          return;
+        }
+        let data;
+        data ={
+          customer_id: localStorage.getItem('customer_id'),
+          equipment_type: 2,
+          type: 3,
+          machine_type: this.machine_type,
+          device_on: this.prID,
+
+        }
+//        console.log(data);
+
+        this.$ajax({
+          method: 'POST',
+          data: data,
+          url: bindDevice(),
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then( (res) =>{
+          if(res.data.Res === 1){
+            this.$message.success("绑定成功");
+          }
+          if(res.data.Res === 0){
+            this.$message.error('设备重复绑定');
+          }
+        }).catch( (err) =>{
+          this.$message.error('网络异常请稍候');
+        });
         this.bingdF = false;
-        this.prID;
+        this.prID = '';
+        this.machine_type = '';
+
       },
       service(){
         this.dialogVisible2 = true;
