@@ -29,7 +29,7 @@
     components: { Page },
     methods: {
       goUser(row) {
-        this.$router.push({ name: 'userDatile', params: { userID:row.userID } })
+//        this.$router.push({ name: 'userDatile', params: { userID:row.id } })
       },
       cancel(index){
         let a = confirm('是否取消该预约');
