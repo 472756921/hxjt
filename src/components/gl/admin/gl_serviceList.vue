@@ -2,7 +2,6 @@
   <div style="padding: 10px 2px; overflow:auto;">
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="service_name" label="商品名"></el-table-column>
-      <el-table-column prop="shelf_price" label="现价格"></el-table-column>
       <el-table-column prop="price" label="指导价格" ></el-table-column>
       <el-table-column prop="grade" label="等级"  :formatter = 'formatter2'></el-table-column>
       <el-table-column prop="status" label="状态" :formatter = 'formatter'></el-table-column>
@@ -10,6 +9,7 @@
         <template scope="scope">
           <span class="Success" @click="chang(scope.$index, 1)" v-if="tableData[scope.$index].status==0">激活</span>
           <span class="danger pointer" @click="chang(scope.$index, 0)" v-if="tableData[scope.$index].status==1">注销</span>
+          <span class="pointer" @click="datile(scope.$index)">详情</span>
         </template>
       </el-table-column>
     </el-table>
@@ -36,6 +36,13 @@
       }
     },
     methods: {
+      datile(index) {
+        const h = this.$createElement;
+        this.$notify({
+          title: this.tableData[index].service_name + ' 简介',
+          message: h('i', { style: 'color: teal'}, this.tableData[index].describe)
+        });
+      },
       //BensonChen
       chang(index, type){
         this.$ajax({
