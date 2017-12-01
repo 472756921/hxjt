@@ -1,6 +1,12 @@
 <template>
   <div style="background-color: #F9FAFC;">
-    <img src="../../assets/ycyl.jpg" width="100%"/>
+    <img src="../../assets/zxwd.jpg" width="100%"/>
+    <p>
+      文字/图片方式留言，医生工作室及时回复，与您充分沟通<br/>
+      专家24小时内给予回复<br/>
+      问诊阶段不限次交流，以专家给出明确建议后才为结束<br/>
+      服务时限最长不超过3天，逾期服务自动结束
+    </p>
     <h3 style="margin: .4rem 0;">网上问答<span style="color: #ff8746;font-size: 12px;">（剩余次数：{{times}}）</span>  <span class="pointer" @click="hisqu">历史记录</span></h3>
     <div style="margin: .6rem 0">输入问题描述</div>
     <el-input type="textarea" :rows="3" :maxlength="300" placeholder="请输入内容（最多输入300字）" v-model="textarea"></el-input>

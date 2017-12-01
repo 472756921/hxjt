@@ -1,9 +1,12 @@
 <template>
   <div class="content">
-    <img src="../../assets/yy.jpg" width="100%"/>
-    <h3>预约服务<span style="color: #ff8746;font-size: 12px;">（当前服务剩余 {{times}} 次）</span></h3>
+    <img src="../../assets/mz.jpg" width="100%"/>
+    <h3>预约面对面<span style="color: #ff8746;font-size: 12px;">（当前服务剩余 {{times}} 次）</span></h3>
     <div class="text">
-      这里是一些预约服务的介绍，这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍
+      高端专享咨询场所<br/>
+      20分钟与专家面对面，充分交流<br/>
+      得到全面的健康管理评估和管理计划<br/>
+      预约成功后原则上不予取消，否则作废
     </div>
     <h4>请选择预约时间</h4>
     <div v-for="(it, i) in date" style="padding: .2rem 0">

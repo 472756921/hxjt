@@ -1,9 +1,11 @@
 <template>
   <div class="content">
-    <img src="../../assets/doctor.jpg" width="100%"/>
+    <img src="../../assets/yydh.jpg" width="100%"/>
     <h3>预约电话咨询<span style="color: #ff8746;font-size: 12px;">（当前服务剩余 {{times}} 次）</span></h3>
     <div class="text">
-      这里是一些预约服务的介绍，这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍这里是一些预约服务的介绍
+      工作室先与您沟通整理好您想咨询的问题和您方便通话的时间<br/>
+      工作室与专家预约时间，24小时内专家亲自给您回电<br/>
+      预约成功后原则上不予取消，否则作废
     </div>
     <br/>
     <br/>
