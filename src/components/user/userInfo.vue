@@ -132,18 +132,16 @@
       </el-dialog>
 
       <!--绑定用户弹窗-->
-      <!--
-            <el-dialog title="绑定账号" :visible.sync="bangding" size="large" :show-close="false" :close-on-click-modal="false" :close-on-press-escape	='false'>
-              <div>您还未绑定账号，请输入您的身份证进行绑定</div>
-              <br/>
-              <el-input  v-model="idnumberB" size="small">
-                <template slot="prepend">身份证号</template>
-              </el-input>
-              <span slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="bangdings">绑 定</el-button>
-              </span>
-            </el-dialog>
-      -->
+      <el-dialog title="绑定账号" :visible.sync="bangding" size="large" :show-close="false" :close-on-click-modal="false" :close-on-press-escape	='false'>
+        <div>您还未绑定账号，请输入您的身份证进行绑定</div>
+        <br/>
+        <el-input  v-model="idnumberB" size="small">
+          <template slot="prepend">身份证号</template>
+        </el-input>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="bangdings">绑 定</el-button>
+        </span>
+      </el-dialog>
       <!--集团二维码弹出-->
 
       <el-dialog title="关注集团公众号" :visible.sync="jtecode" size="large">
@@ -179,24 +177,7 @@
         address: '',
         val: '',
         serviceTime: [],
-        CustomerDevice:[
-          /*  {
-           customer_id: localStorage.getItem('customer_id'),
-           equipment_type: 2,
-           type: 1,
-           machine_type: 1,
-           device_on: '122453453525565656',
-           bind_time: '2017-12-12',
-           },
-           {
-           customer_id: localStorage.getItem('customer_id'),
-           equipment_type: 2,
-           type: 1,
-           machine_type: 1,
-           device_on: '122453453525565656',
-           bind_time: '2017-12-12',
-           }*/
-        ],
+        CustomerDevice:[],
         machine_type: '',
       };
     },
@@ -323,8 +304,13 @@
           this.group = res.data.group;
           this.over = false;
           this.infoover = true;
+          if(res.data.customerGroup == null) {
+            localStorage.removeItem('customer_id');
+            window.location.reload();
+          };
         }).catch((error) => {
           localStorage.removeItem('customer_id');
+          window.location.reload();
           if(error.response.status == 400 || error.response.status == 1000) {
             this.$message.error('服务器开小差了，请稍后再试');
           }
@@ -335,7 +321,6 @@
             this.$message.error('用户不存在');
           }
           this.bangding = true;
-          window.location.reload();
         });
       },
       updataLive() {
