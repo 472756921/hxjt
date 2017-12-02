@@ -119,9 +119,16 @@
         });
       },
       getDevice(){
+        let uid= '';
+        if(this.userIDt==undefined){
+          uid = this.userID;
+        }
+        if (this.userID == undefined)(
+          uid = this.userIDt
+        )
         this.$ajax({
           method: 'GET',
-          url: lookDevice()+"?customer_id="+this.userID,
+          url: lookDevice()+"?customer_id="+uid,
         }).then( (res) =>{
           this.customerDevice = res.data;
         }).catch( (error) =>{
