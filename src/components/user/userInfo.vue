@@ -77,7 +77,7 @@
         <div v-for=" item in CustomerDevice">
           <el-row>
             <el-col :span="24" style="margin:10px 0; font-weight:bold;">编号：{{ item.device_on }}</el-col>
-            <el-col :span="12">类型：{{item.device_type ==1 ? "血压计" : "血糖仪" }}</el-col>
+            <el-col :span="12">类型：{{item.device_type}}</el-col>
             <el-col :span="12">绑定时间：{{ item.bind_time }}</el-col>
           </el-row>
           <div class="line2"></div>

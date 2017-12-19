@@ -3,7 +3,7 @@
     <h4 v-if="customerDevice != ''">绑定的云设备</h4>
     <el-row v-for="item in customerDevice">
       <el-col :span="24">
-        {{item.device_type ==1 ? "血压计" : "血糖仪" }} -- {{ item.device_on }} -- {{ item.bind_time}}
+        {{item.device_type == 1 ? "血压计" : "血糖仪" }} -- {{ item.device_on }} -- {{ item.bind_time}}
       </el-col>
     </el-row>
     <br/>

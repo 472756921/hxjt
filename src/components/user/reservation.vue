@@ -48,6 +48,13 @@
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
           this.times = res.data;
+          if(this.times == 0) {
+            this.$notify({
+              title: '购买服务次数',
+              message: '您的剩余服务次数不足，请前往‘哈瑞特王勉工作室’公众号商城购买次数；如果您不是会员，请先前往‘哈瑞特健康’公众号个人中心充值，再返回‘哈瑞特王勉工作室’公众号商城购买会员服务资格（999健康豆），再前往本公众号商城购买对应服务次数（500健康豆）',
+              duration: 0
+            });
+          }
           this.$ajax({
             method: 'get',
             url: getVisitTimeList(),
