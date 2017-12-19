@@ -78,7 +78,7 @@
           <el-row>
             <el-col :span="24" style="margin:10px 0; font-weight:bold;">编号：{{ item.device_on }}</el-col>
             <el-col :span="12">类型：{{item.device_type}}</el-col>
-            <el-col :span="12">绑定时间：{{ item.bind_time.splice(0, 9) }}</el-col>
+            <el-col :span="12">绑定时间：{{ item.bind_time.split(' ')[0]}}</el-col>
           </el-row>
           <div class="line2"></div>
         </div>
