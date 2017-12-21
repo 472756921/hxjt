@@ -22,7 +22,7 @@ export const lookDevice = function() {
 }
 
 export const saveSession = function () {
-  const URL = '/admin/saveSession?group_id=1';
+  const URL = '/admin/saveSession?group_id=11';
   const API = host + URL;
   return API;
 };

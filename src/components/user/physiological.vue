@@ -2,6 +2,7 @@
   <div class="content">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="基础指标" name="first">
+        <dataImg :data="data" v-if="over"/>
         <h4>添加<i class="iconfont icon-add" style="float:right;color: #1D8CE0;" @click="dialogVisible = true"></i></h4>
         <el-row class="card" v-for="(o, index) in data" key="index">
           <el-col :span="12"  v-if="o.blood_pressure.split('/')[0] != '' && o.blood_pressure.split('/')[0] !=null"><div>血压(高)：{{o.blood_pressure.split('/')[0]}} mmhg</div></el-col>
@@ -43,11 +44,14 @@
 
 <script type="text/ecmascript-6">
   import { getslzb, uploadHealthData, getCheckReportListByPage } from '../interface';
+  import dataImg from './dataImg.vue';
 
   export default {
     name: 'physiological',
+    components: {dataImg},
     data() {
       return {
+        over: false,
         activeName: 'first',
         dialogVisible: false,
         blood_pressure: '',
@@ -95,6 +99,7 @@
           this.data = res.data.healthDatas;
           this.pageNow = res.data.page;
           this.pageTotle = res.data.totalPage;
+          this.over = true;
         }).catch((error) => {
           this.$message.error('网络异常请稍候');
         });

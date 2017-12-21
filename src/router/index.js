@@ -17,6 +17,7 @@ import question_u from '@/components/user/question'
 import question_List from '@/components/user/question_List'
 import questionDatile from '@/components/user/questionDatile'
 import reservationByPhone from '@/components/user/reservationByPhone'
+import dataImg from '@/components/user/dataImg'
 
 import AdminIndex from '@/components/admin/adminIndex'
 import AdminLogin from '@/components/admin/adminLogin'
@@ -283,6 +284,11 @@ export default new Router({
           path: 'reservationByPhone',
           name: 'reservationByPhone',
           component: reservationByPhone,
+        },
+        {
+          path: 'dataImg',
+          name: 'dataImg',
+          component: dataImg,
         },
       ],
     },
