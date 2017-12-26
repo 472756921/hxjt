@@ -13,16 +13,16 @@
           if(i>=20){
             return false
           }
-          this.userData.date.push(it.create_date.split(':')[0]+':'+it.create_date.split(':')[1]);
+          this.userData.date.unshift(it.create_date.split(':')[0]+':'+it.create_date.split(':')[1]);
           if(it.blood_pressure!='' &&it.blood_pressure!=null){
-            this.userData.blood_pressure_g.push(it.blood_pressure.split('/')[0]);
-            this.userData.blood_pressure_d.push(it.blood_pressure.split('/')[1]);
+            this.userData.blood_pressure_g.unshift(it.blood_pressure.split('/')[0]);
+            this.userData.blood_pressure_d.unshift(it.blood_pressure.split('/')[1]);
           }
           if(it.blood_sugar!='' &&it.blood_sugar!=null){
-            this.userData.blood_sugar.push(it.blood_sugar);
+            this.userData.blood_sugar.unshift(it.blood_sugar);
           }
           if(it.heart_rate!='' &&it.heart_rate!=null){
-            this.userData.heart_rate.push(it.heart_rate);
+            this.userData.heart_rate.unshift(it.heart_rate);
           }
         })
       },
@@ -54,7 +54,7 @@
           },
           grid: {
             left: '4%',
-            right: '7%',
+            right: '8%',
             bottom: '3%',
             top: '3%',
             containLabel: true
