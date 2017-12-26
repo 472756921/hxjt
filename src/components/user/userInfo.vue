@@ -217,7 +217,7 @@
         data ={
           customer_id: localStorage.getItem('customer_id'),
           equipment_type: 2,
-          type: 3,
+          type: 0,
           machine_type: this.machine_type,
           device_on: this.prID,
 

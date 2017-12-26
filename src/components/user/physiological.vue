@@ -2,7 +2,7 @@
   <div class="content">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="基础指标" name="first">
-        <dataImg :data="data" v-if="over"/>
+        <el-button type="primary" @click="push">查看生理指标图</el-button>
         <h4>添加<i class="iconfont icon-add" style="float:right;color: #1D8CE0;" @click="dialogVisible = true"></i></h4>
         <el-row class="card" v-for="(o, index) in data" key="index">
           <el-col :span="12"  v-if="o.blood_pressure.split('/')[0] != '' && o.blood_pressure.split('/')[0] !=null"><div>血压(高)：{{o.blood_pressure.split('/')[0]}} mmhg</div></el-col>
@@ -44,11 +44,9 @@
 
 <script type="text/ecmascript-6">
   import { getslzb, uploadHealthData, getCheckReportListByPage } from '../interface';
-  import dataImg from './dataImg.vue';
 
   export default {
     name: 'physiological',
-    components: {dataImg},
     data() {
       return {
         over: false,
@@ -118,6 +116,9 @@
       },
       datile(id){
         this.$router.push({path:'report/'+id})
+      },
+      push(){
+        this.$router.push({name:'dataImg', params: { data:this.data} })
       },
       handleClose(done) {
         done();
