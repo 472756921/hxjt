@@ -17,7 +17,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {createPhoneConsultation, getCustomerServiceDetailCount} from '../interface';
+  import {createPhoneConsultation, getCustomerServiceDetailCount, teamUserrecharge} from '../interface';
 
   export default {
     name: 'reservationByPhone',
@@ -50,9 +50,51 @@
       }
     },
     methods: {
+
+      onBridgeReady(appIdV, nonceStrV, prepayIdV, paySignV, timeStampV) {
+        window.WeixinJSBridge.invoke(
+          'getBrandWCPayRequest', {
+            'appId': appIdV,
+            'timeStamp': timeStampV.toString(),
+            'nonceStr': nonceStrV,
+            'package': 'prepay_id=' + prepayIdV,
+            'signType': 'MD5',
+            'paySign': paySignV,
+          },
+          (res) => {
+            if (res.err_msg === 'get_brand_wcpay_request:ok') {
+              this.yy();
+            }
+          }
+        );
+      },
+      pay(){
+        this.$ajax({
+          method: 'post',
+          url: teamUserrecharge(),
+          data: {price: 3},
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if (typeof window.WeixinJSBridge === 'undefined') {
+            if (document.addEventListener) {
+              document.addEventListener('window.WeixinJSBridgeReady',
+                this.onBridgeReady, false);
+            } else if (document.attachEvent) {
+              document.attachEvent('window.WeixinJSBridgeReady', this.onBridgeReady);
+              document.attachEvent('window.onWeixinJSBridgeReady', this.onBridgeReady);
+            }
+          } else {
+            this.onBridgeReady(res.data.appId, res.data.nonceStr,res.data.package, res.data.paySign, res.data.timeStamp);
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
+
       yy() {
         if(this.times <= 0) {
-          this.$message.error('对不起您的次数不足，请前往商城购买');
+          this.pay();
           return false
         }
         this.$ajax({

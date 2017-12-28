@@ -44,8 +44,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { createConsultation } from '../interface';
-  import { getCustomerServiceDetailCount } from '../interface';
+  import { createConsultation,getCustomerServiceDetailCount, teamUserrecharge } from '../interface';
 
   export default {
     name: 'question',
@@ -90,6 +89,48 @@
         }
         return isJPG && isLt2M;
       },
+
+      onBridgeReady(appIdV, nonceStrV, prepayIdV, paySignV, timeStampV) {
+        window.WeixinJSBridge.invoke(
+          'getBrandWCPayRequest', {
+            'appId': appIdV,
+            'timeStamp': timeStampV.toString(),
+            'nonceStr': nonceStrV,
+            'package': 'prepay_id=' + prepayIdV,
+            'signType': 'MD5',
+            'paySign': paySignV,
+          },
+          (res) => {
+            if (res.err_msg === 'get_brand_wcpay_request:ok') {
+              this.go();
+            }
+          }
+        );
+      },
+      pay(){
+        this.$ajax({
+          method: 'post',
+          url: teamUserrecharge(),
+          data: {price: 4},
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if (typeof window.WeixinJSBridge === 'undefined') {
+            if (document.addEventListener) {
+              document.addEventListener('window.WeixinJSBridgeReady',
+                this.onBridgeReady, false);
+            } else if (document.attachEvent) {
+              document.attachEvent('window.WeixinJSBridgeReady', this.onBridgeReady);
+              document.attachEvent('window.onWeixinJSBridgeReady', this.onBridgeReady);
+            }
+          } else {
+            this.onBridgeReady(res.data.appId, res.data.nonceStr,res.data.package, res.data.paySign, res.data.timeStamp);
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
+
       go() {
         if(this.textarea == '') {
           this.$message.error('请输入问题描述');

@@ -376,6 +376,11 @@ export const recharge = function () {
   const API = host + URL;
   return API;
 };
+export const teamUserrecharge = function () {
+  const URL = '/teamUser/recharge';
+  const API = host + URL;
+  return API;
+};
 export const getRechargeByPage = function () {
   const URL = '/userManager/getRechargeByPage';
   const API = host + URL;

@@ -231,7 +231,7 @@ export default new Router({
           component: Reservation,
         },
         {
-          path: 'userInfo',
+          path: 'userInfo/:flat',
           name: 'userInfo',
           component: UserInfo,
         },

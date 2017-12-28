@@ -182,8 +182,9 @@
       };
     },
     created() {
-      let user = localStorage.getItem('customer_id');
-      if (user == '' || user == null) {
+      let userID = localStorage.getItem('customer_id');
+      let user = this.$route.params.flat;
+      if (userID == '' || userID == null || user == 'false' || user == null || user == '') {
         this.bangding = true;
         this.over = false;
         return
@@ -250,7 +251,7 @@
         this.$router.push({ name: 'buyHistor', params: { src: 'benson' }})
       },
       check() {
-        this.$router.push({ path: 'Physiological', params: { src: 'benson' }})
+        this.$router.push({ name: 'physiological', params: { src: 'benson' }})
       },
       change() {
         let data;
@@ -310,7 +311,6 @@
           };
         }).catch((error) => {
           localStorage.removeItem('customer_id');
-          window.location.reload();
           if(error.response.status == 400 || error.response.status == 1000) {
             this.$message.error('服务器开小差了，请稍后再试');
           }
@@ -321,6 +321,7 @@
             this.$message.error('用户不存在');
           }
           this.bangding = true;
+          window.location.reload();
         });
       },
       updataLive() {
@@ -339,9 +340,11 @@
           url: customerBindGroup(),
         }).then((res) => {
           this.$message.success('绑定成功');
-          localStorage.setItem('customer_id', res.data);
           this.bangding = false;
-          setTimeout(()=>{window.location.reload();},600)
+          localStorage.setItem('customer_id', res.data);
+          setTimeout(()=>{
+            this.getUserInfo();
+          },600)
         }).catch((error) => {
           const code = error.response.data.errorCode;
           if (code == 1009) {
