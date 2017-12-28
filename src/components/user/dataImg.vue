@@ -54,7 +54,7 @@
           },
           grid: {
             left: '4%',
-            right: '8%',
+            right: '8.5%',
             bottom: '3%',
             top: '3%',
             containLabel: true
