@@ -12,13 +12,14 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {getGroupBindPackageByPage, CustomerPayHealthServicePackage} from '../interface';
+  import {getGroupBindPackageByPage, CustomerPayHealthServicePackage, teamUserrecharge} from '../interface';
 
   export default {
     name: 'join',
     data(){
       return{
         list: [],
+        temp: '',
         checked: false,
       }
     },
@@ -57,10 +58,61 @@
           }).then((res) => {
             this.$message.success('购买成功，稍后将会由客服直接联系');
           }).catch((error) => {
-            this.$message.error('您的健康豆不足，请前往哈瑞特健康充值');
+            this.temp = doc;
+            this.pay();
           });
         }
-      }
+      },
+      onBridgeReady(appIdV, nonceStrV, prepayIdV, paySignV, timeStampV) {
+        window.WeixinJSBridge.invoke(
+          'getBrandWCPayRequest', {
+            'appId': appIdV,
+            'timeStamp': timeStampV.toString(),
+            'nonceStr': nonceStrV,
+            'package': 'prepay_id=' + prepayIdV,
+            'signType': 'MD5',
+            'paySign': paySignV,
+          },
+          (res) => {
+            if (res.err_msg === 'get_brand_wcpay_request:ok') {
+              this.$ajax({
+                method: 'POST',
+                data: {customer_id: localStorage.getItem('customer_id'),group_package_id: doc.id,},
+                url: CustomerPayHealthServicePackage(),
+                dataType: 'JSON',
+                contentType: 'application/json;charset=UTF-8',
+              }).then((res) => {
+                this.$message.success('购买成功，稍后将会由客服直接联系');
+              }).catch((error) => {
+                this.$message.success('系统故障，请联系客服退款');
+              });
+            }
+          }
+        );
+      },
+      pay(){
+        this.$ajax({
+          method: 'post',
+          url: teamUserrecharge(),
+          data: {price: 1},
+          dataType: 'JSON',
+          contentType: 'application/json;charset=UTF-8',
+        }).then((res) => {
+          if (typeof window.WeixinJSBridge === 'undefined') {
+            if (document.addEventListener) {
+              document.addEventListener('window.WeixinJSBridgeReady',
+                this.onBridgeReady, false);
+            } else if (document.attachEvent) {
+              document.attachEvent('window.WeixinJSBridgeReady', this.onBridgeReady);
+              document.attachEvent('window.onWeixinJSBridgeReady', this.onBridgeReady);
+            }
+          } else {
+            this.onBridgeReady(res.data.appId, res.data.nonceStr,res.data.package, res.data.paySign, res.data.timeStamp);
+          }
+        }).catch((error) => {
+          this.$message.error(error.message);
+        });
+      },
     },
   };
 </script>

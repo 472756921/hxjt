@@ -102,7 +102,8 @@
           },
           (res) => {
             if (res.err_msg === 'get_brand_wcpay_request:ok') {
-              this.go();
+              this.times = 1;
+              setTimeout(this.go(),1000)
             }
           }
         );
@@ -135,6 +136,10 @@
         if(this.textarea == '') {
           this.$message.error('请输入问题描述');
           return false;
+        }
+        if(this.times <= 0) {
+          this.pay();
+          return false
         }
         const data = { describe: this.textarea, img: this.img, customer_id: localStorage.getItem('customer_id')};
         this.$ajax({

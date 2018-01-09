@@ -79,7 +79,8 @@
           },
           (res) => {
             if (res.err_msg === 'get_brand_wcpay_request:ok') {
-              this.yy();
+              this.times = 1;
+              setTimeout(this.yy(),1000)
             }
           }
         );
@@ -131,6 +132,7 @@
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
           if(res.data==1) {
+            this.times -= 1;
             this.$message.success('预约成功，客服将会尽快联系您');
             this.dis = true;
           }

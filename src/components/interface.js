@@ -53,7 +53,7 @@ export const uploadHealthData = function () {
   return API;
 };
 export const getGroupCustomerMessage = function () {
-  const URL = '/teamUser/getGroupCustomerMessage';
+  const URL = '/teamUser/getGroupCustomerDetail';
   const API = host + URL;
   return API;
 };

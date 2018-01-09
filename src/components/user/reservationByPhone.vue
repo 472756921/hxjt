@@ -63,7 +63,8 @@
           },
           (res) => {
             if (res.err_msg === 'get_brand_wcpay_request:ok') {
-              this.yy();
+              this.times = 1;
+              setTimeout(this.yy(),1000)
             }
           }
         );
