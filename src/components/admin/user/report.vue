@@ -359,10 +359,8 @@
           dataType: 'JSON',
           contentType: 'application/json;charset=UTF-8',
         }).then((res) => {
-          if(res.data == 1) {
-            this.$message.success('提交成功');
-            this.dialogVisible = false;
-          }
+          this.$message.success('提交成功');
+          this.dialogVisible = false;
         }).catch((error) => {
           this.$message.error(error.message);
         });
