@@ -6,7 +6,7 @@
       <el-row style="line-height: 1.8rem;color:#8492A6">
         <el-col :span="24">
           <span class="titleA">首次病程记录/诊断意见：</span>
-          <div> <textarea cols="100" style="resize: none" :maxlength="300" rows="3" v-model="repData.diagnosis" :disabled="isShow"></textarea></div>
+          <div> <textarea cols="100" style="resize: none" :maxlength="1000" rows="3" v-model="repData.diagnosis" :disabled="isShow"></textarea></div>
         </el-col>
         <el-col :span="24">
           <span class="titleC">心脏彩超</span>
@@ -15,16 +15,16 @@
           <span class="titleA">LV：</span><input v-model="repData.lv" :disabled="isShow"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">LA：</span></span><input :disabled="isShow" v-model="repData.la"/>
+          <span class="titleA">LA：</span><input :disabled="isShow" v-model="repData.la"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">RV：</span></span><input :disabled="isShow" v-model="repData.rv"/>
+          <span class="titleA">RV：</span><input :disabled="isShow" v-model="repData.rv"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">RA：</span></span><input :disabled="isShow" v-model="repData.ra"/>
+          <span class="titleA">RA：</span><input :disabled="isShow" v-model="repData.ra"/>
         </el-col>
         <el-col :span="12">
-          <span class="titleA">EF：</span></span><input :disabled="isShow" v-model="repData.ef"/>
+          <span class="titleA">EF：</span><input :disabled="isShow" v-model="repData.ef"/>
         </el-col>
         <el-col :span="24" >
           <span class="titleC">生化指标</span>
@@ -361,6 +361,7 @@
         }).then((res) => {
           this.$message.success('提交成功');
           this.dialogVisible = false;
+          this.$emit('addSuccess','ok');
         }).catch((error) => {
           this.$message.error(error.message);
         });

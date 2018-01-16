@@ -70,6 +70,7 @@
           if(res.data==1) {
             this.$message.success('添加成功');
             this.dialogVisible = false;
+            this.$emit('addSuccess2','ok');
           }
         }).catch((error) => {
           this.$message.error(error.message);

@@ -7,8 +7,8 @@
       </el-col>
     </el-row>
     <br/>
-    <addpr style="float: left;margin-right: 10px" :userID=this.userID :userID2=this.userIDt></addpr>
-    <report ref="report" style="float: left" :userID=this.userID :userID2=this.userIDt></report>
+    <addpr style="float: left;margin-right: 10px" :userID=this.userID :userID2=this.userIDt @addSuccess2="addSuccess2"></addpr>
+    <report ref="report" style="float: left" :userID=this.userID :userID2=this.userIDt @addSuccess="addSuccess"></report>
     <br/>
     <el-row>
       <el-col :span="24">
@@ -70,6 +70,12 @@
       };
     },
     methods: {
+      addSuccess(data) {
+        this.getData2(1);
+      },
+      addSuccess2(data) {
+        this.getData(1);
+      },
       changPage1(pageNew){
         this.getData(pageNew);
       },
